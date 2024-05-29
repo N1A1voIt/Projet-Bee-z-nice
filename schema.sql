@@ -4,8 +4,29 @@ CREATE TABLE supplier(
 );
 ALTER TABLE
     supplier ADD PRIMARY KEY(id);
+CREATE TABLE comments(
+    id bigserial NOT NULL,
+    idCustomer BIGINT NOT NULL,
+    comment TEXT NOT NULL
+);
+ALTER TABLE
+    comments ADD PRIMARY KEY(id);
+CREATE TABLE modeOfPayment(
+    id SERIAL NOT NULL,
+    name VARCHAR(250) NOT NULL
+);
+ALTER TABLE
+    modeOfPayment ADD PRIMARY KEY(id);
+CREATE TABLE inDebtCustomers(
+    id SERIAL NOT NULL,
+    idCustomer BIGINT NOT NULL,
+    debtAmount DECIMAL(8, 2) NOT NULL,
+    amountRefunded DECIMAL(8, 2) NOT NULL
+);
+ALTER TABLE
+    inDebtCustomers ADD PRIMARY KEY(id);
 CREATE TABLE customers(
-    id BIGSERIAL NOT NULL,
+    id BIGINT NOT NULL,
     username VARCHAR(200) NOT NULL,
     mail VARCHAR(50) NOT NULL,
     password VARCHAR(255) NOT NULL,
@@ -15,21 +36,6 @@ CREATE TABLE customers(
 );
 ALTER TABLE
     customers ADD PRIMARY KEY(id);
-CREATE TABLE inDebtCustomers(
-    id SERIAL NOT NULL,
-    idCustomer BIGINT NOT NULL,
-    debtAmount DECIMAL(8, 2) NOT NULL,
-    amountRefunded DECIMAL(8, 2) NOT NULL
-);
-ALTER TABLE
-    inDebtCustomers ADD PRIMARY KEY(id);
-CREATE TABLE establishment(
-    id SERIAL NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    location VARCHAR(255) NOT NULL
-);
-ALTER TABLE
-    establishment ADD PRIMARY KEY(id);
 CREATE TABLE establismentEmployee(
     idEmp VARCHAR(50) NOT NULL,
     idEstablishment INTEGER NOT NULL,
@@ -37,12 +43,6 @@ CREATE TABLE establismentEmployee(
 );
 ALTER TABLE
     establismentEmployee ADD PRIMARY KEY(idEmp);
-CREATE TABLE modeOfPayment(
-    id SERIAL NOT NULL,
-    name VARCHAR(250) NOT NULL
-);
-ALTER TABLE
-    modeOfPayment ADD PRIMARY KEY(id);
 CREATE TABLE dishes(
     id SERIAL NOT NULL,
     dishesName VARCHAR(250) NOT NULL,
@@ -52,6 +52,21 @@ CREATE TABLE dishes(
 );
 ALTER TABLE
     dishes ADD PRIMARY KEY(id);
+CREATE TABLE dishesMarks(
+    id bigserial NOT NULL,
+    idDishe INTEGER NOT NULL,
+    idCustomer BIGINT NOT NULL,
+    mark INTEGER NOT NULL
+);
+ALTER TABLE
+    dishesMarks ADD PRIMARY KEY(id);
+CREATE TABLE establishment(
+    id SERIAL NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    location VARCHAR(255) NOT NULL
+);
+ALTER TABLE
+    establishment ADD PRIMARY KEY(id);
 CREATE TABLE foodOrder(
     id bigserial NOT NULL,
     paymentTypeId INTEGER NOT NULL,
@@ -80,6 +95,8 @@ CREATE TABLE stockByEstablishment(
 ALTER TABLE
     stockByEstablishment ADD PRIMARY KEY(id);
 ALTER TABLE
+    dishesMarks ADD CONSTRAINT dishesmarks_iddishe_foreign FOREIGN KEY(idDishe) REFERENCES dishes(id);
+ALTER TABLE
     foodOrder ADD CONSTRAINT foodorder_iddishes_foreign FOREIGN KEY(idDishes) REFERENCES dishes(id);
 ALTER TABLE
     orderState ADD CONSTRAINT orderstate_idorder_foreign FOREIGN KEY(idOrder) REFERENCES foodOrder(id);
@@ -94,6 +111,8 @@ ALTER TABLE
 ALTER TABLE
     establismentEmployee ADD CONSTRAINT establismentemployee_idestablishment_foreign FOREIGN KEY(idEstablishment) REFERENCES establishment(id);
 ALTER TABLE
+    comments ADD CONSTRAINT comments_idcustomer_foreign FOREIGN KEY(idCustomer) REFERENCES customers(id);
+ALTER TABLE
     stockByEstablishment ADD CONSTRAINT stockbyestablishment_idestablishment_foreign FOREIGN KEY(idEstablishment) REFERENCES establishment(id);
 ALTER TABLE
     customers ADD CONSTRAINT customers_idestablishment_foreign FOREIGN KEY(idEstablishment) REFERENCES establishment(id);
@@ -101,3 +120,5 @@ ALTER TABLE
     foodOrder ADD CONSTRAINT foodorder_paymenttypeid_foreign FOREIGN KEY(paymentTypeId) REFERENCES modeOfPayment(id);
 ALTER TABLE
     stockByEstablishment ADD CONSTRAINT stockbyestablishment_iddishes_foreign FOREIGN KEY(idDishes) REFERENCES dishes(id);
+ALTER TABLE
+    dishesMarks ADD CONSTRAINT dishesmarks_id_foreign FOREIGN KEY(id) REFERENCES customers(id);
