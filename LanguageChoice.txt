@@ -1,0 +1,13 @@
+Pourquoi angular et spring boot?
+
+Angular:
+   - Structure organisée : Angular fournit une structure organisée pour la construction d'applications web dynamiques. Son architecture suit le modèle Modèle-Vue-Contrôleur (MVC), ce qui facilite l'organisation et la maintenance du code.
+   - Outil CLI : Angular est livré avec un outil de ligne de commande (CLI) puissant qui automatise les tâches de développement courantes telles que la création de projets, la génération de code, les tests et le déploiement. Cela améliore la productivité des développeurs et réduit le temps nécessaire à la configuration et à la maintenance des projets.
+   - Bien qu'Angular ne soit peut-être pas l'option la plus légère disponible, ses fonctionnalités robustes et sa scalabilité en font un choix populaire pour la construction d'applications grandes et complexes où la performance et la maintenabilité sont des considérations clés.
+
+Spring Boot :
+   - Développement rapide : Spring Boot simplifie la configuration et la mise en place des applications basées sur Spring en fournissant une auto-configuration et des dépendances de démarrage. Cela permet aux développeurs de démarrer rapidement de nouveaux projets et de se concentrer sur l'écriture de la logique métier plutôt que de traiter le code redondant.
+   - Scalabilité et performance : Spring Boot est conçu pour être évolutif et performant, ce qui le rend adapté à la construction d'applications à fort trafic et critiques pour l'entreprise.
+   - Injection de dépendances et AOP : Spring Boot exploite les fonctionnalités puissantes d'injection de dépendances et de programmation orientée aspect (AOP) du Framework Spring.
+
+En résumé le choix de ces technologies nous aideront a mieux organiser nos tâches en organisant l'application en trois couches différentes.
