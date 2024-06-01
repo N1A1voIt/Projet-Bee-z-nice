@@ -4,19 +4,6 @@ CREATE TABLE supplier(
 );
 ALTER TABLE
     supplier ADD PRIMARY KEY(id);
-CREATE TABLE comments(
-    id bigserial NOT NULL,
-    idCustomer BIGINT NOT NULL,
-    comment TEXT NOT NULL
-);
-ALTER TABLE
-    comments ADD PRIMARY KEY(id);
-CREATE TABLE modeOfPayment(
-    id SERIAL NOT NULL,
-    name VARCHAR(250) NOT NULL
-);
-ALTER TABLE
-    modeOfPayment ADD PRIMARY KEY(id);
 CREATE TABLE inDebtCustomers(
     id SERIAL NOT NULL,
     idCustomer BIGINT NOT NULL,
@@ -26,16 +13,22 @@ CREATE TABLE inDebtCustomers(
 ALTER TABLE
     inDebtCustomers ADD PRIMARY KEY(id);
 CREATE TABLE customers(
-    id BIGINT NOT NULL,
-    username VARCHAR(200) NOT NULL,
+    id bigserial NOT NULL,
+    firstname VARCHAR(200) NOT NULL,
+    name VARCHAR(250) NOT NULL,
     mail VARCHAR(50) NOT NULL,
     password VARCHAR(255) NOT NULL,
     isActive BOOLEAN NOT NULL,
     uniqId VARCHAR(50) NOT NULL,
-    idEstablishment INTEGER NOT NULL
+    idEstablishment INTEGER NOT NULL,
+    isadmin BOOLEAN NOT NULL default false,
 );
 ALTER TABLE
     customers ADD PRIMARY KEY(id);
+ALTER TABLE
+    customers ADD CONSTRAINT customers_mail_unique UNIQUE(mail);
+ALTER TABLE
+    customers ADD CONSTRAINT customers_uniqid_unique UNIQUE(uniqId);
 CREATE TABLE establismentEmployee(
     idEmp VARCHAR(50) NOT NULL,
     idEstablishment INTEGER NOT NULL,
@@ -52,6 +45,13 @@ CREATE TABLE dishes(
 );
 ALTER TABLE
     dishes ADD PRIMARY KEY(id);
+CREATE TABLE comments(
+    id bigserial NOT NULL,
+    idCustomer BIGINT NOT NULL,
+    comment TEXT NOT NULL
+);
+ALTER TABLE
+    comments ADD PRIMARY KEY(id);
 CREATE TABLE dishesMarks(
     id bigserial NOT NULL,
     idDishe INTEGER NOT NULL,
@@ -60,6 +60,12 @@ CREATE TABLE dishesMarks(
 );
 ALTER TABLE
     dishesMarks ADD PRIMARY KEY(id);
+CREATE TABLE modeOfPayment(
+    id SERIAL NOT NULL,
+    name VARCHAR(250) NOT NULL
+);
+ALTER TABLE
+    modeOfPayment ADD PRIMARY KEY(id);
 CREATE TABLE establishment(
     id SERIAL NOT NULL,
     name VARCHAR(255) NOT NULL,
@@ -71,7 +77,7 @@ CREATE TABLE foodOrder(
     id bigserial NOT NULL,
     paymentTypeId INTEGER NOT NULL,
     idDishes INTEGER NOT NULL,
-    customerId VARCHAR(50) NOT NULL,
+    customerId BIGINT NOT NULL,
     orderTime TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
     dishePrice DECIMAL(8, 2) NOT NULL,
     dishePurchasePrice DECIMAL(8, 2) NOT NULL
