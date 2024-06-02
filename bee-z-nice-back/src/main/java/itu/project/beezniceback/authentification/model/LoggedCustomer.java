@@ -94,4 +94,18 @@ public class LoggedCustomer implements Serializable {
     public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
+
+    @Override
+    public String toString() {
+        return "LoggedCustomer{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", name='" + name + '\'' +
+                ", mail='" + mail + '\'' +
+                ", isActive=" + isActive +
+                ", uniqId='" + uniqId + '\'' +
+                ", idEstablishement=" + idEstablishement +
+                ", isAdmin=" + isAdmin +
+                '}';
+    }
 }

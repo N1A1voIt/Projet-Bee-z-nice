@@ -1,7 +1,7 @@
 <div *ngIf="isLoggedIn && isAdmin">
     Admin
 </div>
-<div *ngIf="isLoggedIn && !isAdmin" class="flex flex-row justify-center items-center h-[10vh]">
+<div *ngIf="isLoggedIn && !isAdmin" class="fixed w-full z-10 flex flex-row justify-center items-center h-[10vh]">
   <div class="w-2/3 bg-white h-2/3 rounded-full shadow flex flex-row align-middle items-center">
     <div class="logo w-1/6 h-full flex justify-around p-4 items-center rounded-full">
       <span class="border border-amber-500 w-[50px] h-[50px] flex flex-row items-center justify-center rounded-full">
@@ -15,14 +15,7 @@
           Menu <span class="text-xs transition-all transform duration-200"><mat-icon [ngClass]="showdiv?'rotate-180':'rotate-0'">keyboard_arrow_down</mat-icon></span>
         </div>
         <div *ngIf="showdiv" class="absolute bg-white shadow p-4 left-[-20vw] z-10 rounded-xl z-10 max-w-max w-screen h-auto grid grid-cols-4 gap-[100px] top-[5vh] transform">
-          <app-card-menu imgPath="assets/Burger.jpg" imgTitle="Burger"></app-card-menu>
-          <app-card-menu imgPath="assets/Burger.jpg" imgTitle="Burger"></app-card-menu>
-          <app-card-menu imgPath="assets/Burger.jpg" imgTitle="Burger"></app-card-menu>
-          <app-card-menu imgPath="assets/Burger.jpg" imgTitle="Burger"></app-card-menu>
-          <app-card-menu imgPath="assets/Burger.jpg" imgTitle="Burger"></app-card-menu>
-          <app-card-menu imgPath="assets/Burger.jpg" imgTitle="Burger"></app-card-menu>
-          <app-card-menu imgPath="assets/Burger.jpg" imgTitle="Burger"></app-card-menu>
-          <app-card-menu imgPath="assets/Burger.jpg" imgTitle="Burger"></app-card-menu>
+          <app-card-menu *ngFor="let menuT of menuType" link="/foodDisplay/{{menuT.id}}" imgPath="{{imageRoute}}/assets/{{menuT.image_name}}" imgTitle="{{menuT.libelle}}"></app-card-menu>
         </div>
       </div>
       <div>

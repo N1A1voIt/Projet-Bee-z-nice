@@ -7,7 +7,10 @@
 
 <form class="flex flex-col w-5/6 justify-center align-middle" action="javascript:void(0)" #form="ngForm" (ngSubmit)="onSubmit(form)">
 <input *ngIf="isUpdate" type="hidden" name="id" [(ngModel)]="idValue">
-    <n-input name="Establishment">
+  <n-input name="Matricule">
+    <input type="text" name="id" [(ngModel)]="idValue">
+  </n-input>
+    <n-input name="Location">
         <select name="idestablishment" [(ngModel)]="idestablishmentValue">
             <option *ngFor="let item of listEstablishment" value="{{item.id}}" >{{item.name}}</option>
         </select>

@@ -1,130 +1,250 @@
-CREATE TABLE supplier(
-    id SERIAL NOT NULL,
-    nameSupplier VARCHAR(255) NOT NULL
+create table spring_session
+(
+    primary_id            char(36) not null
+        constraint spring_session_pk
+            primary key,
+    session_id            char(36) not null,
+    creation_time         bigint   not null,
+    last_access_time      bigint   not null,
+    max_inactive_interval integer  not null,
+    expiry_time           bigint   not null,
+    principal_name        varchar(100)
 );
-ALTER TABLE
-    supplier ADD PRIMARY KEY(id);
-CREATE TABLE inDebtCustomers(
-    id SERIAL NOT NULL,
-    idCustomer BIGINT NOT NULL,
-    debtAmount DECIMAL(8, 2) NOT NULL,
-    amountRefunded DECIMAL(8, 2) NOT NULL
+
+alter table spring_session
+    owner to restau;
+
+create unique index spring_session_ix1
+    on spring_session (session_id);
+
+create index spring_session_ix2
+    on spring_session (expiry_time);
+
+create index spring_session_ix3
+    on spring_session (principal_name);
+
+create table spring_session_attributes
+(
+    session_primary_id char(36)     not null
+        constraint spring_session_attributes_fk
+            references spring_session
+            on delete cascade,
+    attribute_name     varchar(200) not null,
+    attribute_bytes    bytea        not null,
+    constraint spring_session_attributes_pk
+        primary key (session_primary_id, attribute_name)
 );
-ALTER TABLE
-    inDebtCustomers ADD PRIMARY KEY(id);
-CREATE TABLE customers(
-    id bigserial NOT NULL,
-    firstname VARCHAR(200) NOT NULL,
-    name VARCHAR(250) NOT NULL,
-    mail VARCHAR(50) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    isActive BOOLEAN NOT NULL,
-    uniqId VARCHAR(50) NOT NULL,
-    idEstablishment INTEGER NOT NULL,
-    isadmin BOOLEAN NOT NULL default false,
+
+alter table spring_session_attributes
+    owner to restau;
+
+create table dishetype
+(
+    id         integer default nextval('dishe_type_id_seq'::regclass) not null
+        constraint dishe_type_pkey
+            primary key,
+    libelle    varchar(255)                                           not null,
+    image_name varchar(250)                                           not null
 );
-ALTER TABLE
-    customers ADD PRIMARY KEY(id);
-ALTER TABLE
-    customers ADD CONSTRAINT customers_mail_unique UNIQUE(mail);
-ALTER TABLE
-    customers ADD CONSTRAINT customers_uniqid_unique UNIQUE(uniqId);
-CREATE TABLE establismentEmployee(
-    idEmp VARCHAR(50) NOT NULL,
-    idEstablishment INTEGER NOT NULL,
-    nameEmployee VARCHAR(255) NOT NULL
+
+alter table dishetype
+    owner to restau;
+
+create table supplier
+(
+    id           serial
+        primary key,
+    namesupplier varchar(255) not null
 );
-ALTER TABLE
-    establismentEmployee ADD PRIMARY KEY(idEmp);
-CREATE TABLE dishes(
-    id SERIAL NOT NULL,
-    dishesName VARCHAR(250) NOT NULL,
-    idSupplier INTEGER NOT NULL,
-    sellingPrice DECIMAL(8, 2) NOT NULL,
-    purchasePrice DECIMAL(8, 2) NOT NULL
+
+alter table supplier
+    owner to restau;
+
+create table dishes
+(
+    id            serial
+        primary key,
+    dishesname    varchar(250)  not null,
+    idsupplier    integer       not null
+        constraint dishes_idsupplier_foreign
+            references supplier,
+    sellingprice  numeric(8, 2) not null,
+    purchaseprice numeric(8, 2) not null,
+    idtype        integer       not null
+        constraint dishes_idtype_foreign
+            references dishetype,
+    image         varchar(250)  not null
 );
-ALTER TABLE
-    dishes ADD PRIMARY KEY(id);
-CREATE TABLE comments(
-    id bigserial NOT NULL,
-    idCustomer BIGINT NOT NULL,
-    comment TEXT NOT NULL
+
+alter table dishes
+    owner to restau;
+
+create table modeofpayment
+(
+    id   serial
+        primary key,
+    name varchar(250) not null
 );
-ALTER TABLE
-    comments ADD PRIMARY KEY(id);
-CREATE TABLE dishesMarks(
-    id bigserial NOT NULL,
-    idDishe INTEGER NOT NULL,
-    idCustomer BIGINT NOT NULL,
-    mark INTEGER NOT NULL
+
+alter table modeofpayment
+    owner to restau;
+
+create table establishment
+(
+    id       serial
+        primary key,
+    name     varchar(255) not null,
+    location varchar(255) not null
 );
-ALTER TABLE
-    dishesMarks ADD PRIMARY KEY(id);
-CREATE TABLE modeOfPayment(
-    id SERIAL NOT NULL,
-    name VARCHAR(250) NOT NULL
+
+alter table establishment
+    owner to restau;
+
+create table establismentemployee
+(
+    id              varchar(50)  not null
+        primary key,
+    idestablishment integer      not null
+        constraint establismentemployee_idestablishment_foreign
+            references establishment,
+    nameemployee    varchar(255) not null
 );
-ALTER TABLE
-    modeOfPayment ADD PRIMARY KEY(id);
-CREATE TABLE establishment(
-    id SERIAL NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    location VARCHAR(255) NOT NULL
+
+alter table establismentemployee
+    owner to restau;
+
+create table customers
+(
+    id              bigserial
+        primary key,
+    firstname       varchar(200) not null,
+    name            varchar(250) not null,
+    mail            varchar(50)  not null
+        constraint customers_mail_unique
+            unique,
+    password        varchar(255) not null,
+    isactive        boolean      not null,
+    uniqid          varchar(50)  not null
+        constraint customers_uniqid_unique
+            unique
+        constraint customers_uniqid_foreign
+            references establismentemployee,
+    idestablishment integer      not null
+        constraint customers_idestablishment_foreign
+            references establishment,
+    isadmin         boolean default false
 );
-ALTER TABLE
-    establishment ADD PRIMARY KEY(id);
-CREATE TABLE foodOrder(
-    id bigserial NOT NULL,
-    paymentTypeId INTEGER NOT NULL,
-    idDishes INTEGER NOT NULL,
-    customerId BIGINT NOT NULL,
-    orderTime TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
-    dishePrice DECIMAL(8, 2) NOT NULL,
-    dishePurchasePrice DECIMAL(8, 2) NOT NULL
+
+alter table customers
+    owner to restau;
+
+create table indebtcustomers
+(
+    id             serial
+        primary key,
+    idcustomer     bigint        not null
+        constraint indebtcustomers_idcustomer_foreign
+            references customers,
+    debtamount     numeric(8, 2) not null,
+    amountrefunded numeric(8, 2) not null
 );
-ALTER TABLE
-    foodOrder ADD PRIMARY KEY(id);
-CREATE TABLE orderState(
-    id bigserial NOT NULL,
-    idOrder BIGINT NOT NULL,
-    isPending BOOLEAN NOT NULL
+
+alter table indebtcustomers
+    owner to restau;
+
+create table comments
+(
+    id         bigserial
+        primary key,
+    idcustomer bigint not null
+        constraint comments_idcustomer_foreign
+            references customers,
+    comment    text   not null
 );
-ALTER TABLE
-    orderState ADD PRIMARY KEY(id);
-CREATE TABLE stockByEstablishment(
-    id bigserial NOT NULL,
-    idDishes BIGINT NOT NULL,
-    idEstablishment BIGINT NOT NULL,
-    remainingStock BIGINT NOT NULL,
-    movementType BOOLEAN NOT NULL
+
+alter table comments
+    owner to restau;
+
+create table dishesmarks
+(
+    id         bigserial
+        primary key
+        constraint dishesmarks_id_foreign
+            references customers,
+    iddishe    integer not null
+        constraint dishesmarks_iddishe_foreign
+            references dishes,
+    idcustomer bigint  not null,
+    mark       integer not null
 );
-ALTER TABLE
-    stockByEstablishment ADD PRIMARY KEY(id);
-ALTER TABLE
-    dishesMarks ADD CONSTRAINT dishesmarks_iddishe_foreign FOREIGN KEY(idDishe) REFERENCES dishes(id);
-ALTER TABLE
-    foodOrder ADD CONSTRAINT foodorder_iddishes_foreign FOREIGN KEY(idDishes) REFERENCES dishes(id);
-ALTER TABLE
-    orderState ADD CONSTRAINT orderstate_idorder_foreign FOREIGN KEY(idOrder) REFERENCES foodOrder(id);
-ALTER TABLE
-    dishes ADD CONSTRAINT dishes_idsupplier_foreign FOREIGN KEY(idSupplier) REFERENCES supplier(id);
-ALTER TABLE
-    inDebtCustomers ADD CONSTRAINT indebtcustomers_idcustomer_foreign FOREIGN KEY(idCustomer) REFERENCES customers(id);
-ALTER TABLE
-    foodOrder ADD CONSTRAINT foodorder_customerid_foreign FOREIGN KEY(customerId) REFERENCES customers(id);
-ALTER TABLE
-    customers ADD CONSTRAINT customers_uniqid_foreign FOREIGN KEY(uniqId) REFERENCES establismentEmployee(idEmp);
-ALTER TABLE
-    establismentEmployee ADD CONSTRAINT establismentemployee_idestablishment_foreign FOREIGN KEY(idEstablishment) REFERENCES establishment(id);
-ALTER TABLE
-    comments ADD CONSTRAINT comments_idcustomer_foreign FOREIGN KEY(idCustomer) REFERENCES customers(id);
-ALTER TABLE
-    stockByEstablishment ADD CONSTRAINT stockbyestablishment_idestablishment_foreign FOREIGN KEY(idEstablishment) REFERENCES establishment(id);
-ALTER TABLE
-    customers ADD CONSTRAINT customers_idestablishment_foreign FOREIGN KEY(idEstablishment) REFERENCES establishment(id);
-ALTER TABLE
-    foodOrder ADD CONSTRAINT foodorder_paymenttypeid_foreign FOREIGN KEY(paymentTypeId) REFERENCES modeOfPayment(id);
-ALTER TABLE
-    stockByEstablishment ADD CONSTRAINT stockbyestablishment_iddishes_foreign FOREIGN KEY(idDishes) REFERENCES dishes(id);
-ALTER TABLE
-    dishesMarks ADD CONSTRAINT dishesmarks_id_foreign FOREIGN KEY(id) REFERENCES customers(id);
+
+alter table dishesmarks
+    owner to restau;
+
+create table foodorder
+(
+    id                 bigserial
+        primary key,
+    paymenttypeid      integer       not null
+        constraint foodorder_paymenttypeid_foreign
+            references modeofpayment,
+    iddishes           integer       not null
+        constraint foodorder_iddishes_foreign
+            references dishes,
+    customerid         bigint        not null
+        constraint foodorder_customerid_foreign
+            references customers,
+    ordertime          timestamp(0)  not null,
+    disheprice         numeric(8, 2) not null,
+    dishepurchaseprice numeric(8, 2) not null
+);
+
+alter table foodorder
+    owner to restau;
+
+create table orderstate
+(
+    id        bigserial
+        primary key,
+    idorder   bigint  not null
+        constraint orderstate_idorder_foreign
+            references foodorder,
+    ispending boolean not null
+);
+
+alter table orderstate
+    owner to restau;
+
+create table stockbyestablishment
+(
+    id              bigserial
+        primary key,
+    iddishes        bigint  not null
+        constraint stockbyestablishment_iddishes_foreign
+            references dishes,
+    idestablishment bigint  not null
+        constraint stockbyestablishment_idestablishment_foreign
+            references establishment,
+    remainingstock  bigint  not null,
+    movementtype    boolean not null
+);
+
+alter table stockbyestablishment
+    owner to restau;
+
+create view v_establismentemployee(id, name, nameemployee) as
+SELECT t0.id,
+       t0.name,
+       t0.nameemployee
+FROM (SELECT establismentemployee.id,
+             establishment.name,
+             establismentemployee.nameemployee
+      FROM establismentemployee
+               JOIN establishment ON establismentemployee.idestablishment = establishment.id) t0;
+
+
+create view v_establishment(id, name, location) as
+SELECT establishment.id,
+       establishment.name,
+       establishment.location
+FROM establishment;
