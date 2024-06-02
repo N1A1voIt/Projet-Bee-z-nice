@@ -9,6 +9,7 @@ import {EstablishmentService} from "../establishment/establishment.service";
 import {Router} from "@angular/router";
 import {AppComponent} from "../../app.component";
 import {NgFor, NgForOf, NgIf} from "@angular/common";
+// import {MatIconModule} from '@angular/material/icon';
 // import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
@@ -44,6 +45,7 @@ export class SignupComponent implements OnInit{
                 this.isAdmin = response.isAdmin;
                 this.appComponent.isAdmin=this.isAdmin;
                 this.appComponent.isLoggedIn = this.isLoggedIn;
+                this.redirect();
             },
             error:(error)=>{
                 this.exception = error;
