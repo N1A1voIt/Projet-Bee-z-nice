@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,14 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CustomerController {
 
-//    @Autowired
-//    private GenerateModel generateModel;
+    @Autowired
+    private GenerateModel generateModel;
     @Autowired
     private CustomerService customerService;
-//    @GetMapping("/api/test")
-//    public void test() throws Exception {
-//        generateModel.generateModel();
-//    }
+    @GetMapping("/api/test")
+    public void test() throws Exception {
+        generateModel.generateModel();
+    }
     @PostMapping("/api/register")
     public ResponseEntity<?> createUser(@RequestBody Customer customer, HttpServletRequest request){
         try{

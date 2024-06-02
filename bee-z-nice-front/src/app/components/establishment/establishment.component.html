@@ -5,7 +5,7 @@
  </div>
 <app-modal-component [showForm]="showForm">
 
-<form class="flex flex-col w-full justify-center align-middle" action="javascript:void(0)" #form="ngForm" (ngSubmit)="onSubmit(form)">
+<form class="flex flex-col w-5/6 justify-center align-middle" action="javascript:void(0)" #form="ngForm" (ngSubmit)="onSubmit(form)">
 <input *ngIf="isUpdate" type="hidden" name="id" [(ngModel)]="idValue">
         <n-input name="Name">
             <input name="name" placeholder="Name" type="text" [(ngModel)]="nameValue">
@@ -13,9 +13,7 @@
         <n-input name="Location">
             <input name="location" placeholder="Location" type="text" [(ngModel)]="locationValue">
         </n-input>
-<n-input>
-    <input type="submit" class="cursor-pointer">
-</n-input>
+<app-submit-button></app-submit-button>
 </form><br></app-modal-component><n-table>
     <thead class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
         <tr>

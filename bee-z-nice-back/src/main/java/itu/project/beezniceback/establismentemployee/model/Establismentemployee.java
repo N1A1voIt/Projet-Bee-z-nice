@@ -9,6 +9,7 @@ import org.hibernate.annotations.Immutable;
 public class Establismentemployee{
 //id
 @Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 @Column(name = "id")
 private String id;
 //idestablishment
