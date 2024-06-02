@@ -2,3 +2,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "MADE Dillan";
+}
+@font-face {
+  font-family: "Sweet Sans Pro Light";
+}
+.logo{
+  font-family: "MADE Dillan", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+.second-font{
+  font-family: "Sweet Sans Pro Light",Arial,Helvetica,sans-serif;
+  font-size: 15px;
+}
