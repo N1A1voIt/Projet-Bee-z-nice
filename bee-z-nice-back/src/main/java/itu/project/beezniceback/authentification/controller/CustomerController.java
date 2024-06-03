@@ -5,15 +5,13 @@ import itu.project.beezniceback.authentification.model.Customer;
 import itu.project.beezniceback.authentification.model.CustomerException;
 import itu.project.beezniceback.authentification.model.CustomerService;
 import itu.project.beezniceback.authentification.model.LoggedCustomer;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.session.Session;
 import org.springframework.session.SessionRepository;
 import org.springframework.web.bind.annotation.*;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 public class CustomerController {
@@ -22,14 +20,13 @@ public class CustomerController {
     private CustomerService customerService;
 
     @Autowired
-    private SessionRepository<?> sessionRepository;
+    private HttpSession httpSession;
 
     @PostMapping("/api/register")
     public ResponseEntity<?> createUser(@RequestBody Customer customer) {
         try {
             LoggedCustomer loggedCustomer = customerService.authenticate(customer);
-            Session session = sessionRepository.createSession();
-            session.setAttribute("user", loggedCustomer);
+            httpSession.setAttribute("user",loggedCustomer);
             return ResponseEntity.ok(loggedCustomer);
         } catch (CustomerException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -42,9 +39,8 @@ public class CustomerController {
     public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO) {
         try {
             LoggedCustomer loggedCustomer = customerService.login(loginDTO);
-            Session session = sessionRepository.createSession();
-            session.setAttribute("user", loggedCustomer);
-            session.setAttribute("message", "Hello world");
+             httpSession.setAttribute("user",loggedCustomer);
+             httpSession.setAttribute("message", "Hello world");
             return ResponseEntity.ok(loggedCustomer);
         } catch (CustomerException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -70,12 +66,13 @@ public class CustomerController {
 //
 //        // Return the Map containing all session attributes
 //        return sessionAttributes;
-//    }
+//    };
 
     @GetMapping("/api/checkSession")
-    public ResponseEntity<?> sessionExist(@SessionAttribute("user") LoggedCustomer user) {
-        if (user != null) {
-            return ResponseEntity.ok(user);
+    public ResponseEntity<?> sessionExist() {
+        System.out.println( httpSession.getAttribute("message"));
+        if (httpSession.getAttribute("user") != null) {
+            return ResponseEntity.ok( httpSession.getAttribute("user"));
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found in session");
         }
