@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {apiUrl} from "../../../environement/env";
+import {apiUrl} from "../../../environnements/env";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 @Injectable({
@@ -9,7 +9,6 @@ export class EstablismentemployeeService {
  private apiUrl = apiUrl();
 constructor(private http:HttpClient){}
 saveData(formData:any):Observable<any> {
-    console.log(this.apiUrl)
         return this.http.post(`${this.apiUrl}/establismentemployee/save`,formData);    }
 retrieveAll():Observable<any> {
         return this.http.get<any>(`${this.apiUrl}/establismentemployee/findAll`);    }

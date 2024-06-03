@@ -5,11 +5,12 @@
  </div>
 <app-modal-component [showForm]="showForm">
 
-<form class="flex flex-col w-full justify-center align-middle" action="javascript:void(0)" #form="ngForm" (ngSubmit)="onSubmit(form)">
-        <n-input name="Emp">
-            <input name="id" placeholder="Emp" type="text" [(ngModel)]="idValue">
-        </n-input>
-    <n-input name="Establishement">
+<form class="flex flex-col w-5/6 justify-center align-middle" action="javascript:void(0)" #form="ngForm" (ngSubmit)="onSubmit(form)">
+<input *ngIf="isUpdate" type="hidden" name="id" [(ngModel)]="idValue">
+  <n-input name="Matricule">
+    <input type="text" name="id" [(ngModel)]="idValue">
+  </n-input>
+    <n-input name="Location">
         <select name="idestablishment" [(ngModel)]="idestablishmentValue">
             <option *ngFor="let item of listEstablishment" value="{{item.id}}" >{{item.name}}</option>
         </select>
@@ -17,13 +18,11 @@
         <n-input name="Name">
             <input name="nameemployee" placeholder="Name" type="text" [(ngModel)]="nameemployeeValue">
         </n-input>
-<n-input>
-    <input type="submit" class="cursor-pointer">
-</n-input>
+<app-submit-button></app-submit-button>
 </form><br></app-modal-component><n-table>
     <thead class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
         <tr>
-            <th scope="col" class="px-6 py-4">idemp</th>
+            <th scope="col" class="px-6 py-4">id</th>
 <th scope="col" class="px-6 py-4">name</th>
 <th scope="col" class="px-6 py-4">nameemployee</th>
 
@@ -31,7 +30,7 @@
     </thead>
     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
         <tr class="text-gray-700 dark:text-gray-400" *ngFor="let line of all | paginate:{ itemsPerPage: 10, currentPage: pages }">
-<td class="px-6 py-4">{{line.idemp}}</td>
+<td class="px-6 py-4">{{line.id}}</td>
 <td class="px-6 py-4">{{line.name}}</td>
 <td class="px-6 py-4">{{line.nameemployee}}</td>
 <td class="px-6 py-4"><button (click)="delete(line.id)">Supprimer</button></td>

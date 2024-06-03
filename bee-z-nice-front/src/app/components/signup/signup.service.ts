@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {apiUrl} from "../../../environement/env";
+import {apiUrl} from "../../../environnements/env";
 import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Injectable({
