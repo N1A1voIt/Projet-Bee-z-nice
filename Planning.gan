@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Project management" company="" webLink="http://" view-date="2024-05-15" view-index="2" gantt-divider-location="487" resource-divider-location="300" version="3.3.3300" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?><project name="Project management" company="" webLink="http://" view-date="2024-05-09" view-index="0" gantt-divider-location="487" resource-divider-location="300" version="3.3.3300" locale="fr_FR">
     <description/>
     <view zooming-state="default:3" id="gantt-chart">
         <field id="tpd3" name="Nom" width="331" order="0"/>
@@ -39,25 +39,8 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="55" uid="b2fb82e600144ab6b1db12b8889bf697" name="Projet" meeting="false" start="2024-05-16" duration="25" complete="9" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
-            <task id="59" uid="60751af2ad8a430e946594f876242c15" name="Suivi des fournisseurs-produits" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-04-29" thirdDate-constraint="0" expand="false">
-                <task id="68" uid="5e8ada8e2f9941199a49cbac1020ce97" name="Paiement des fournisseurs" meeting="false" start="2024-06-13" duration="1" complete="0" expand="true">
-                    <task id="71" uid="7a897bd962a24195b3b347cfca919d52" name="Accès à la vue et envoie des données(back)" color="#00cc00" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-04-29" thirdDate-constraint="0" expand="true"/>
-                    <task id="70" uid="07b17c662e694a9390fa90523c82b4fb" name="Générer une vue pour savoir le capital actuel de l'entreprise (base)" color="#990000" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-06-13" thirdDate-constraint="0" expand="true"/>
-                    <task id="69" uid="32f86297814e4b0caa5ef0817310c63e" name="Formulaire de paiement du fournisseur (front)" color="#0033cc" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-06-13" thirdDate-constraint="0" expand="true"/>
-                </task>
-                <task id="60" uid="f4d1e3b0d4ab4cbb82dc9988a6b073b7" name="Lister les fournisseurs les plus actifs" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-05-06" thirdDate-constraint="0" expand="true">
-                    <task id="64" uid="3208858b40ef46248f03ec5fcdd55e5e" name="Accès à la vue et envoie des données(back)" color="#00cc00" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-04-29" thirdDate-constraint="0" expand="true"/>
-                    <task id="63" uid="5ffb9961cb7a4aca9f0b1ff816259c07" name="Créer vue des fournisseurs les plus actifs" color="#990000" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-06-13" thirdDate-constraint="0" expand="true"/>
-                    <task id="62" uid="54b97479a5f0437aac112e4bbcd0c6e6" name="écrans pour voir la liste des fournisseurs(front)" color="#0033cc" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-04-29" thirdDate-constraint="0" expand="true"/>
-                </task>
-                <task id="61" uid="6e4e17dfaebe4f85b9daeb61c311e20d" name="Lister les fournisseurs non payés" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-05-06" thirdDate-constraint="0" expand="true">
-                    <task id="67" uid="fd1c486403944c65bf6cc8ff8ce7c754" name="Accès à la vue et envoie des données (back)" color="#00cc00" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-06-13" thirdDate-constraint="0" expand="true"/>
-                    <task id="66" uid="7c44dc34c8714f2f9b5de82d616501df" name="Créer vue pour avoir la liste des fournisseurs non payés par ordre décroissant(base)" color="#990000" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-06-13" thirdDate-constraint="0" expand="true"/>
-                    <task id="65" uid="63572c2e07484f399b4de46779042872" name="Ecran pour voir la liste des fournisseurs non payés" color="#0033cc" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-06-13" thirdDate-constraint="0" expand="true"/>
-                </task>
-            </task>
-            <task id="1" uid="e36c1dc487744e5db3a44dc0bbac582d" name="Conception" color="#8cb6ce" meeting="false" start="2024-05-16" duration="12" complete="68" thirdDate="2024-05-09" thirdDate-constraint="0" expand="false">
+        <task id="55" uid="b2fb82e600144ab6b1db12b8889bf697" name="Projet" meeting="false" start="2024-05-16" duration="25" complete="32" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
+            <task id="1" uid="e36c1dc487744e5db3a44dc0bbac582d" name="Conception" color="#8cb6ce" meeting="false" start="2024-05-16" duration="12" complete="68" thirdDate="2024-05-09" thirdDate-constraint="0" expand="true">
                 <depend id="5" type="2" difference="0" hardness="Strong"/>
                 <depend id="6" type="2" difference="0" hardness="Strong"/>
                 <depend id="9" type="2" difference="0" hardness="Strong"/>
@@ -68,29 +51,51 @@
                     <depend id="4" type="2" difference="0" hardness="Strong"/>
                 </task>
             </task>
-            <task id="5" uid="d3ca3de9545b49ddafdacfc49329a847" name="Inscription" color="#006666" meeting="false" start="2024-05-30" duration="3" complete="0" thirdDate="2024-05-01" thirdDate-constraint="0" expand="true">
-                <task id="8" uid="cbda148c19f642d79e07cfd504d18d5e" name="Requête SQL" color="#990000" meeting="false" start="2024-05-30" duration="1" complete="0" thirdDate="2024-05-01" thirdDate-constraint="0" expand="true">
+            <task id="5" uid="d3ca3de9545b49ddafdacfc49329a847" name="Inscription" color="#006666" meeting="false" start="2024-05-30" duration="3" complete="100" thirdDate="2024-05-01" thirdDate-constraint="0" expand="true">
+                <task id="8" uid="cbda148c19f642d79e07cfd504d18d5e" name="Requête SQL" color="#990000" meeting="false" start="2024-05-30" duration="1" complete="100" thirdDate="2024-05-01" thirdDate-constraint="0" expand="true">
                     <depend id="7" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="6" uid="dfafb57c62634ac7a3da46fac7702cd4" name="Formulaire et dessin" color="#00cc00" meeting="false" start="2024-05-30" duration="2" complete="0" thirdDate="2024-05-01" thirdDate-constraint="0" expand="true"/>
-                <task id="7" uid="f1c91489417e4123aaddae16e1ac75f3" name="Authentification back-end" color="#0033cc" meeting="false" start="2024-05-31" duration="2" complete="0" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true"/>
+                <task id="6" uid="dfafb57c62634ac7a3da46fac7702cd4" name="Formulaire et dessin" color="#00cc00" meeting="false" start="2024-05-30" duration="2" complete="100" thirdDate="2024-05-01" thirdDate-constraint="0" expand="true"/>
+                <task id="7" uid="f1c91489417e4123aaddae16e1ac75f3" name="Authentification back-end" color="#0033cc" meeting="false" start="2024-05-31" duration="2" complete="100" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true"/>
             </task>
-            <task id="9" uid="70edc4fdddf249f6891131adf2cb0c6a" name="Log in" color="#00ffcc" meeting="false" start="2024-05-30" duration="3" complete="0" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true">
-                <task id="10" uid="3deae1635d3d4c32a070c7d38f89b6c4" name="Requête SQL" color="#990000" meeting="false" start="2024-05-30" duration="1" complete="0" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true">
+            <task id="9" uid="70edc4fdddf249f6891131adf2cb0c6a" name="Log in" color="#00ffcc" meeting="false" start="2024-05-30" duration="3" complete="100" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true">
+                <depend id="80" type="2" difference="0" hardness="Strong"/>
+                <task id="10" uid="3deae1635d3d4c32a070c7d38f89b6c4" name="Requête SQL" color="#990000" meeting="false" start="2024-05-30" duration="1" complete="100" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true">
                     <depend id="12" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="11" uid="7b82b0cde4bf41e5a8f393616d327787" name="Formulaire et dessin" color="#00cc00" meeting="false" start="2024-05-30" duration="2" complete="0" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true"/>
-                <task id="12" uid="c67c3a8216e24e5ab572260ae39f2161" name="Authentification back-end" color="#0033cc" meeting="false" start="2024-05-31" duration="2" complete="0" thirdDate="2024-05-31" thirdDate-constraint="0" expand="true"/>
+                <task id="11" uid="7b82b0cde4bf41e5a8f393616d327787" name="Formulaire et dessin" color="#00cc00" meeting="false" start="2024-05-30" duration="2" complete="100" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true"/>
+                <task id="12" uid="c67c3a8216e24e5ab572260ae39f2161" name="Authentification back-end" color="#0033cc" meeting="false" start="2024-05-31" duration="2" complete="100" thirdDate="2024-05-31" thirdDate-constraint="0" expand="true"/>
             </task>
-            <task id="13" uid="d76753fef924461d8ecef9ec5fd76315" name="Menu" color="#ffff00" meeting="false" start="2024-05-30" duration="2" complete="0" thirdDate="2024-05-01" thirdDate-constraint="0" expand="true">
+            <task id="80" uid="8ae42f8f788645e7bcf10886248b20e6" name="CRUD" meeting="false" start="2024-06-03" duration="1" complete="100" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true">
+                <task id="82" uid="ede74e0aad544a3b8d6b53fdce04d634" name="dishe_type" meeting="false" start="2024-06-03" duration="1" complete="100" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true"/>
+                <task id="83" uid="eafc3a2c58f342c787b1fefaff65a525" name="etablissement" meeting="false" start="2024-06-03" duration="1" complete="100" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true"/>
+                <task id="84" uid="94e056ba9fbd4c5792fa218f589e5c89" name="etabliseement_employee" meeting="false" start="2024-06-03" duration="1" complete="100" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true"/>
+                <task id="85" uid="23895ab6d369498bbdc807980bac7f27" name="mode_of_payment" meeting="false" start="2024-06-03" duration="1" complete="100" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true"/>
+                <task id="86" uid="5d1834bed8f442ebbf54b64251629031" name="supplier" meeting="false" start="2024-06-03" duration="1" complete="100" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true"/>
+                <task id="81" uid="18a3cbc8face4bf595bdd8c4be194d89" name="dishes" meeting="false" start="2024-06-03" duration="1" complete="100" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true"/>
+            </task>
+            <task id="13" uid="d76753fef924461d8ecef9ec5fd76315" name="Menu" color="#ffff00" meeting="false" start="2024-05-30" duration="2" complete="100" thirdDate="2024-05-01" thirdDate-constraint="0" expand="true">
                 <depend id="17" type="2" difference="0" hardness="Strong"/>
-                <task id="16" uid="7f8777f41e774d62b2a007b47f077371" name="Controlleur + selection" color="#0033cc" meeting="false" start="2024-05-30" duration="2" complete="0" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true"/>
-                <task id="15" uid="5f26bd34009a4471ba99520b577cffb9" name="Afficher liste" color="#00cc00" meeting="false" start="2024-05-30" duration="2" complete="0" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true"/>
-                <task id="14" uid="d48fb357c6a74e6ba9eadf6e387371fa" name="Requête SQL" color="#990000" meeting="false" start="2024-05-30" duration="2" complete="0" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true"/>
+                <task id="16" uid="7f8777f41e774d62b2a007b47f077371" name="Controlleur + selection" color="#0033cc" meeting="false" start="2024-05-30" duration="2" complete="100" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true"/>
+                <task id="15" uid="5f26bd34009a4471ba99520b577cffb9" name="Afficher liste" color="#00cc00" meeting="false" start="2024-05-30" duration="2" complete="100" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true"/>
+                <task id="14" uid="d48fb357c6a74e6ba9eadf6e387371fa" name="Requête SQL" color="#990000" meeting="false" start="2024-05-30" duration="2" complete="100" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true"/>
             </task>
-            <task id="17" uid="855b76500b20450aa55e3b6da7026215" name="Commande" meeting="false" start="2024-06-01" duration="5" complete="0" thirdDate="2024-04-30" thirdDate-constraint="0" expand="true">
+            <task id="17" uid="855b76500b20450aa55e3b6da7026215" name="Commande" meeting="false" start="2024-06-01" duration="5" complete="7" thirdDate="2024-04-30" thirdDate-constraint="0" expand="true">
                 <depend id="29" type="2" difference="0" hardness="Strong"/>
                 <depend id="31" type="2" difference="0" hardness="Strong"/>
+                <task id="72" uid="b8e244968f854c0e957aa7faab2ec14e" name="Panier" meeting="false" start="2024-06-01" duration="1" complete="28" expand="true">
+                    <task id="74" uid="f63b67d0e349443796d7ab29ab02aa29" name="Front-end" meeting="false" start="2024-06-01" duration="1" complete="0" expand="true">
+                        <task id="79" uid="e4794b570b804cd0bd934ad894e9dcbe" name="Lister élément du panier" meeting="false" start="2024-06-01" duration="1" complete="0" expand="true"/>
+                        <task id="78" uid="7fa768f457b649cd90579398a473b263" name="Supprimer dans panier" meeting="false" start="2024-06-01" duration="1" complete="0" expand="true"/>
+                        <task id="76" uid="31f51b86745241e59802df00ae416386" name="Ajout dans panier" color="#8cb6ce" meeting="false" start="2024-06-01" duration="1" complete="0" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true"/>
+                    </task>
+                    <task id="73" uid="84d84174c92f45f8884215cf095aefc0" name="Back-end" meeting="false" start="2024-06-01" duration="1" complete="66" expand="true">
+                        <task id="88" uid="2f36fed0d3ca407b9a4fbb347a93a54f" name="Voir stock restant" meeting="false" start="2024-06-01" duration="1" complete="0" expand="true"/>
+                        <task id="75" uid="224429707673439cb51869af448325b9" name="Ajout dans panier" meeting="false" start="2024-06-01" duration="1" complete="100" thirdDate="2024-06-01" thirdDate-constraint="0" expand="true"/>
+                        <task id="77" uid="96493108fd294bcc8195b75c3ad9d5b6" name="Supprimer dans panier" color="#8cb6ce" meeting="false" start="2024-06-01" duration="1" complete="100" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true"/>
+                        <task id="87" uid="eb4c2d5d243646308c5f168878cf1c9f" name="Enlever le stock par établissement" meeting="false" start="2024-06-01" duration="1" complete="0" thirdDate="2024-06-01" thirdDate-constraint="0" expand="true"/>
+                    </task>
+                </task>
                 <task id="25" uid="ded6c2bd33cd4ae3afe7de786e2bb257" name="Paiement" meeting="false" start="2024-06-04" duration="3" complete="0" thirdDate="2024-06-01" thirdDate-constraint="0" expand="true">
                     <task id="28" uid="4c47e6030d744f2da8b2692d992b513e" name="Requêtes" color="#990000" meeting="false" start="2024-06-04" duration="3" complete="0" thirdDate="2024-06-04" thirdDate-constraint="0" expand="true"/>
                     <task id="27" uid="2cd482db92ca49e1a2f7ead4c79088cb" name="Validation de paiement (back)" color="#0033cc" meeting="false" start="2024-06-04" duration="3" complete="0" thirdDate="2024-06-04" thirdDate-constraint="0" expand="true"/>
@@ -107,18 +112,18 @@
                     <task id="19" uid="57a8c94fe828480b94015dd16a075ec4" name="Enregistrement de commande" color="#0033cc" meeting="false" start="2024-06-01" duration="2" complete="0" thirdDate="2024-06-01" thirdDate-constraint="0" expand="true"/>
                 </task>
             </task>
-            <task id="29" uid="e168c0c2e85a496ea3cd2feb037816ed" name="Notes par plats" meeting="false" start="2024-06-07" duration="1" complete="0" thirdDate="2024-04-30" thirdDate-constraint="0" expand="true">
+            <task id="29" uid="e168c0c2e85a496ea3cd2feb037816ed" name="Notes par plats" meeting="false" start="2024-06-07" duration="1" complete="0" thirdDate="2024-04-30" thirdDate-constraint="0" expand="false">
                 <depend id="32" type="2" difference="0" hardness="Strong"/>
                 <task id="31" uid="eccc7d6a376c4cfd88051b98ea127612" name="Enregistrement (back)" color="#0033cc" meeting="false" start="2024-06-07" duration="1" complete="0" thirdDate="2024-04-30" thirdDate-constraint="0" expand="true"/>
                 <task id="30" uid="786a31747aed4089a147ff1b8eae63c5" name="Formulaire (front)" color="#00cc00" meeting="false" start="2024-06-07" duration="1" complete="0" thirdDate="2024-06-07" thirdDate-constraint="0" expand="true"/>
             </task>
-            <task id="32" uid="2fbcdaeb2490478b97e6e932d0413867" name="Stock" meeting="false" start="2024-06-08" duration="1" complete="0" thirdDate="2024-05-01" thirdDate-constraint="0" expand="true">
+            <task id="32" uid="2fbcdaeb2490478b97e6e932d0413867" name="Stock" meeting="false" start="2024-06-08" duration="1" complete="0" thirdDate="2024-05-01" thirdDate-constraint="0" expand="false">
                 <depend id="36" type="2" difference="0" hardness="Strong"/>
                 <task id="33" uid="94b2f7e60683400b854ff7af870c8619" name="Output dishe stock by establishments (query)" color="#990000" meeting="false" start="2024-06-08" duration="1" complete="0" thirdDate="2024-04-30" thirdDate-constraint="0" expand="true"/>
                 <task id="35" uid="d77f033ea0ac4b9faae5231ea5a7e6b8" name="Traitement requête client (back)" color="#0033cc" meeting="false" start="2024-06-08" duration="1" complete="0" thirdDate="2024-06-08" thirdDate-constraint="0" expand="true"/>
                 <task id="34" uid="c682bbac48fd40a6a423fb0b588e6051" name="Recherche multiple formulaire (front)" color="#00cc00" meeting="false" start="2024-06-08" duration="1" complete="0" thirdDate="2024-06-08" thirdDate-constraint="0" expand="true"/>
             </task>
-            <task id="36" uid="cec323493cc74469986ccf492fdfac1b" name="Finance" meeting="false" start="2024-06-10" duration="3" complete="0" thirdDate="2024-04-29" thirdDate-constraint="0" expand="true">
+            <task id="36" uid="cec323493cc74469986ccf492fdfac1b" name="Finance" meeting="false" start="2024-06-10" duration="3" complete="0" thirdDate="2024-04-29" thirdDate-constraint="0" expand="false">
                 <depend id="59" type="2" difference="0" hardness="Strong"/>
                 <task id="52" uid="13fba2d413ee41fdb01dd6f71b17bbe0" name="Vente" meeting="false" start="2024-06-12" duration="1" complete="0" thirdDate="2024-06-10" thirdDate-constraint="0" expand="true">
                     <task id="53" uid="3a71728c5674412cad2d1626495dfc8f" name="Statistiques des plats les plus vendus" meeting="false" start="2024-06-12" duration="1" complete="0" thirdDate="2024-06-10" thirdDate-constraint="0" expand="true">
@@ -144,6 +149,23 @@
                     <task id="47" uid="239bf9ebad4b4442be8ebcd3a45e4e31" name="Formulaire de recherche entre intervalle de dates" color="#00cc00" meeting="false" start="2024-06-10" duration="2" complete="0" thirdDate="2024-06-10" thirdDate-constraint="0" expand="true"/>
                     <task id="48" uid="d55a1d7e1f8648afae8930b8d9a4ea42" name="Recherche dans une intervalle de date du prix vient (back)" color="#0033cc" meeting="false" start="2024-06-10" duration="2" complete="0" thirdDate="2024-06-10" thirdDate-constraint="0" expand="true"/>
                     <task id="49" uid="08465feeb1894cc2acd1a6a21dfe1775" name="Requete prix de revient par intervalle de date" color="#990000" meeting="false" start="2024-06-10" duration="2" complete="0" thirdDate="2024-06-10" thirdDate-constraint="0" expand="true"/>
+                </task>
+            </task>
+            <task id="59" uid="60751af2ad8a430e946594f876242c15" name="Suivi des fournisseurs-produits" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-04-29" thirdDate-constraint="0" expand="false">
+                <task id="68" uid="5e8ada8e2f9941199a49cbac1020ce97" name="Paiement des fournisseurs" meeting="false" start="2024-06-13" duration="1" complete="0" expand="true">
+                    <task id="71" uid="7a897bd962a24195b3b347cfca919d52" name="Accès à la vue et envoie des données(back)" color="#00cc00" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-04-29" thirdDate-constraint="0" expand="true"/>
+                    <task id="70" uid="07b17c662e694a9390fa90523c82b4fb" name="Générer une vue pour savoir le capital actuel de l'entreprise (base)" color="#990000" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-06-13" thirdDate-constraint="0" expand="true"/>
+                    <task id="69" uid="32f86297814e4b0caa5ef0817310c63e" name="Formulaire de paiement du fournisseur (front)" color="#0033cc" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-06-13" thirdDate-constraint="0" expand="true"/>
+                </task>
+                <task id="60" uid="f4d1e3b0d4ab4cbb82dc9988a6b073b7" name="Lister les fournisseurs les plus actifs" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-05-06" thirdDate-constraint="0" expand="true">
+                    <task id="64" uid="3208858b40ef46248f03ec5fcdd55e5e" name="Accès à la vue et envoie des données(back)" color="#00cc00" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-04-29" thirdDate-constraint="0" expand="true"/>
+                    <task id="63" uid="5ffb9961cb7a4aca9f0b1ff816259c07" name="Créer vue des fournisseurs les plus actifs" color="#990000" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-06-13" thirdDate-constraint="0" expand="true"/>
+                    <task id="62" uid="54b97479a5f0437aac112e4bbcd0c6e6" name="écrans pour voir la liste des fournisseurs(front)" color="#0033cc" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-04-29" thirdDate-constraint="0" expand="true"/>
+                </task>
+                <task id="61" uid="6e4e17dfaebe4f85b9daeb61c311e20d" name="Lister les fournisseurs non payés" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-05-06" thirdDate-constraint="0" expand="true">
+                    <task id="67" uid="fd1c486403944c65bf6cc8ff8ce7c754" name="Accès à la vue et envoie des données (back)" color="#00cc00" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-06-13" thirdDate-constraint="0" expand="true"/>
+                    <task id="66" uid="7c44dc34c8714f2f9b5de82d616501df" name="Créer vue pour avoir la liste des fournisseurs non payés par ordre décroissant(base)" color="#990000" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-06-13" thirdDate-constraint="0" expand="true"/>
+                    <task id="65" uid="63572c2e07484f399b4de46779042872" name="Ecran pour voir la liste des fournisseurs non payés" color="#0033cc" meeting="false" start="2024-06-13" duration="1" complete="0" thirdDate="2024-06-13" thirdDate-constraint="0" expand="true"/>
                 </task>
             </task>
         </task>
