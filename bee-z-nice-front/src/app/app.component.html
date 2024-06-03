@@ -1,5 +1,7 @@
-<div *ngIf="isLoggedIn && isAdmin">
-    Admin
+<div class="h-[100vh] w-[20vw] bg-amber-400 p-4" *ngIf="isLoggedIn && isAdmin">
+    <aside class="h-full w-full bg-white">
+
+    </aside>
 </div>
 <div *ngIf="isLoggedIn && !isAdmin" class="fixed w-full z-10 flex flex-row justify-center items-center h-[10vh]">
   <div class="w-2/3 bg-white h-2/3 rounded-full shadow flex flex-row align-middle items-center">
@@ -30,4 +32,6 @@
   </div>
 </div>
 </div>
+<main class=" absolute w-full">
 <router-outlet />
+</main>

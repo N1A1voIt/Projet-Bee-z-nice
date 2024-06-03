@@ -41,10 +41,7 @@ export class SignupComponent implements OnInit{
         this.exception = null;
         this.signupService.register(form).subscribe({
             next:(response)=>{
-                this.isLoggedIn = true;
-                this.isAdmin = response.isAdmin;
-                this.appComponent.isAdmin=this.isAdmin;
-                this.appComponent.isLoggedIn = this.isLoggedIn;
+                localStorage.setItem("userToken",response.headers.get('Authorization'));
                 this.redirect();
             },
             error:(error)=>{
@@ -53,6 +50,7 @@ export class SignupComponent implements OnInit{
         })
     }
     redirect(){
+        this.appComponent.checkToken();
         if (this.isAdmin){
             this.router.navigateByUrl('/home')
         }else {

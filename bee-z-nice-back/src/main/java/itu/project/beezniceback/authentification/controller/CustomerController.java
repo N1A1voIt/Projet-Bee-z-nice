@@ -1,17 +1,22 @@
 package itu.project.beezniceback.authentification.controller;
 
+import io.jsonwebtoken.Claims;
 import itu.project.beezniceback.authentification.dto.LoginDTO;
 import itu.project.beezniceback.authentification.model.Customer;
 import itu.project.beezniceback.authentification.model.CustomerException;
 import itu.project.beezniceback.authentification.model.CustomerService;
 import itu.project.beezniceback.authentification.model.LoggedCustomer;
+import itu.project.beezniceback.authentification.tokenHandler.TokenGenerator;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.session.SessionRepository;
+//import org.springframework.session.SessionRepository;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 public class CustomerController {
@@ -22,12 +27,17 @@ public class CustomerController {
     @Autowired
     private HttpSession httpSession;
 
+    @Autowired
+    private TokenGenerator tokenGenerator;
     @PostMapping("/api/register")
     public ResponseEntity<?> createUser(@RequestBody Customer customer) {
         try {
             LoggedCustomer loggedCustomer = customerService.authenticate(customer);
-            httpSession.setAttribute("user",loggedCustomer);
-            return ResponseEntity.ok(loggedCustomer);
+            String token = tokenGenerator.generateToken(loggedCustomer);
+            System.out.println(token);
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Authorization", token);
+            return ResponseEntity.ok().headers(headers).body(loggedCustomer);
         } catch (CustomerException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {
@@ -39,9 +49,11 @@ public class CustomerController {
     public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO) {
         try {
             LoggedCustomer loggedCustomer = customerService.login(loginDTO);
-             httpSession.setAttribute("user",loggedCustomer);
-             httpSession.setAttribute("message", "Hello world");
-            return ResponseEntity.ok(loggedCustomer);
+            String token = tokenGenerator.generateToken(loggedCustomer);
+            System.out.println(token);
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Authorization", token);
+            return ResponseEntity.ok().headers(headers).body(loggedCustomer);
         } catch (CustomerException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {
@@ -70,9 +82,20 @@ public class CustomerController {
 
     @GetMapping("/api/checkSession")
     public ResponseEntity<?> sessionExist() {
-        System.out.println( httpSession.getAttribute("message"));
+//        System.out.println( httpSession.getAttribute("message"));
         if (httpSession.getAttribute("user") != null) {
             return ResponseEntity.ok( httpSession.getAttribute("user"));
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found in session");
+        }
+    }
+    @GetMapping("/api/my-profile")
+    public ResponseEntity<?> myProfile(@RequestHeader(name = "Authorization") String authorizationHeader) {
+        System.out.println(authorizationHeader);
+        Claims claims = tokenGenerator.decodeToken(authorizationHeader);
+        Map<String, Object> loggedCustomer = claims.get("user",Map.class);
+        if (loggedCustomer != null) {
+            return ResponseEntity.ok(loggedCustomer);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found in session");
         }

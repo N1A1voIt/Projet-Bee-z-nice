@@ -25,26 +25,29 @@ export class AppComponent implements OnInit{
   constructor(private disheTypeService:DishetypeService,private appService:AppService,private router:Router) {
   }
   ngOnInit(): void {
-    this.checkSession();
-    if (!this.isLoggedIn && this.router.url !== '/login' && this.router.url !== '/register'){
-      this.router.navigate(['/login']);
-    }
+    this.checkToken();
     if (this.isLoggedIn && !this.isAdmin){
       this.retrieveMenuType()
     }
   }
-  checkSession(){
-    return this.appService.checkSession().subscribe({
-      next:(response)=>{
-        if (response!=null){
-            this.isLoggedIn = true;
-            this.isAdmin = response.isadmin;
-        }else{
-          this.isLoggedIn = false;
-          this.isAdmin = false;
+  checkToken(){
+    if(localStorage.getItem("userToken")!=null){
+      this.isLoggedIn = true;
+      // @ts-ignore
+      return this.appService.retrieveMyProfile(localStorage.getItem("userToken")).subscribe({
+        next:(response)=>{
+          if (response!=null){
+            console.log(response);
+              this.isLoggedIn = true;
+              this.isAdmin = response.isadmin;
+          }else{
+            this.isLoggedIn = false;
+            this.isAdmin = false;
+          }
         }
-      }
-    })
+      })
+    }
+    return null
   }
   retrieveMenuType(){
     this.disheTypeService.retrieveAll().subscribe({
