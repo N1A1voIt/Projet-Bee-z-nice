@@ -29,8 +29,7 @@ export class LoginComponent {
   onSubmit(form:any){
     this.loginService.login(form.value).subscribe({
       next:(response)=>{
-        this.appComponent.isAdmin=response.isAdmin;
-        this.appComponent.isLoggedIn = true;
+        localStorage.setItem("userToken",response.headers.get("Authorization"));
         this.redirect();
       },error:(error)=>{
         this.exception = error
@@ -38,6 +37,7 @@ export class LoginComponent {
     })
   }
   redirect(){
+    this.appComponent.checkToken();
     if (this.appComponent.isAdmin){
       this.router.navigateByUrl('/home')
     }else {

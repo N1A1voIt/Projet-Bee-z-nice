@@ -65,6 +65,30 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.11.2</version> <!-- Or use the latest version available -->
+		</dependency>
+
+		<!-- Choose one of the following implementations depending on your needs -->
+
+		<!-- If you only need to create JWTs -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.11.2</version> <!-- Or use the latest version available -->
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- If you need to parse and verify JWTs -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.11.2</version> <!-- Or use the latest version available -->
+			<scope>runtime</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>

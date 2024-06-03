@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {apiUrl} from "../environnements/env";
 
@@ -9,7 +9,11 @@ import {apiUrl} from "../environnements/env";
 export class AppService {
   apiUrl:string = apiUrl();
   constructor(private http:HttpClient) { }
-  checkSession():Observable<any>{
-    return this.http.get<any>(`${this.apiUrl}/checkSession`);
+  retrieveMyProfile(token: string):Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization':token
+    });
+    return this.http.get<any>(`${this.apiUrl}/my-profile`, { headers: headers });
   }
+
 }
