@@ -1,5 +1,6 @@
 package itu.project.beezniceback.authentification.controller;
 
+import eval.example.codegenerator.javaPackageManager.modelFileGenerator.GenerateModel;
 import io.jsonwebtoken.Claims;
 import itu.project.beezniceback.authentification.dto.LoginDTO;
 import itu.project.beezniceback.authentification.model.Customer;
@@ -29,6 +30,20 @@ public class CustomerController {
 
     @Autowired
     private TokenGenerator tokenGenerator;
+
+    @Autowired
+    private GenerateModel generateModel;
+
+    @GetMapping("/api/test")
+    public ResponseEntity<?> generateCRUD(){
+        try{
+            generateModel.generateModel();
+            return ResponseEntity.ok("Hello");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e);
+        }
+    }
+
     @PostMapping("/api/register")
     public ResponseEntity<?> createUser(@RequestBody Customer customer) {
         try {
