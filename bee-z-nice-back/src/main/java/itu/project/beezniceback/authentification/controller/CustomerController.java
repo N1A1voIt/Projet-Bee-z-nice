@@ -1,5 +1,6 @@
 package itu.project.beezniceback.authentification.controller;
 
+import eval.example.codegenerator.javaPackageManager.modelFileGenerator.GenerateModel;
 import io.jsonwebtoken.Claims;
 import itu.project.beezniceback.authentification.dto.LoginDTO;
 import itu.project.beezniceback.authentification.model.Customer;
@@ -7,6 +8,8 @@ import itu.project.beezniceback.authentification.model.CustomerException;
 import itu.project.beezniceback.authentification.model.CustomerService;
 import itu.project.beezniceback.authentification.model.LoggedCustomer;
 import itu.project.beezniceback.authentification.tokenHandler.TokenGenerator;
+import itu.project.beezniceback.cartItems.cart.CartToken;
+import itu.project.beezniceback.cartItems.cart.model.Cart;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 //import org.springframework.session.SessionRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -29,11 +33,28 @@ public class CustomerController {
 
     @Autowired
     private TokenGenerator tokenGenerator;
+
+    @Autowired
+    private GenerateModel generateModel;
+
+    @Autowired
+    private CartToken cartToken;
+
+    @GetMapping("/api/test")
+    public ResponseEntity<?> generateCRUD(){
+        try{
+            generateModel.generateModel();
+            return ResponseEntity.ok("Hello");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e);
+        }
+    }
+
     @PostMapping("/api/register")
     public ResponseEntity<?> createUser(@RequestBody Customer customer) {
         try {
             LoggedCustomer loggedCustomer = customerService.authenticate(customer);
-            String token = tokenGenerator.generateToken(loggedCustomer);
+            String token = tokenGenerator.generateToken(loggedCustomer,new Cart(new HashMap<>()));
             System.out.println(token);
             HttpHeaders headers = new HttpHeaders();
             headers.add("Authorization", token);
@@ -49,8 +70,7 @@ public class CustomerController {
     public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO) {
         try {
             LoggedCustomer loggedCustomer = customerService.login(loginDTO);
-            String token = tokenGenerator.generateToken(loggedCustomer);
-            System.out.println(token);
+            String token = tokenGenerator.generateToken(loggedCustomer,new Cart(new HashMap<>()));
             HttpHeaders headers = new HttpHeaders();
             headers.add("Authorization", token);
             return ResponseEntity.ok().headers(headers).body(loggedCustomer);
