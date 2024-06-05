@@ -3,13 +3,15 @@ import {DishesService} from "../../dishes/dishes.service";
 import {ActivatedRoute} from "@angular/router";
 import {DecimalPipe, NgFor} from "@angular/common";
 import {FoodCardComponent} from "../../../reusable/food-card/food-card.component";
+import {AddToCartComponentComponent} from "../../../reusable/add-to-cart-component/add-to-cart-component.component";
 @Component({
   selector: 'app-food-displayer',
   standalone: true,
   imports: [
     NgFor,
     FoodCardComponent,
-    DecimalPipe
+    DecimalPipe,
+    AddToCartComponentComponent
   ],
   templateUrl: './food-displayer.component.html',
   styleUrl: './food-displayer.component.css'
