@@ -37,9 +37,10 @@ export class AppComponent implements OnInit{
       return this.appService.retrieveMyProfile(localStorage.getItem("userToken")).subscribe({
         next:(response)=>{
           if (response!=null){
-            console.log(response);
+              console.log(response);
               this.isLoggedIn = true;
-              this.isAdmin = response.isadmin;
+              this.isAdmin = !!response.isAdmin;
+              console.log(this.isAdmin)
           }else{
             this.isLoggedIn = false;
             this.isAdmin = false;

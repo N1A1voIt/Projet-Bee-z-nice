@@ -1,21 +1,39 @@
-<div  class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 bg-gray-500 bg-opacity-75 backdrop-blur-md w-full outline-none focus:outline-none justify-center items-center flex ">
-    <div class="relative w-full h-auto my-6 mx-auto max-w-6xl flex flex-col items-center justify-center">
-        <div class="border-0 rounded-lg shadow-lg relative flex flex-col items-center w-full h-[80vh] bg-white outline-none focus:outline-none">
-            <div class="grid grid-cols-3 p-5 border-b h-full border-solid border-blueGray-200 rounded-t">
-                <div class="bg-amber-400 grid-cols-1 flex flex-col justify-center h-full items-center">
-                    <h1 class="text-4xl made-dillan-font">Product name</h1>
-                    <p class="second-font text-xl p-4 ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe possimus totam aut aliquid. Facilis vero suscipit maxime architecto nemo officia rem laboriosam ipsa r</p>
+<div *ngIf="show" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 bg-gray-500 bg-opacity-75 backdrop-blur-md w-full outline-none focus:outline-none justify-center items-center flex ">
+    <div class="relative w-[85%] h-auto my-6 mx-auto  flex flex-col items-center justify-center">
+        <div class="border-0 rounded-lg shadow-lg relative grid grid-cols-3 w-full h-[80vh] bg-transparent outline-none focus:outline-none">
+                <div class="col-span-2 bg-transparent flex justify-center items-center opacity-75">
+                    <img src="{{link}}" alt="">
                 </div>
-                <div class="bg-black grid-cols-1 h-full flex items-center">
-                    <img src="/assets/Burger.jpg" alt="">
-                </div>
-                <div class="bottom-0 flex justify-center align-middle items-center w-full p-4 bg-green-600 h-full">
-<!--                    <img class="" src="/assets/Burger.jpg" alt="">-->
-                </div>
-            </div>
-        </div>
-        <div class="absolute top-[1vh] right-[1vw]">
-        <h1>close</h1>
+                <form #formCart="ngForm" method="post" action="#" (ngSubmit)="onSubmit(formCart)"  class="col-span-1 rounded-xl bg-white">
+                    <div class="flex flex-row justify-between items-center p-3 h-[15%]">
+                        <h1 class="text-4xl uppercase ">{{name}}</h1>
+                        <p class="second-font">Ariary {{Number(price)*Number(quantity)}}</p>
+                    </div>
+                    <div class="h-[40%] tracking-wider p-3">
+                        <p class="space-x-1">
+                            Le café kenyan est sans contredit unique, ses saveurs puissantes ne se retrouvent nulle part ailleurs dans le monde.
+                            C'est un produit emblématique pour nous et chaque récolte est un moment que l'on attend avec impatience ; c'est le temps de sélectionner le lot qui sera notre André le Géant de l'année.
+                            Les saveurs de ce profil couvrent toute la gamme d'arômes : des fruits noirs et agrumes rafraîchissants au miel brut et sucre muscovado, combiné avec une superbe rondeur en bouche.
+                            Ajoutez un sac à votre panier et accompagnez-nous vers notre origine de prédilection...
+                        </p>
+                    </div>
+                    <div class="w-full h-[10%] flex flex-row gap-2 p-2">
+                        <div class="h-full w-full border-t-2 border-black border-b-2 flex flex-row justify-around align-middle items-center ">
+                            <input type="hidden" name="id"  [(ngModel)]="id">
+                            <mat-icon (click)="decreaseQuantity()">remove</mat-icon>
+                            <input type="number" class="outline-0 w-[40px]" value="{{quantity}}" min="0" max="" id="" name="quantity" [(ngModel)]="quantity">
+                            <mat-icon (click)="increaseQuantity();console.log(quantity)">add</mat-icon>
+                        </div>
+                    </div>
+                    <div class="h-[20%] flex justify-center items-center p-2">
+                        <input type="submit" class="h-1/2 w-full bg-black text-white uppercase second-font text-7xl rounded-xl" value="Ajouter au panier">
+                    </div>
+                    <div class="h-[15%] w-full p-2">
+                        <span class="text-gray-400 second-font">Le produit peut être récupéré au point de vente de l'établissement.</span>
+                        <br>
+                        <span class="cursor-pointer underline text-gray-400" (click)="show=!show">Aller voir au shop</span>
+                    </div>
+                </form>
         </div>
     </div>
 
