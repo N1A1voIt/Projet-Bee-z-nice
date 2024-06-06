@@ -10,17 +10,17 @@ import {FoodDisplayerComponent} from "./components/front-office/food-displayer/f
 import {DishesComponent} from "./components/dishes/dishes.component";
 import {SupplierComponent} from "./components/supplier/supplier.component";
 import {LoginComponent} from "./components/login/login.component";
-import {clientGuardGuard} from "./security-components/client-guard.guard";
+import {adminGuardGuard, clientGuardGuard} from "./security-components/client-guard.guard";
 
 export const routes: Routes = [
     {path:'register',component:SignupComponent},
     {path:'login',component:LoginComponent},
-    {path:'home',component:HomeComponent,canActivate:[clientGuardGuard]},
+    {path:'home',component:HomeComponent,canActivate:[adminGuardGuard]},
     {path:'client',component:HomeClientComponent,canActivate:[clientGuardGuard]},
-    {path:'establishment',component:EstablishmentComponent,canActivate:[clientGuardGuard]},
-    {path:'establishmentemp',component:EstablismentemployeeComponent,canActivate:[clientGuardGuard]},
-    {path:'disheType',component:DishetypeService,canActivate:[clientGuardGuard]},
-    {path:'dishes',component:DishesComponent,canActivate:[clientGuardGuard]},
-    {path:'supplier',component:SupplierComponent,canActivate:[clientGuardGuard]},
+    {path:'establishment',component:EstablishmentComponent,canActivate:[adminGuardGuard]},
+    {path:'establishmentemp',component:EstablismentemployeeComponent,canActivate:[adminGuardGuard]},
+    {path:'disheType',component:DishetypeService,canActivate:[adminGuardGuard]},
+    {path:'dishes',component:DishesComponent,canActivate:[adminGuardGuard]},
+    {path:'supplier',component:SupplierComponent,canActivate:[adminGuardGuard]},
     {path:'foodDisplay/:id',component:FoodDisplayerComponent,canActivate:[clientGuardGuard]}
 ];
