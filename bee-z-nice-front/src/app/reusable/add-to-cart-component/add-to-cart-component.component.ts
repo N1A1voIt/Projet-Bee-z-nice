@@ -37,11 +37,12 @@ export class AddToCartComponentComponent implements OnInit{
     }
     ngOnInit() {
         console.log("id food"+this.idFood)
-        this.id = this.idFood;
+        this.id = Number(this.idFood);
     }
 
     onSubmit(form:any){
-        this.cartService.addToCart(form.value).subscribe({
+        console.log(form.value)
+        this.cartService.addToCart(form).subscribe({
             next:(response)=>{
                 console.log(response)
             },error:(error)=>{

@@ -7,11 +7,12 @@ import {DishetypeService} from "./components/dishetype/dishetype.service";
 import {DishetypeComponent} from "./components/dishetype/dishetype.component";
 import {imagesRoute} from "../environnements/env";
 import {AppService} from "./app.service";
+import {CartComponent} from "./components/front-office/cart/cart.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgIf, MatIconModule, CardMenuComponent, NgClass, NgForOf, DishetypeComponent],
+    imports: [RouterOutlet, NgIf, MatIconModule, CardMenuComponent, NgClass, NgForOf, DishetypeComponent, CartComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

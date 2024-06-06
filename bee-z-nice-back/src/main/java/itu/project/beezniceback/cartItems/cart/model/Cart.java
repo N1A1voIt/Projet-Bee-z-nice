@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Optional;
 
 public class Cart {
-
     HashMap<Dishes,Integer> itemsAndQuantity;
     public Cart(HashMap<Dishes, Integer> itemsAndQuantity) {
         this.itemsAndQuantity = itemsAndQuantity;

@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Project management" company="" webLink="http://" view-date="2024-05-08" view-index="0" gantt-divider-location="472" resource-divider-location="300" version="3.3.3300" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?><project name="Project management" company="" webLink="http://" view-date="2024-05-08" view-index="0" gantt-divider-location="740" resource-divider-location="300" version="3.3.3300" locale="fr_FR">
     <description/>
     <view zooming-state="default:3" id="gantt-chart">
-        <field id="tpd3" name="Nom" width="320" order="0"/>
-        <field id="tpd4" name="Date de début" width="53" order="1"/>
-        <field id="tpd5" name="Date de fin" width="83" order="2"/>
+        <field id="tpd3" name="Nom" width="387" order="0"/>
+        <field id="tpd4" name="Date de début" width="123" order="1"/>
+        <field id="tpd5" name="Date de fin" width="214" order="2"/>
         <field id="tpd15" name="Notes" width="20" order="3"/>
         <option id="filter.completedTasks" value="false"/>
         <option id="filter.dueTodayTasks" value="false"/>
@@ -39,7 +39,7 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="55" uid="b2fb82e600144ab6b1db12b8889bf697" name="Projet" meeting="false" start="2024-05-16" duration="25" complete="33" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
+        <task id="55" uid="b2fb82e600144ab6b1db12b8889bf697" name="Projet" meeting="false" start="2024-05-16" duration="25" complete="34" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
             <task id="1" uid="e36c1dc487744e5db3a44dc0bbac582d" name="Conception" color="#8cb6ce" meeting="false" start="2024-05-16" duration="12" complete="68" thirdDate="2024-05-09" thirdDate-constraint="0" expand="true">
                 <depend id="5" type="2" difference="0" hardness="Strong"/>
                 <depend id="6" type="2" difference="0" hardness="Strong"/>
@@ -80,12 +80,12 @@
                 <task id="15" uid="5f26bd34009a4471ba99520b577cffb9" name="Afficher liste" color="#00cc00" meeting="false" start="2024-05-30" duration="2" complete="100" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true"/>
                 <task id="14" uid="d48fb357c6a74e6ba9eadf6e387371fa" name="Requête SQL" color="#990000" meeting="false" start="2024-05-30" duration="2" complete="100" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true"/>
             </task>
-            <task id="17" uid="855b76500b20450aa55e3b6da7026215" name="Commande" meeting="false" start="2024-06-01" duration="5" complete="11" thirdDate="2024-04-30" thirdDate-constraint="0" expand="true">
+            <task id="17" uid="855b76500b20450aa55e3b6da7026215" name="Commande" meeting="false" start="2024-06-01" duration="5" complete="12" thirdDate="2024-04-30" thirdDate-constraint="0" expand="true">
                 <depend id="29" type="2" difference="0" hardness="Strong"/>
                 <depend id="31" type="2" difference="0" hardness="Strong"/>
-                <task id="72" uid="b8e244968f854c0e957aa7faab2ec14e" name="Panier" meeting="false" start="2024-06-01" duration="1" complete="42" expand="true">
-                    <task id="74" uid="f63b67d0e349443796d7ab29ab02aa29" name="Front-end" meeting="false" start="2024-06-01" duration="1" complete="0" expand="true">
-                        <task id="79" uid="e4794b570b804cd0bd934ad894e9dcbe" name="Lister élément du panier" meeting="false" start="2024-06-01" duration="1" complete="0" expand="true"/>
+                <task id="72" uid="b8e244968f854c0e957aa7faab2ec14e" name="Panier" meeting="false" start="2024-06-01" duration="1" complete="47" expand="true">
+                    <task id="74" uid="f63b67d0e349443796d7ab29ab02aa29" name="Front-end" meeting="false" start="2024-06-01" duration="1" complete="10" expand="true">
+                        <task id="79" uid="e4794b570b804cd0bd934ad894e9dcbe" name="Lister élément du panier" meeting="false" start="2024-06-01" duration="1" complete="30" thirdDate="2024-06-01" thirdDate-constraint="0" expand="true"/>
                         <task id="78" uid="7fa768f457b649cd90579398a473b263" name="Supprimer dans panier" meeting="false" start="2024-06-01" duration="1" complete="0" expand="true"/>
                         <task id="76" uid="31f51b86745241e59802df00ae416386" name="Ajout dans panier" color="#8cb6ce" meeting="false" start="2024-06-01" duration="1" complete="0" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true"/>
                     </task>

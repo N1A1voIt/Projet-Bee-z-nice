@@ -16,12 +16,12 @@
         <div class="flex justify-center gap-2 align-middle cursor-pointer" (click)="showdiv=!showdiv">
           Menu <span class="text-xs transition-all transform duration-200"><mat-icon [ngClass]="showdiv?'rotate-180':'rotate-0'">keyboard_arrow_down</mat-icon></span>
         </div>
-        <div *ngIf="showdiv" class="absolute bg-white shadow p-4 left-[-20vw] z-10 rounded-xl z-10 max-w-max w-screen h-auto grid grid-cols-4 gap-[100px] top-[5vh] transform">
+        <div *ngIf="showdiv" class="absolute bg-white shadow p-4 left-[-20vw] z-10 rounded-xl max-w-max w-screen h-auto grid grid-cols-4 gap-[100px] top-[5vh] transition-all delay-200 duration-200 transform">
           <app-card-menu *ngFor="let menuT of menuType" link="/foodDisplay/{{menuT.id}}" imgPath="{{imageRoute}}/assets/{{menuT.image_name}}" imgTitle="{{menuT.libelle}}"></app-card-menu>
         </div>
       </div>
       <div>
-        <a href="">Esquimaux</a>
+        <a href="">Mon panier</a>
       </div>
       <div>
         <a href="">Contact</a>
@@ -32,6 +32,7 @@
   </div>
 </div>
 </div>
+<app-cart *ngIf="isLoggedIn && !isAdmin"></app-cart>
 <main class=" absolute w-full">
 <router-outlet />
 </main>
