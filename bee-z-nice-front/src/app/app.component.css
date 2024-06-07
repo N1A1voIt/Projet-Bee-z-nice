@@ -1,0 +1,2 @@
+.navside{
+  @apply p-2 hover:translate-x-[15%] duration-300 hover:p-4}
