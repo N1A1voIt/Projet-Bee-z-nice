@@ -20,6 +20,8 @@ export class AppComponent implements OnInit{
   isAdmin:boolean=false;
   isLoggedIn:boolean=false;
   showdiv:boolean=false;
+  showcrud:boolean=false;
+  showstate:boolean=false;
   menuType:any;
   imageRoute:any = imagesRoute();
   constructor(private disheTypeService:DishetypeService,private appService:AppService,private router:Router) {
