@@ -1,23 +1,20 @@
 package itu.project.beezniceback.cartItems.cart.model;
 
-import itu.project.beezniceback.addtocart.model.ActiveCartService;
-import itu.project.beezniceback.addtocart.model.Addtocart;
-import itu.project.beezniceback.addtocart.model.AddtocartService;
-import itu.project.beezniceback.addtocart.model.ViewActiveCart;
+import itu.project.beezniceback.cartItems.cart.activeCart.ActiveCartService;
+import itu.project.beezniceback.cartItems.cart.addtocart.model.Addtocart;
+import itu.project.beezniceback.cartItems.cart.addtocart.model.AddtocartService;
+import itu.project.beezniceback.cartItems.cart.activeCart.ViewActiveCart;
 import itu.project.beezniceback.authentification.model.LoggedCustomer;
 import itu.project.beezniceback.dishes.model.Dishes;
 import itu.project.beezniceback.dishes.model.DishesService;
 import itu.project.beezniceback.stockbyestablishment.model.Stockbyestablishment;
 import itu.project.beezniceback.stockbyestablishment.model.StockbyestablishmentService;
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.util.*;
 
 @Service

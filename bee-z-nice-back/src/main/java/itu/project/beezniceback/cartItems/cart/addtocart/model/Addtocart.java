@@ -1,8 +1,6 @@
-package itu.project.beezniceback.addtocart.model;
+package itu.project.beezniceback.cartItems.cart.addtocart.model;
+import itu.project.beezniceback.cartItems.cart.activeCart.ViewActiveCart;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Immutable;
-
-
 
 
 @Entity

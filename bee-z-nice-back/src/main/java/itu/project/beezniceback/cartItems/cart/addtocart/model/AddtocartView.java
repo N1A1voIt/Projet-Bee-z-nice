@@ -1,4 +1,4 @@
-package itu.project.beezniceback.addtocart.model;
+package itu.project.beezniceback.cartItems.cart.addtocart.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Immutable;
 

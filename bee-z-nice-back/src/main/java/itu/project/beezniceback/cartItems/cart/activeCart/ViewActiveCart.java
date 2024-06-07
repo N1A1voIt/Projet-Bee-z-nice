@@ -1,4 +1,4 @@
-package itu.project.beezniceback.addtocart.model;
+package itu.project.beezniceback.cartItems.cart.activeCart;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

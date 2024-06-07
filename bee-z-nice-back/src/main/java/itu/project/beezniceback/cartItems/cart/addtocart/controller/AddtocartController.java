@@ -1,8 +1,9 @@
-package itu.project.beezniceback.addtocart.controller;
+package itu.project.beezniceback.cartItems.cart.addtocart.controller;
+import itu.project.beezniceback.cartItems.cart.addtocart.model.Addtocart;
+import itu.project.beezniceback.cartItems.cart.addtocart.model.AddtocartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
-import itu.project.beezniceback.addtocart.model.*;
 @RestController
 public class AddtocartController{
        @Autowired
