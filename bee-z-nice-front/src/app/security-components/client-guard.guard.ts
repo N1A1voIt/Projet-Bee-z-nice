@@ -10,13 +10,14 @@ export const clientGuardGuard: CanActivateFn = (route, state) => {
   }
   return router.parseUrl('/register');
 };
-export const adminGuardGuard: CanActivateFn = (route, state) => {
+export const adminGuardGuard: CanActivateFn = async (route, state) => {
     const authService = inject(AuthServiceService);
     const router = inject(Router);
-    if (authService.isAdmin()) {
+    let isAdmin = await authService.isAdmin()
+    console.log("ADMIN BE:" + isAdmin)
+    if (isAdmin) {
         console.log("Admin authentification")
         return true;
     }
     return router.parseUrl('/register');
-    // return true;
 };

@@ -11,6 +11,7 @@ import {DishesComponent} from "./components/dishes/dishes.component";
 import {SupplierComponent} from "./components/supplier/supplier.component";
 import {LoginComponent} from "./components/login/login.component";
 import {adminGuardGuard, clientGuardGuard} from "./security-components/client-guard.guard";
+import {DishetypeComponent} from "./components/dishetype/dishetype.component";
 
 export const routes: Routes = [
     {path:'register',component:SignupComponent},
@@ -19,7 +20,7 @@ export const routes: Routes = [
     {path:'client',component:HomeClientComponent,canActivate:[clientGuardGuard]},
     {path:'establishment',component:EstablishmentComponent,canActivate:[adminGuardGuard]},
     {path:'establishmentemp',component:EstablismentemployeeComponent,canActivate:[adminGuardGuard]},
-    {path:'disheType',component:DishetypeService,canActivate:[adminGuardGuard]},
+    {path:'disheType',component:DishetypeComponent,canActivate:[adminGuardGuard]},
     {path:'dishes',component:DishesComponent,canActivate:[adminGuardGuard]},
     {path:'supplier',component:SupplierComponent,canActivate:[adminGuardGuard]},
     {path:'foodDisplay/:id',component:FoodDisplayerComponent,canActivate:[clientGuardGuard]}

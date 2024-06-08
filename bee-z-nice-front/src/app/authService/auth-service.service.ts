@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AppService} from "../app.service";
+import {async} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,20 +12,14 @@ export class AuthServiceService {
     return localStorage.getItem("userToken")!=null;
   }
   // @ts-ignore
-    isAdmin():boolean{
+    async isAdmin(){
+      let isAdmin = false
       if (this.isLoggedIn()){
-        // @ts-ignore
-          this.appService.retrieveMyProfile(localStorage.getItem("userToken")).subscribe({
-            next:(response)=>{
-                console.log('isAdmin:'+response.isAdmin)
-                return response.isAdmin;
-            },error:(error)=>{
-                alert(error)
-            }
-        })
+          // @ts-ignore
+          const response = await this.appService.retrieveMyProfile(localStorage.getItem("userToken")).toPromise();
+          console.log("AZOOVUGEUEUGJ")
+          isAdmin = response.isAdmin;
       }
-      else{
-          return false;
-      }
+      return isAdmin;
   }
 }

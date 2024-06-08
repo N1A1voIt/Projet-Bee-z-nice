@@ -21,6 +21,42 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: addtocart; Type: TABLE; Schema: public; Owner: restau
+--
+
+CREATE TABLE public.addtocart (
+    id bigint NOT NULL,
+    iddishe integer NOT NULL,
+    iduser bigint NOT NULL,
+    quantity integer NOT NULL,
+    CONSTRAINT qtt_check CHECK ((quantity > 0))
+);
+
+
+ALTER TABLE public.addtocart OWNER TO restau;
+
+--
+-- Name: addtocart_id_seq; Type: SEQUENCE; Schema: public; Owner: restau
+--
+
+CREATE SEQUENCE public.addtocart_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.addtocart_id_seq OWNER TO restau;
+
+--
+-- Name: addtocart_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: restau
+--
+
+ALTER SEQUENCE public.addtocart_id_seq OWNED BY public.addtocart.id;
+
+
+--
 -- Name: comments; Type: TABLE; Schema: public; Owner: restau
 --
 
@@ -262,7 +298,8 @@ CREATE TABLE public.foodorder (
     customerid bigint NOT NULL,
     ordertime timestamp(0) without time zone NOT NULL,
     disheprice numeric(8,2) NOT NULL,
-    dishepurchaseprice numeric(8,2) NOT NULL
+    dishepurchaseprice numeric(8,2) NOT NULL,
+    idaddtocart bigint
 );
 
 
@@ -528,6 +565,22 @@ ALTER SEQUENCE public.supplier_id_seq OWNED BY public.supplier.id;
 
 
 --
+-- Name: v_active_cart; Type: VIEW; Schema: public; Owner: restau
+--
+
+CREATE VIEW public.v_active_cart AS
+ SELECT addtocart.id,
+    addtocart.iddishe,
+    addtocart.iduser,
+    addtocart.quantity
+   FROM (public.addtocart
+     LEFT JOIN public.foodorder cc ON ((addtocart.id = cc.idaddtocart)))
+  WHERE (cc.idaddtocart IS NULL);
+
+
+ALTER TABLE public.v_active_cart OWNER TO restau;
+
+--
 -- Name: v_dishes; Type: VIEW; Schema: public; Owner: restau
 --
 
@@ -559,6 +612,57 @@ CREATE VIEW public.v_dishes AS
 
 
 ALTER TABLE public.v_dishes OWNER TO restau;
+
+--
+-- Name: v_active_cart_labeled; Type: VIEW; Schema: public; Owner: restau
+--
+
+CREATE VIEW public.v_active_cart_labeled AS
+ SELECT t1.id,
+    t1.iduser,
+    t1.iddishe,
+    t1.quantity,
+    v_dishes.image,
+    v_dishes.dishesname,
+    v_dishes.libelle,
+    v_dishes.namesupplier,
+    v_dishes.sellingprice,
+    v_dishes.purchaseprice
+   FROM (( SELECT addtocart.id,
+            addtocart.iddishe,
+            addtocart.iduser,
+            addtocart.quantity
+           FROM (public.addtocart
+             LEFT JOIN public.foodorder cc ON ((addtocart.id = cc.idaddtocart)))
+          WHERE (cc.idaddtocart IS NULL)) t1
+     JOIN public.v_dishes ON ((v_dishes.id = t1.iddishe)));
+
+
+ALTER TABLE public.v_active_cart_labeled OWNER TO restau;
+
+--
+-- Name: v_addtocart; Type: VIEW; Schema: public; Owner: restau
+--
+
+CREATE VIEW public.v_addtocart AS
+ SELECT t1.id,
+    t1.dishesname,
+    t1.name,
+    t1.quantity
+   FROM ( SELECT t0.id,
+            t0.dishesname,
+            customers.name,
+            t0.quantity
+           FROM (( SELECT addtocart.id,
+                    dishes.dishesname,
+                    addtocart.iduser,
+                    addtocart.quantity
+                   FROM (public.addtocart
+                     JOIN public.dishes ON ((addtocart.iddishe = dishes.id)))) t0
+             JOIN public.customers ON ((t0.iduser = customers.id)))) t1;
+
+
+ALTER TABLE public.v_addtocart OWNER TO restau;
 
 --
 -- Name: v_dishetype; Type: VIEW; Schema: public; Owner: restau
@@ -679,6 +783,13 @@ CREATE VIEW public.v_supplier AS
 ALTER TABLE public.v_supplier OWNER TO restau;
 
 --
+-- Name: addtocart id; Type: DEFAULT; Schema: public; Owner: restau
+--
+
+ALTER TABLE ONLY public.addtocart ALTER COLUMN id SET DEFAULT nextval('public.addtocart_id_seq'::regclass);
+
+
+--
 -- Name: comments id; Type: DEFAULT; Schema: public; Owner: restau
 --
 
@@ -770,6 +881,17 @@ ALTER TABLE ONLY public.supplier ALTER COLUMN id SET DEFAULT nextval('public.sup
 
 
 --
+-- Data for Name: addtocart; Type: TABLE DATA; Schema: public; Owner: restau
+--
+
+COPY public.addtocart (id, iddishe, iduser, quantity) FROM stdin;
+3	1	10	2
+4	2	10	1
+2	1	2	22
+\.
+
+
+--
 -- Data for Name: comments; Type: TABLE DATA; Schema: public; Owner: restau
 --
 
@@ -795,7 +917,7 @@ COPY public.customers (id, firstname, name, mail, password, isactive, uniqid, id
 
 COPY public.dishes (id, dishesname, idsupplier, sellingprice, purchaseprice, idtype, image) FROM stdin;
 1	Burger brada	1	5000.00	4000.00	4	Burger.jpg
-2	Burger brada	2	5000.00	4000.00	3	Burger.jpg
+2	Burger Kinga	2	4000.00	3000.00	3	Burger.jpg
 \.
 
 
@@ -847,7 +969,7 @@ ETU 0000	1	Admin
 -- Data for Name: foodorder; Type: TABLE DATA; Schema: public; Owner: restau
 --
 
-COPY public.foodorder (id, paymenttypeid, iddishes, customerid, ordertime, disheprice, dishepurchaseprice) FROM stdin;
+COPY public.foodorder (id, paymenttypeid, iddishes, customerid, ordertime, disheprice, dishepurchaseprice, idaddtocart) FROM stdin;
 \.
 
 
@@ -932,6 +1054,13 @@ COPY public.supplier (id, namesupplier) FROM stdin;
 2	Dragon kinga
 3	Pho resto
 \.
+
+
+--
+-- Name: addtocart_id_seq; Type: SEQUENCE SET; Schema: public; Owner: restau
+--
+
+SELECT pg_catalog.setval('public.addtocart_id_seq', 4, true);
 
 
 --
@@ -1023,6 +1152,14 @@ SELECT pg_catalog.setval('public.stockbyestablishment_id_seq', 1, false);
 --
 
 SELECT pg_catalog.setval('public.supplier_id_seq', 3, true);
+
+
+--
+-- Name: addtocart addtocart_pkey; Type: CONSTRAINT; Schema: public; Owner: restau
+--
+
+ALTER TABLE ONLY public.addtocart
+    ADD CONSTRAINT addtocart_pkey PRIMARY KEY (id);
 
 
 --
@@ -1191,6 +1328,22 @@ CREATE INDEX spring_session_ix3 ON public.spring_session USING btree (principal_
 
 
 --
+-- Name: addtocart addtocart_iddishe_fkey; Type: FK CONSTRAINT; Schema: public; Owner: restau
+--
+
+ALTER TABLE ONLY public.addtocart
+    ADD CONSTRAINT addtocart_iddishe_fkey FOREIGN KEY (iddishe) REFERENCES public.dishes(id);
+
+
+--
+-- Name: addtocart addtocart_iduser_fkey; Type: FK CONSTRAINT; Schema: public; Owner: restau
+--
+
+ALTER TABLE ONLY public.addtocart
+    ADD CONSTRAINT addtocart_iduser_fkey FOREIGN KEY (iduser) REFERENCES public.customers(id);
+
+
+--
 -- Name: comments comments_idcustomer_foreign; Type: FK CONSTRAINT; Schema: public; Owner: restau
 --
 
@@ -1252,6 +1405,14 @@ ALTER TABLE ONLY public.dishesmarks
 
 ALTER TABLE ONLY public.establismentemployee
     ADD CONSTRAINT establismentemployee_idestablishment_foreign FOREIGN KEY (idestablishment) REFERENCES public.establishment(id);
+
+
+--
+-- Name: foodorder foodorder___fk; Type: FK CONSTRAINT; Schema: public; Owner: restau
+--
+
+ALTER TABLE ONLY public.foodorder
+    ADD CONSTRAINT foodorder___fk FOREIGN KEY (idaddtocart) REFERENCES public.addtocart(id);
 
 
 --

@@ -1,4 +1,4 @@
-<div class="w-full h-full bg-black bg-opacity-50 backdrop-blur-sm z-50 absolute">
+<div  class="w-full h-full bg-black bg-opacity-50 backdrop-blur-sm z-50 absolute">
     <div class="w-1/2 bg-white overflow-y-scroll h-full absolute -right-0 ">
         <div class="sticky w-full h-[100px] bg-white px-10 flex flex-row justify-between items-center border-b-2 border-b-amber-400">
             <h1 class="second-font-non-sized text-3xl uppercase ">Votre panier</h1>
@@ -18,12 +18,12 @@
                             <h1 class="text-gray-400 text-xl"> {{item.libelle}}</h1>
                             <span >Fournisseur : {{item.nameSupplier}}</span>
                         </div>
-                        <div class="h-1/5 bottom-0 absolute w-[200px] border-2 rounded-xl border-black flex flex-row justify-around align-middle items-center ">
+                        <form #updateQty="ngForm" class="h-1/5 bottom-0 absolute w-[200px] border-2 rounded-xl border-black flex flex-row justify-around align-middle items-center ">
                             <input type="hidden" name="id"  >
-                            <mat-icon class="">remove</mat-icon>
+                            <mat-icon  class="">remove</mat-icon>
                             <input type="number" class="outline-0 w-[30px]" value="{{item.quantity}}" min="0" max="" id="" name="quantity">
                             <mat-icon>add</mat-icon>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <div class="relative text-right">

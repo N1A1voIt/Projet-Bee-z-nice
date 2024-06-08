@@ -3,13 +3,15 @@ import {CartService} from "./cart.service";
 import {NgForOf} from "@angular/common";
 import {foodsRoute} from "../../../../environnements/env";
 import {MatIcon} from "@angular/material/icon";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-cart',
   standalone: true,
     imports: [
         NgForOf,
-        MatIcon
+        MatIcon,
+        FormsModule
     ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
