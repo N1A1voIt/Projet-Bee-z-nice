@@ -8,21 +8,19 @@ import {DishetypeComponent} from "./components/dishetype/dishetype.component";
 import {imagesRoute} from "../environnements/env";
 import {AppService} from "./app.service";
 import {CartComponent} from "./components/front-office/cart/cart.component";
-import { DashboardLiComponent } from "./reusable/dashboard-li/dashboard-li.component";
+
 @Component({
-    selector: 'app-root',
-    standalone: true,
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.css',
-    imports: [RouterOutlet, NgIf, MatIconModule, CardMenuComponent, NgClass, NgForOf, DishetypeComponent, DashboardLiComponent]
+  selector: 'app-root',
+  standalone: true,
+    imports: [RouterOutlet, NgIf, MatIconModule, CardMenuComponent, NgClass, NgForOf, DishetypeComponent, CartComponent],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit{
   title = 'bee-z-nice-front';
   isAdmin:boolean=false;
   isLoggedIn:boolean=false;
   showdiv:boolean=false;
-  showcrud:boolean=false;
-  showstate:boolean=false;
   menuType:any;
   showCart:boolean = false;
   imageRoute:any = imagesRoute();
