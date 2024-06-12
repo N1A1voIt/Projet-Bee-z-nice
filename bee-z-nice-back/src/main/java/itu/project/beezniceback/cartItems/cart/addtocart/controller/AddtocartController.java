@@ -18,7 +18,8 @@ return ResponseEntity.ok(addtocartService.getById(id));
 }
        @GetMapping("/api/addtocart/delete/{id}")
 public void delete(@PathVariable long id){
-addtocartService.delete(id);
+           System.out.println("Delete ");
+           addtocartService.delete(id);
 }
        @PostMapping("/api/addtocart/save")
 public void save(@RequestBody Addtocart addtocart){
