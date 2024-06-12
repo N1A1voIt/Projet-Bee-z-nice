@@ -1,29 +1,27 @@
-<div class="w-[20vw] relative h-[50vh] rounded-xl  bg-gray-300 bg-opacity-50 backdrop-blur-xl p-2">
-  <div class=" w-full h-full  text-white p-0 z-10 flex items-center justify-center second-font gap-2 relative">
-        <div class="h-full w-full col-span-2 rounded-xl flex justify-center items-center overflow-hidden">
-          <img  src="{{foodsRoute}}/{{imageName}}" class="h-1/2 w-1/2 " style="object-fit: cover"  alt="">
-        </div>
-        <div class="w-5/6 text-black absolute bottom-[2%] left-1/2 -translate-x-1/2 flex justify-between items-center">
-          <h1 class="text-2xl logo uppercase">{{name}}</h1>
-            <p>Ariary {{price}}</p>
-        </div>
-      <div class="absolute z-10 top-0 left-0 w-full h-full bg-black rounded-xl bg-opacity-90 opacity-0 transition-all duration-600 hover:opacity-100 p-4 cursor-pointer" (click)="show=!show;console.log(idFood)">
-          <div class="second-font ">
-              <h1 class="text-5xl">Ingredient 1,</h1>
-              <h1 class="text-5xl">Ingredient 2,</h1>
-              <h1 class="text-5xl">Ingredient 3,</h1>
-          </div>
-          <div class="absolute w-5/6 h-1/6 bottom-0">
-              <div class="flex flex-row justify-between ">
-                  <span>Type:</span>
-                  <span>{{type}}</span>
-              </div>
-              <div class="flex flex-row justify-between ">
-                  <span>Origin:</span>
-                  <span>{{supplier}}</span>
-              </div>
-          </div>
+<div class="w-[20vw] relative h-[30vh] rounded-xl  bg-green-600 bg-opacity-50 backdrop-blur-xl p-2">
+  <div class=" w-full h-full  text-white  second-font gap-2">
+    <div class="h-3/5 grid grid-cols-3 gap-2 rounded-xl">
+      <div class="h-full w-full col-span-2 rounded-xl overflow-hidden">
+        <img src="{{foodsRoute}}/{{imageName}}" class="h-full w-full " style="object-fit: cover"  alt="">
       </div>
+      <div class="h-full w-full col-span-1  flex flex-col items-center justify-center overflow-hidden ">
+        <h1 class="text-2xl logo">{{supplier}}</h1>
+        <h1 class="text-2xl second-font">{{type}}</h1>
+      </div>
+    </div>
+    <div class="h-2/5 p-1 flex flex-row rounded-xl justify-around items-center">
+      <div class="w-1/2 text-center">
+        <h1 class="text-2xl logo">{{name}}</h1>
+      </div>
+      <div class="w-1/2 flex flex-col gap-3 justify-center items-end  h-full">
+        <div>
+          <span class="font-bold text-xl">{{price}}</span><span> Ariary</span>
+        </div>
+        <div class="flex flex-row items-center justify-center align-middle bg-amber-400 rounded-full p-1 px-4">
+          <button> <span class="flex flex-row items-center justify-center align-middle gap-2"> Acheter  <mat-icon class="rounded-full bg-black">arrow_right</mat-icon> </span></button>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
-<app-add-to-cart-component link="{{foodsRoute}}/{{imageName}}" [idFood]="idFood" name="{{name}}" price="{{price}}"  [show]="show"></app-add-to-cart-component>

@@ -1,11 +1,9 @@
 package itu.project.beezniceback.authentification.tokenHandler;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import itu.project.beezniceback.cartItems.cart.model.Cart;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -19,7 +17,7 @@ public class TokenGenerator {
         this.secretKeyBytes = Keys.secretKeyFor(SignatureAlgorithm.HS256).getEncoded();
     }
 
-    public String generateToken(Object object,Cart cart) {
+    public String generateToken(Object object) {
         String subject = "user123";
         String issuer = "myApp";
         Date now = new Date();
@@ -31,7 +29,6 @@ public class TokenGenerator {
                 .setIssuedAt(now)
                 .setExpiration(expiration)
                 .claim("user", object)
-                .claim("cart", object)
                 .signWith(Keys.hmacShaKeyFor(secretKeyBytes), SignatureAlgorithm.HS256)
                 .compact();
         return token;
@@ -43,16 +40,6 @@ public class TokenGenerator {
                 .build()
                 .parseClaimsJws(token);
         return claimsJws.getBody();
-    }
-    public Cart getCartFromClaims(String jwt) throws Exception {
-        final ObjectMapper mapper = new ObjectMapper();
-
-        Claims claims = Jwts.parser()
-                .setSigningKey(secretKeyBytes)
-                .parseClaimsJws(jwt)
-                .getBody();
-
-        return mapper.convertValue(claims, Cart.class);
     }
 }
 

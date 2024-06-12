@@ -39,11 +39,9 @@ export class LoginComponent {
   redirect(){
     this.appComponent.checkToken();
     if (this.appComponent.isAdmin){
-        console.log("Treu");
-        this.router.navigateByUrl('/home');
-    }if (!this.appComponent.isAdmin){
-        console.log("false")
-      this.router.navigateByUrl('/client');
+      this.router.navigateByUrl('/home')
+    }else {
+      this.router.navigateByUrl('/client')
     }
   }
 }
