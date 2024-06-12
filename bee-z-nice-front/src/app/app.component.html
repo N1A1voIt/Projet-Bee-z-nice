@@ -21,7 +21,7 @@
         </div>
       </div>
       <div>
-        <a href="">Mon panier</a>
+        <a (click)="showCart=!showCart">Mon panier</a>
       </div>
       <div>
         <a href="">Contact</a>
@@ -32,7 +32,9 @@
   </div>
 </div>
 </div>
-<!--<app-cart *ngIf="isLoggedIn && !isAdmin"></app-cart>-->
+<div *ngIf="showCart  && isLoggedIn && !isAdmin">
+  <app-cart [showCart] = "true"></app-cart>
+</div>
 <main class=" absolute w-full">
 <router-outlet />
 </main>

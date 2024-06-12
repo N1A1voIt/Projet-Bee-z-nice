@@ -1,8 +1,8 @@
-<div  class="w-full h-full bg-black bg-opacity-50 backdrop-blur-sm z-50 absolute">
+<div *ngIf="showCart" class="w-full h-full bg-black bg-opacity-50 backdrop-blur-sm z-50 absolute">
     <div class="w-1/2 bg-white overflow-y-scroll h-full absolute -right-0 ">
         <div class="sticky w-full h-[100px] bg-white px-10 flex flex-row justify-between items-center border-b-2 border-b-amber-400">
             <h1 class="second-font-non-sized text-3xl uppercase ">Votre panier</h1>
-            <div class="uppercase cursor-pointer hover:underline">
+            <div (click)="showCart=false ; toggleShowCart()" class="uppercase cursor-pointer hover:underline">
                 <span>Close </span><span> [ x ]</span>
             </div>
         </div>
@@ -30,7 +30,7 @@
                     <div class="">
                         PU : {{item.sellingPrice}} Ariary
                     </div>
-                    <div class="absolute bottom-0 w-full hover:underline cursor-pointer">
+                    <div (click)="" class="absolute bottom-0 w-full hover:underline cursor-pointer">
                         Remove
                     </div>
                 </div>

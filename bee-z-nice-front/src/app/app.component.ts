@@ -22,6 +22,7 @@ export class AppComponent implements OnInit{
   isLoggedIn:boolean=false;
   showdiv:boolean=false;
   menuType:any;
+  showCart:boolean = false;
   imageRoute:any = imagesRoute();
   constructor(private disheTypeService:DishetypeService,private appService:AppService,private router:Router) {
   }
