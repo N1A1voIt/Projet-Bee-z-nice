@@ -16,4 +16,3 @@ public class ActiveCartService {
     }
     public List<ActiveCartLabeled> getLabeledListByIdUser(Long idUser){return activeCartLabeledRepository.findByIduser(idUser);}
 }
-
