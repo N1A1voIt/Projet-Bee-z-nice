@@ -41,13 +41,13 @@ export class AddToCartComponentComponent implements OnInit{
     }
 
     onSubmit(form:any){
-        this.cartService.addToCart(form.value).subscribe({
-            next:(response)=>{
-                console.log(response)
-            },error:(error)=>{
-                alert(error)
-            }
-        })
+        // this.cartService.addToCart(form.value).subscribe({
+        //     next:(response)=>{
+        //         console.log(response)
+        //     },error:(error)=>{
+        //         alert(error)
+        //     }
+        // })
     }
     protected readonly console = console;
     protected readonly Number = Number;
