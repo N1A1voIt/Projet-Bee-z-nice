@@ -17,7 +17,6 @@ export class AuthServiceService {
       if (this.isLoggedIn()){
           // @ts-ignore
           const response = await this.appService.retrieveMyProfile(localStorage.getItem("userToken")).toPromise();
-          console.log("AZOOVUGEUEUGJ")
           isAdmin = response.isAdmin;
       }
       return isAdmin;
