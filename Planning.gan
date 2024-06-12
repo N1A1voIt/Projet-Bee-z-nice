@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Project management" company="" webLink="http://" view-date="2024-05-08" view-index="0" gantt-divider-location="740" resource-divider-location="300" version="3.3.3300" locale="fr_FR">
+
+<?xml version="1.0" encoding="UTF-8"?><project name="Project management" company="" webLink="http://" view-date="2024-05-09" view-index="0" gantt-divider-location="617" resource-divider-location="492" version="3.3.3309" locale="en_US">
     <description/>
     <view zooming-state="default:3" id="gantt-chart">
-        <field id="tpd3" name="Nom" width="387" order="0"/>
-        <field id="tpd4" name="Date de début" width="123" order="1"/>
-        <field id="tpd5" name="Date de fin" width="214" order="2"/>
+        <field id="tpd3" name="Name" width="374" order="0"/>
+        <field id="tpd4" name="Begin date" width="78" order="1"/>
+        <field id="tpd5" name="End date" width="74" order="2"/>
         <field id="tpd15" name="Notes" width="20" order="3"/>
+        <field id="tpd13" name="Resources" width="75" order="3"/>
         <option id="filter.completedTasks" value="false"/>
         <option id="filter.dueTodayTasks" value="false"/>
         <option id="filter.overdueTasks" value="false"/>
@@ -12,8 +14,9 @@
         <option id="color.recent"><![CDATA[#0033cc #00cc00 #990000 #000066 #006699 #330099 #660033 #990099 #f4f4f4 #ff3300]]></option>
     </view>
     <view id="resource-table">
-        <field id="0" name="Nom" width="210" order="0"/>
-        <field id="1" name="Rôle par défaut" width="86" order="1"/>
+        <field id="0" name="Name" width="218" order="0"/>
+        <field id="1" name="Default role" width="147" order="1"/>
+        <field id="tpc0" name="Role" width="123" order="2"/>
     </view>
     <!-- -->
     <calendars>
@@ -38,8 +41,9 @@
             <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+            <taskproperty id="tpc0" name="Responsable" type="custom" valuetype="text" defaultvalue=""/>
         </taskproperties>
-        <task id="55" uid="b2fb82e600144ab6b1db12b8889bf697" name="Projet" meeting="false" start="2024-05-16" duration="25" complete="34" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
+        <task id="55" uid="b2fb82e600144ab6b1db12b8889bf697" name="Projet" meeting="false" start="2024-05-16" duration="25" complete="32" thirdDate="2024-05-16" thirdDate-constraint="0" expand="true">
             <task id="1" uid="e36c1dc487744e5db3a44dc0bbac582d" name="Conception" color="#8cb6ce" meeting="false" start="2024-05-16" duration="12" complete="68" thirdDate="2024-05-09" thirdDate-constraint="0" expand="true">
                 <depend id="5" type="2" difference="0" hardness="Strong"/>
                 <depend id="6" type="2" difference="0" hardness="Strong"/>
@@ -74,26 +78,26 @@
                 <task id="86" uid="5d1834bed8f442ebbf54b64251629031" name="supplier" meeting="false" start="2024-06-03" duration="1" complete="100" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true"/>
                 <task id="81" uid="18a3cbc8face4bf595bdd8c4be194d89" name="dishes" meeting="false" start="2024-06-03" duration="1" complete="100" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true"/>
             </task>
-            <task id="13" uid="d76753fef924461d8ecef9ec5fd76315" name="Menu" color="#ffff00" meeting="false" start="2024-05-30" duration="2" complete="100" thirdDate="2024-05-01" thirdDate-constraint="0" expand="true">
+            <task id="13" uid="d76753fef924461d8ecef9ec5fd76315" name="Menu" color="#ffff00" meeting="false" start="2024-05-30" duration="2" complete="100" thirdDate="2024-05-01" thirdDate-constraint="0" expand="false">
                 <depend id="17" type="2" difference="0" hardness="Strong"/>
                 <task id="16" uid="7f8777f41e774d62b2a007b47f077371" name="Controlleur + selection" color="#0033cc" meeting="false" start="2024-05-30" duration="2" complete="100" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true"/>
                 <task id="15" uid="5f26bd34009a4471ba99520b577cffb9" name="Afficher liste" color="#00cc00" meeting="false" start="2024-05-30" duration="2" complete="100" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true"/>
                 <task id="14" uid="d48fb357c6a74e6ba9eadf6e387371fa" name="Requête SQL" color="#990000" meeting="false" start="2024-05-30" duration="2" complete="100" thirdDate="2024-05-30" thirdDate-constraint="0" expand="true"/>
             </task>
-            <task id="17" uid="855b76500b20450aa55e3b6da7026215" name="Commande" meeting="false" start="2024-06-01" duration="5" complete="12" thirdDate="2024-04-30" thirdDate-constraint="0" expand="true">
+            <task id="17" uid="855b76500b20450aa55e3b6da7026215" name="Commande" meeting="false" start="2024-06-01" duration="5" complete="7" thirdDate="2024-04-30" thirdDate-constraint="0" expand="false">
                 <depend id="29" type="2" difference="0" hardness="Strong"/>
                 <depend id="31" type="2" difference="0" hardness="Strong"/>
-                <task id="72" uid="b8e244968f854c0e957aa7faab2ec14e" name="Panier" meeting="false" start="2024-06-01" duration="1" complete="47" expand="true">
-                    <task id="74" uid="f63b67d0e349443796d7ab29ab02aa29" name="Front-end" meeting="false" start="2024-06-01" duration="1" complete="10" expand="true">
-                        <task id="79" uid="e4794b570b804cd0bd934ad894e9dcbe" name="Lister élément du panier" meeting="false" start="2024-06-01" duration="1" complete="30" thirdDate="2024-06-01" thirdDate-constraint="0" expand="true"/>
+                <task id="72" uid="b8e244968f854c0e957aa7faab2ec14e" name="Panier" meeting="false" start="2024-06-01" duration="1" complete="28" expand="true">
+                    <task id="74" uid="f63b67d0e349443796d7ab29ab02aa29" name="Front-end" meeting="false" start="2024-06-01" duration="1" complete="0" expand="true">
+                        <task id="79" uid="e4794b570b804cd0bd934ad894e9dcbe" name="Lister élément du panier" meeting="false" start="2024-06-01" duration="1" complete="0" expand="true"/>
                         <task id="78" uid="7fa768f457b649cd90579398a473b263" name="Supprimer dans panier" meeting="false" start="2024-06-01" duration="1" complete="0" expand="true"/>
                         <task id="76" uid="31f51b86745241e59802df00ae416386" name="Ajout dans panier" color="#8cb6ce" meeting="false" start="2024-06-01" duration="1" complete="0" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true"/>
                     </task>
-                    <task id="73" uid="84d84174c92f45f8884215cf095aefc0" name="Back-end" meeting="false" start="2024-06-01" duration="1" complete="75" expand="true">
+                    <task id="73" uid="84d84174c92f45f8884215cf095aefc0" name="Back-end" meeting="false" start="2024-06-01" duration="1" complete="50" expand="true">
                         <task id="88" uid="2f36fed0d3ca407b9a4fbb347a93a54f" name="Voir stock restant" meeting="false" start="2024-06-01" duration="1" complete="0" expand="true"/>
                         <task id="75" uid="224429707673439cb51869af448325b9" name="Ajout dans panier" meeting="false" start="2024-06-01" duration="1" complete="100" thirdDate="2024-06-01" thirdDate-constraint="0" expand="true"/>
                         <task id="77" uid="96493108fd294bcc8195b75c3ad9d5b6" name="Supprimer dans panier" color="#8cb6ce" meeting="false" start="2024-06-01" duration="1" complete="100" thirdDate="2024-05-13" thirdDate-constraint="0" expand="true"/>
-                        <task id="87" uid="eb4c2d5d243646308c5f168878cf1c9f" name="Enlever le stock par établissement" meeting="false" start="2024-06-01" duration="1" complete="100" thirdDate="2024-06-01" thirdDate-constraint="0" expand="true"/>
+                        <task id="87" uid="eb4c2d5d243646308c5f168878cf1c9f" name="Enlever le stock par établissement" meeting="false" start="2024-06-01" duration="1" complete="0" thirdDate="2024-06-01" thirdDate-constraint="0" expand="true"/>
                     </task>
                 </task>
                 <task id="25" uid="ded6c2bd33cd4ae3afe7de786e2bb257" name="Paiement" meeting="false" start="2024-06-04" duration="3" complete="0" thirdDate="2024-06-01" thirdDate-constraint="0" expand="true">
@@ -112,12 +116,12 @@
                     <task id="19" uid="57a8c94fe828480b94015dd16a075ec4" name="Enregistrement de commande" color="#0033cc" meeting="false" start="2024-06-01" duration="2" complete="0" thirdDate="2024-06-01" thirdDate-constraint="0" expand="true"/>
                 </task>
             </task>
-            <task id="29" uid="e168c0c2e85a496ea3cd2feb037816ed" name="Notes par plats" meeting="false" start="2024-06-07" duration="1" complete="0" thirdDate="2024-04-30" thirdDate-constraint="0" expand="true">
+            <task id="29" uid="e168c0c2e85a496ea3cd2feb037816ed" name="Notes par plats" meeting="false" start="2024-06-07" duration="1" complete="0" thirdDate="2024-04-30" thirdDate-constraint="0" expand="false">
                 <depend id="32" type="2" difference="0" hardness="Strong"/>
                 <task id="31" uid="eccc7d6a376c4cfd88051b98ea127612" name="Enregistrement (back)" color="#0033cc" meeting="false" start="2024-06-07" duration="1" complete="0" thirdDate="2024-04-30" thirdDate-constraint="0" expand="true"/>
                 <task id="30" uid="786a31747aed4089a147ff1b8eae63c5" name="Formulaire (front)" color="#00cc00" meeting="false" start="2024-06-07" duration="1" complete="0" thirdDate="2024-06-07" thirdDate-constraint="0" expand="true"/>
             </task>
-            <task id="32" uid="2fbcdaeb2490478b97e6e932d0413867" name="Stock" meeting="false" start="2024-06-08" duration="1" complete="0" thirdDate="2024-05-01" thirdDate-constraint="0" expand="true">
+            <task id="32" uid="2fbcdaeb2490478b97e6e932d0413867" name="Stock" meeting="false" start="2024-06-08" duration="1" complete="0" thirdDate="2024-05-01" thirdDate-constraint="0" expand="false">
                 <depend id="36" type="2" difference="0" hardness="Strong"/>
                 <task id="33" uid="94b2f7e60683400b854ff7af870c8619" name="Output dishe stock by establishments (query)" color="#990000" meeting="false" start="2024-06-08" duration="1" complete="0" thirdDate="2024-04-30" thirdDate-constraint="0" expand="true"/>
                 <task id="35" uid="d77f033ea0ac4b9faae5231ea5a7e6b8" name="Traitement requête client (back)" color="#0033cc" meeting="false" start="2024-06-08" duration="1" complete="0" thirdDate="2024-06-08" thirdDate-constraint="0" expand="true"/>
@@ -170,8 +174,78 @@
             </task>
         </task>
     </tasks>
-    <resources/>
-    <allocations/>
+    <resources>
+        <custom-property-definition id="tpc0" name="Role" type="text" default-value=""/>
+        <resource id="1" name="Andy" function="Default:0" contacts="" phone="">
+            <custom-property definition-id="tpc0" value="Integration"/>
+        </resource>
+        <resource id="2" name="Ny avo" function="Default:0" contacts="" phone="">
+            <custom-property definition-id="tpc0" value="Full stack"/>
+        </resource>
+        <resource id="3" name="Fihobiana" function="Default:0" contacts="" phone="">
+            <custom-property definition-id="tpc0" value="Back"/>
+        </resource>
+        <resource id="4" name="Nantenaina" function="Default:0" contacts="" phone="">
+            <custom-property definition-id="tpc0" value="Back"/>
+        </resource>
+        <resource id="5" name="Tsiky" function="Default:0" contacts="" phone="">
+            <custom-property definition-id="tpc0" value="Front"/>
+        </resource>
+        <resource id="6" name="Soa" function="Default:0" contacts="" phone="">
+            <custom-property definition-id="tpc0" value="Front"/>
+        </resource>
+        <resource id="7" name="Brady" function="Default:0" contacts="" phone="">
+            <custom-property definition-id="tpc0" value="Front"/>
+        </resource>
+        <resource id="8" name="Herimbola" function="Default:0" contacts="" phone="">
+            <custom-property definition-id="tpc0" value="Back"/>
+        </resource>
+        <resource id="9" name="Kenny" function="Default:0" contacts="" phone="">
+            <custom-property definition-id="tpc0" value="Back"/>
+        </resource>
+        <resource id="10" name="Alan" function="Default:0" contacts="" phone="">
+            <custom-property definition-id="tpc0" value="Back"/>
+        </resource>
+        <resource id="11" name="Ismael" function="Default:0" contacts="" phone="">
+            <custom-property definition-id="tpc0" value="Back"/>
+        </resource>
+        <resource id="12" name="Tsihoarana" function="Default:0" contacts="" phone="">
+            <custom-property definition-id="tpc0" value="Front"/>
+        </resource>
+        <resource id="13" name="Arizo" function="Default:0" contacts="" phone="">
+            <custom-property definition-id="tpc0" value="Back"/>
+        </resource>
+        <resource id="14" name="Hajaina" function="Default:0" contacts="" phone="">
+            <custom-property definition-id="tpc0" value="Front"/>
+        </resource>
+    </resources>
+    <allocations>
+        <allocation task-id="57" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="56" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="32" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="48" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="49" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="45" resource-id="4" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="46" resource-id="4" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="54" resource-id="5" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="50" resource-id="5" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="69" resource-id="5" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="41" resource-id="6" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="62" resource-id="6" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="47" resource-id="7" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="65" resource-id="7" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="71" resource-id="8" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="70" resource-id="8" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="64" resource-id="9" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="63" resource-id="9" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="43" resource-id="11" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="42" resource-id="11" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="44" resource-id="12" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="67" resource-id="13" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="66" resource-id="13" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="58" resource-id="14" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="50" resource-id="14" function="Default:0" responsible="true" load="100.0"/>
+    </allocations>
     <vacations/>
     <previous/>
     <roles roleset-name="Default"/>

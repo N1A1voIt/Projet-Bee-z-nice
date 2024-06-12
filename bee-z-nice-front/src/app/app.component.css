@@ -1,0 +1,8 @@
+.navside{
+  @apply p-2 hover:translate-x-[1%] duration-300 
+}
+.navside a:hover ~ .colored-padding{
+  width: 30px;
+  height: 100%;
+  color: red;
+}
