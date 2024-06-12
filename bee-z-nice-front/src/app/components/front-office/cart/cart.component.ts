@@ -31,14 +31,7 @@ export class CartComponent implements OnInit{
         this.appComponent.showCart = !this.appComponent.showCart;
     }
     deleteById(id:number){
-        console.log(id)
-        this.addToCartService.delete(id).subscribe({
-            next:(response)=>{
-                console.log(response);
-            },error:(error)=>{
-                console.log(error);
-            }
-        });
+        this.addToCartService.delete(id);
         this.refreshCart();
     }
     ngOnInit(): void {

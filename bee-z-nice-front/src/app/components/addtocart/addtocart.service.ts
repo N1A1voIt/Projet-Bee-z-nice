@@ -13,8 +13,7 @@ saveData(formData:any):Observable<any> {
 retrieveAll():Observable<any> {
         return this.http.get<any>(`${this.apiUrl}/addtocart/findAll`);    }
 delete(id:number):Observable<any> {
-        return this.http.get<any>(`${this.apiUrl}/addtocart/delete/`+id);    
-}
+        return this.http.get<any>(`${this.apiUrl}/addtocart/delete/`+id);    }
 getById(id:number):Observable<any> {
         return this.http.get<any>(`${this.apiUrl}/addtocart/findById/`+id);    }
  retrieveDishesList():Observable<any>{
