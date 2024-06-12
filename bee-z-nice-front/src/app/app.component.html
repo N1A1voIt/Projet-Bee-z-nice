@@ -1,8 +1,8 @@
-<div class="h-[100vh] w-[20vw] bg-amber-400 p-4" *ngIf="isLoggedIn && isAdmin">
+<!-- <div class="h-[100vh] w-[20vw] bg-amber-400 p-4" *ngIf="isLoggedIn && isAdmin">
     <aside class="h-full w-full bg-white">
         Admin menu
     </aside>
-</div>
+</div> -->
 <div *ngIf="isLoggedIn && !isAdmin" class="fixed w-full z-10 flex flex-row justify-center items-center h-[10vh]">
   <div class="w-2/3 bg-white h-2/3 rounded-full shadow flex flex-row align-middle items-center">
     <div class="logo w-1/6 h-full flex justify-around p-4 items-center rounded-full">
@@ -33,58 +33,42 @@
 </div>
 </div>
 
-<div *ngIf="isLoggedIn && isAdmin" class="fixed w-[30vh] z-10 flex flex-col  h-[100vh] left-0">
+<div *ngIf="isLoggedIn && isAdmin" class="fixed w-[20vw] z-10 flex flex-col  h-[100vh] left-0">
   <div class="w-2/3 bg-white h-full shadow flex flex-col align-middle items-center">
-    <div class="logo w-full h-1/5 flex justify-around p-2 items-center rounded-full">
-      <span class="border border-amber-500 w-[50px] h-[50px] flex flex-col items-center justify-center rounded-full">
-        <h1 class="font-bold text-2xl text-amber-500">B</h1>
-      </span>
-      <h1>Bee-z Nice</h1>
+    <div class="logo w-full h-1/10 flex flex-row gap-2 p-4 items-center ">
+      <!-- <div class="bg-amber-400 w-2/3 flex flex-row"> -->
+        <span class="border border-amber-500 w-[50px] h-[50px] flex flex-col items-center justify-center rounded-full">
+          <h1 class="font-bold text-2xl text-amber-500">B</h1>
+        </span>
+        <h1>Bee-z Nice</h1>
+      <!-- </div> -->
+      
     </div>
       <div class="menu-component second-font text-xl w-full relative flex flex-col">
-        <div class="relative p-4 w-full justify-around shadow">
+        <div class="relative p-2 w-full justify-around shadow">
           <div class="flex gap-2 align-middle cursor-pointer font-bold" (click)="showcrud=!showcrud">
             Crud <span class="text-xs transition-all transform duration-200"><mat-icon [ngClass]="showcrud?'rotate-180':'rotate-0'">keyboard_arrow_down</mat-icon></span>
           </div>
-          <div *ngIf="showcrud" class="h-[300px] w-full flex-col">
-            <div class="navside">
-              <a href="">Plats</a>
-            </div>
-            <div class="navside">
-              <a href="">Type de plat</a>
-            </div>
-            <div class="navside">
-              <a href="">Etablissement</a>
-            </div>
-            <div class="navside">
-              <a href="">Employer etablissement</a>
-            </div>
-            <div class="navside">
-              <a href="">Mode de payement</a>
-            </div>
-            <div class="navside">
-              <a href="">Fournisseur</a>
-            </div>
+          <div *ngIf="showcrud" class="w-full flex-col py-2">
+            <app-dashboard-li href="dishes" linkLabel="Dishes"></app-dashboard-li>
+            <app-dashboard-li  href="" linkLabel="Type de plat"></app-dashboard-li>
+            <app-dashboard-li href="" linkLabel="Etablissement" ></app-dashboard-li>
+            <app-dashboard-li  href="" linkLabel="Etablissement emp"></app-dashboard-li>
+            <app-dashboard-li  href="" linkLabel="Mode de payement"></app-dashboard-li>
+            <app-dashboard-li  href="" linkLabel="Fournisseur"></app-dashboard-li>
           </div>
       </div>
     </div>
 
     <div class="menu-component second-font text-xl w-full relative flex flex-col">
-      <div class="relative p-4 w-full justify-around shadow">
+      <div class="relative p-2 w-full justify-around shadow">
         <div class="flex gap-2 align-middle cursor-pointer font-bold" (click)="showstate=!showstate">
           Statistique <span class="text-xs transition-all transform duration-200"><mat-icon [ngClass]="showstate?'rotate-180':'rotate-0'">keyboard_arrow_down</mat-icon></span>
         </div>
-        <div *ngIf="showstate" class="h-[150px] w-full flex-col">
-          <div class="navside">
-            <a href="">Plats</a>
-          </div>
-          <div class="navside">
-            <a href="">Chiffre d'afaire </a>
-          </div>
-          <div class="navside">
-            <a href="">Fournisseur</a>
-          </div>
-
+        <div *ngIf="showstate" class=" w-full flex-col">
+          <app-dashboard-li href="" linkLabel="Plats"></app-dashboard-li>
+            <app-dashboard-li  href="" linkLabel="CA"></app-dashboard-li>
+            <app-dashboard-li href="" linkLabel="Fournisseur" ></app-dashboard-li>
         </div>
       </div>
     </div>
