@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable, throwError} from "rxjs";
+import {apiUrl} from "../../../environnements/env";
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +11,16 @@ export class AddToCartService {
   constructor(private http:HttpClient) {}
     addToCart(form:any){
       console.log(localStorage.getItem("userToken"))
-        let token = localStorage.getItem("userToken");
+        let token:string|null = localStorage.getItem("userToken");
         if (token==null){
-            return "There is no User logged in";
+            console.log("Error");
+            return throwError("Session expirée") ;
         }
         const headers = new HttpHeaders({
             'Authorization':token
         });
-      return this.http.post<any>("/api/cart/addToCart",form.value);
+        console.log(form.value.id);
+        console.log(headers)
+      return this.http.post<any>( apiUrl()+"/cart/addToCart",form.value,{'headers':headers});
     }
 }

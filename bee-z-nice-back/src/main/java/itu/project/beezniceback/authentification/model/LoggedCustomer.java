@@ -11,6 +11,9 @@ public class LoggedCustomer implements Serializable {
     private String uniqId;
     private int idEstablishement;
     private boolean isAdmin;
+    public LoggedCustomer(){
+
+    }
     public LoggedCustomer(long id, String firstName, String name, String mail, boolean isActive, String uniqId, int idEstablishement,boolean isAdmin) {
         this.id = id;
         this.firstName = firstName;

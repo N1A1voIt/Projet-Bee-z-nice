@@ -5,18 +5,17 @@ import {AuthServiceService} from "../authService/auth-service.service";
 export const clientGuardGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthServiceService);
   const router = inject(Router);
-  if (authService.isLoggedIn()) {
+  if (authService.isLoggedIn() && !authService.isAdmin()) {
     return true;
   }
   return router.parseUrl('/register');
 };
-export const adminGuardGuard: CanActivateFn = (route, state) => {
+export const adminGuardGuard: CanActivateFn = async (route, state) => {
     const authService = inject(AuthServiceService);
     const router = inject(Router);
-    if (authService.isAdmin()) {
-        console.log("Admin authentification")
+    let isAdmin = await authService.isAdmin()
+    if (isAdmin) {
         return true;
     }
     return router.parseUrl('/register');
-    // return true;
 };

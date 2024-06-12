@@ -1,4 +1,5 @@
 package itu.project.beezniceback.dishes.model;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Immutable;
 
@@ -14,24 +15,31 @@ public class Dishes{
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 @Column(name = "id")
+@JsonProperty("id")
 private int id;
 //dishesname
 @Column(name = "dishesname")
+@JsonProperty("dishesname")
 private String dishesname;
 //idsupplier
 @Column(name = "idsupplier")
+@JsonProperty("idsupplier")
 private int idsupplier;
 //sellingprice
 @Column(name = "sellingprice")
+@JsonProperty("sellingprice")
 private BigDecimal sellingprice;
 //purchaseprice
 @Column(name = "purchaseprice")
+@JsonProperty("purchaseprice")
 private BigDecimal purchaseprice;
 //idtype
 @Column(name = "idtype")
+@JsonProperty("idtype")
 private int idtype;
 //image
 @Column(name = "image")
+@JsonProperty("image")
 private String image;
 
   public int getId(){

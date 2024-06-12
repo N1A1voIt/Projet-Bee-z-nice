@@ -7,8 +7,8 @@ import {DishetypeService} from "./components/dishetype/dishetype.service";
 import {DishetypeComponent} from "./components/dishetype/dishetype.component";
 import {imagesRoute} from "../environnements/env";
 import {AppService} from "./app.service";
+import {CartComponent} from "./components/front-office/cart/cart.component";
 import { DashboardLiComponent } from "./reusable/dashboard-li/dashboard-li.component";
-
 @Component({
     selector: 'app-root',
     standalone: true,
@@ -24,6 +24,7 @@ export class AppComponent implements OnInit{
   showcrud:boolean=false;
   showstate:boolean=false;
   menuType:any;
+  showCart:boolean = false;
   imageRoute:any = imagesRoute();
   constructor(private disheTypeService:DishetypeService,private appService:AppService,private router:Router) {
   }

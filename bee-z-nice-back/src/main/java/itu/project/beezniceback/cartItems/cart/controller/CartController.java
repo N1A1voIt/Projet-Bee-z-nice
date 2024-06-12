@@ -1,15 +1,13 @@
 package itu.project.beezniceback.cartItems.cart.controller;
 
-import io.jsonwebtoken.Claims;
+import itu.project.beezniceback.cartItems.cart.activeCart.ActiveCartService;
+import itu.project.beezniceback.authentification.model.LoggedCustomer;
 import itu.project.beezniceback.authentification.tokenHandler.TokenGenerator;
-import itu.project.beezniceback.cartItems.cart.model.Cart;
+import itu.project.beezniceback.cartItems.cart.dto.DisheQuantityDTO;
 import itu.project.beezniceback.cartItems.cart.model.CartService;
-import org.antlr.v4.runtime.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @RestController
 public class CartController {
@@ -17,13 +15,36 @@ public class CartController {
     private TokenGenerator tokenGenerator;
     @Autowired
     private CartService cartService;
-    @PostMapping(name = "/api/addToCart")
-    public ResponseEntity<?> addToCart(@RequestHeader(name = "Authorization") String authorizationHeader, @PathVariable int idDishe){
+    @Autowired
+    private ActiveCartService activeCartService;
+    @PostMapping("/api/cart/addToCart")
+    public ResponseEntity<?> addToCart(@RequestBody DisheQuantityDTO disheQuantityDTO, @RequestHeader(name = "Authorization") String authorizationHeader){
         try{
-            Cart cart = tokenGenerator.getCartFromClaims(authorizationHeader);
-            cartService.addToCart(idDishe,cart);
+            LoggedCustomer loggedCustomer = tokenGenerator.decodeCustomer(authorizationHeader);
+            cartService.addToCart(disheQuantityDTO.getId(), disheQuantityDTO.getQuantity(), loggedCustomer);
             return ResponseEntity.ok(true);
         }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e);
+        }
+    }
+    @GetMapping("/api/cart/pendingRequest")
+    public ResponseEntity<?> pendingRequest(@RequestHeader(name = "Authorization") String authorizationHeader){
+        try{
+            LoggedCustomer loggedCustomer = tokenGenerator.decodeCustomer(authorizationHeader);
+            return ResponseEntity.ok(activeCartService.getLabeledListByIdUser(loggedCustomer.getId()));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("An error occured");
+        }
+    }
+    @PostMapping("/api/cart/removeToCart")
+    public ResponseEntity<?> removeToCart(@RequestBody DisheQuantityDTO disheQuantityDTO, @RequestHeader(name = "Authorization") String authorizationHeader){
+        try{
+            LoggedCustomer loggedCustomer = tokenGenerator.decodeCustomer(authorizationHeader);
+            cartService.removeToCart(disheQuantityDTO.getId(), loggedCustomer);
+            return ResponseEntity.ok(true);
+        }catch (Exception e){
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(e);
         }
     }
