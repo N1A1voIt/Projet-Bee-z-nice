@@ -14,7 +14,7 @@ import { DashboardLiComponent } from "./reusable/dashboard-li/dashboard-li.compo
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet, NgIf, MatIconModule, CardMenuComponent, NgClass, NgForOf, DishetypeComponent, DashboardLiComponent]
+    imports: [RouterOutlet, NgIf, MatIconModule, CardMenuComponent, NgClass, NgForOf, DishetypeComponent, DashboardLiComponent, CartComponent]
 })
 export class AppComponent implements OnInit{
   title = 'bee-z-nice-front';
