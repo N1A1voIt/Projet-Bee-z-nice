@@ -21,5 +21,5 @@ export const routes: Routes = [
     {path:'disheType',component:DishetypeComponent,canActivate:[adminGuardGuard]},
     {path:'dishes',component:DishesComponent,canActivate:[adminGuardGuard]},
     {path:'supplier',component:SupplierComponent,canActivate:[adminGuardGuard]},
-    {path:'foodDisplay/:id',component:FoodDisplayerComponent,canActivate:[clientGuardGuard]}
+    {path:'foodDisplay/:id',component:FoodDisplayerComponent}
 ];
