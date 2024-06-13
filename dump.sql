@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 14.10
--- Dumped by pg_dump version 14.10
+-- Dumped from database version 12.19
+-- Dumped by pg_dump version 12.19
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -887,7 +887,8 @@ ALTER TABLE ONLY public.supplier ALTER COLUMN id SET DEFAULT nextval('public.sup
 COPY public.addtocart (id, iddishe, iduser, quantity) FROM stdin;
 3	1	10	2
 4	2	10	1
-2	1	2	22
+15	1	2	4
+16	2	2	3
 \.
 
 
@@ -917,7 +918,7 @@ COPY public.customers (id, firstname, name, mail, password, isactive, uniqid, id
 
 COPY public.dishes (id, dishesname, idsupplier, sellingprice, purchaseprice, idtype, image) FROM stdin;
 1	Burger brada	1	5000.00	4000.00	4	Burger.jpg
-2	Burger Kinga	2	4000.00	3000.00	3	Burger.jpg
+2	Burger Kinga	2	4000.00	3000.00	1	Burger.jpg
 \.
 
 
@@ -950,6 +951,7 @@ COPY public.establishment (id, name, location) FROM stdin;
 2	ENI	Fianarantsoa
 3	MISA	Ankatso
 4	BICI	Andoharanofotsy
+5	Ministère des finances	Faravohitra
 \.
 
 
@@ -1060,7 +1062,7 @@ COPY public.supplier (id, namesupplier) FROM stdin;
 -- Name: addtocart_id_seq; Type: SEQUENCE SET; Schema: public; Owner: restau
 --
 
-SELECT pg_catalog.setval('public.addtocart_id_seq', 4, true);
+SELECT pg_catalog.setval('public.addtocart_id_seq', 16, true);
 
 
 --
@@ -1102,7 +1104,7 @@ SELECT pg_catalog.setval('public.dishesmarks_id_seq', 1, false);
 -- Name: establishment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: restau
 --
 
-SELECT pg_catalog.setval('public.establishment_id_seq', 4, true);
+SELECT pg_catalog.setval('public.establishment_id_seq', 5, true);
 
 
 --
