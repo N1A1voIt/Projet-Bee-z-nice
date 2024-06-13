@@ -9,6 +9,7 @@ export class AuthServiceService {
 
   constructor(private appService:AppService) { }
   isLoggedIn():boolean{
+    console.log("Helloo")
     return localStorage.getItem("userToken")!=null;
   }
   // @ts-ignore

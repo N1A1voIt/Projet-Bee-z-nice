@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {AuthentificationComponent} from "../../reusable/authentification/authentification.component";
 import {NgIf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -7,6 +7,7 @@ import {SubmitButtonComponent} from "../../reusable/submit-button/submit-button.
 import {LoginService} from "./login.service";
 import {AppComponent} from "../../app.component";
 import {Router} from "@angular/router";
+import { AuthServiceService } from '../../authService/auth-service.service';
 
 @Component({
   selector: 'app-login',
@@ -36,14 +37,14 @@ export class LoginComponent {
       }
     })
   }
-  redirect(){
+  async redirect(){
     this.appComponent.checkToken();
-    if (this.appComponent.isAdmin){
-        console.log("Treu");
+    const authService = inject(AuthServiceService);
+    let isAdmin = await authService.isAdmin()
+    if (isAdmin){
         this.router.navigateByUrl('/home');
-    }if (!this.appComponent.isAdmin){
-        console.log("false")
-      this.router.navigateByUrl('/client');
+    }if (!isAdmin){
+        this.router.navigateByUrl('/client');
     }
   }
 }

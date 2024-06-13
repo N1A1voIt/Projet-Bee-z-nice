@@ -8,12 +8,13 @@ import {FoodDisplayerComponent} from "./components/front-office/food-displayer/f
 import {DishesComponent} from "./components/dishes/dishes.component";
 import {SupplierComponent} from "./components/supplier/supplier.component";
 import {LoginComponent} from "./components/login/login.component";
-import {adminGuardGuard, clientGuardGuard} from "./security-components/client-guard.guard";
+import {adminGuardGuard, clientGuardGuard, loginGuard} from "./security-components/client-guard.guard";
 import {DishetypeComponent} from "./components/dishetype/dishetype.component";
+import { ErrorPageNotAuthorizedComponent } from './components/error-page-not-authorized/error-page-not-authorized.component';
 
 export const routes: Routes = [
-    {path:'register',component:SignupComponent},
-    {path:'login',component:LoginComponent},
+    {path:'register',component:SignupComponent,canActivate:[loginGuard]},
+    {path:'login',component:LoginComponent,canActivate:[loginGuard]},
     {path:'home',component:HomeComponent,canActivate:[adminGuardGuard]},
     {path:'client',component:HomeClientComponent,canActivate:[clientGuardGuard]},
     {path:'establishment',component:EstablishmentComponent,canActivate:[adminGuardGuard]},
@@ -21,5 +22,6 @@ export const routes: Routes = [
     {path:'disheType',component:DishetypeComponent,canActivate:[adminGuardGuard]},
     {path:'dishes',component:DishesComponent,canActivate:[adminGuardGuard]},
     {path:'supplier',component:SupplierComponent,canActivate:[adminGuardGuard]},
-    {path:'foodDisplay/:id',component:FoodDisplayerComponent}
+    {path:'foodDisplay/:id',component:FoodDisplayerComponent},
+    {path:'errorPageNotAuthorized',component:ErrorPageNotAuthorizedComponent}
 ];
