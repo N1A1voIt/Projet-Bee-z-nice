@@ -11,7 +11,7 @@ import org.springframework.web.filter.CorsFilter;
 import java.util.Arrays;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"eval.example.codegenerator","itu.project.beezniceback"})
+@ComponentScan(basePackages = {"itu.project.beezniceback"})
 public class BeeZNiceBackApplication {
 
 	public static void main(String[] args) {
