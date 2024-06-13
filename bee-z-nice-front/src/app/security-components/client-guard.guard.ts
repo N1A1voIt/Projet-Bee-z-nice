@@ -19,3 +19,12 @@ export const adminGuardGuard: CanActivateFn = async (route, state) => {
     }
     return router.parseUrl('/register');
 };
+export const loginGuard:CanActivateFn = async (route,state) => {
+  const authService = inject(AuthServiceService);
+  const router = inject(Router);
+  let isLoggedIn = await authService.isLoggedIn();
+  if(!isLoggedIn){
+    return true;
+  }
+  return router.parseUrl('/errorPageNotAuthorized');
+}
