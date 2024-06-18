@@ -9,19 +9,17 @@
         </div>
       <div class="absolute z-10 top-0 left-0 w-full h-full bg-black rounded-xl bg-opacity-90 opacity-0 transition-all duration-600 hover:opacity-100 p-4 cursor-pointer" (click)="show=!show;console.log(idFood)">
           <div class="second-font ">
-              <h1 class="text-5xl">Ingredient 1,</h1>
-              <h1 class="text-5xl">Ingredient 2,</h1>
-              <h1 class="text-5xl">Ingredient 3,</h1>
+              <h1 class="text-5xl">{{supplier}}</h1>
           </div>
           <div class="absolute w-5/6 h-1/6 bottom-0">
               <div class="flex flex-row justify-between ">
                   <span>Type:</span>
                   <span>{{type}}</span>
               </div>
-              <div class="flex flex-row justify-between ">
+              <!-- <div class="flex flex-row justify-between ">
                   <span>Origin:</span>
                   <span>{{supplier}}</span>
-              </div>
+              </div> -->
           </div>
       </div>
   </div>

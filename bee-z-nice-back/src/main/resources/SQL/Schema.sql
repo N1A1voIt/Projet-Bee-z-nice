@@ -287,3 +287,10 @@ WHERE (stockbyestablishment.id IN (SELECT max(stockbyestablishment_1.id) AS max
 
 alter table v_stock_last_lines
     owner to restau;
+
+CREATE TABLE customersMoney(
+    id BIGSERIAL PRIMARY KEY,
+    idCustomer VARCHAR(250) NOT NULL,
+    virtualAmount DECIMAL(18,2) NOT NULL,
+    FOREIGN KEY (idCustomer) references establismentemployee(id)
+);

@@ -48,6 +48,17 @@ public class CartController {
             return ResponseEntity.badRequest().body(e);
         }
     }
+    @GetMapping("/api/saveCart")
+    public ResponseEntity<?> saveCart(@RequestHeader(name = "Authorization") String authorizationHeader){
+        try{
+            LoggedCustomer loggedCustomer = tokenGenerator.decodeCustomer(authorizationHeader);
+            cartService.saveMyCart(loggedCustomer);
+            return ResponseEntity.ok(true);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 //    @GetMapping(name = "/api/removeItem/{id}")
 //    public ResponseEntity<?> removeToCart(@RequestHeader(name = "Authorization") String authorizationHeader,@PathVariable int idDishe){
 //        try{

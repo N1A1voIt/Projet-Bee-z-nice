@@ -3,17 +3,19 @@ import {NgIf} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
 import {FormsModule} from "@angular/forms";
 import {AddToCartService} from "./add-to-cart.service";
+import { RatingComponent } from "../rating/rating.component";
 
 @Component({
-  selector: 'app-add-to-cart-component',
-  standalone: true,
+    selector: 'app-add-to-cart-component',
+    standalone: true,
+    templateUrl: './add-to-cart-component.component.html',
+    styleUrl: './add-to-cart-component.component.css',
     imports: [
         NgIf,
         MatIcon,
-        FormsModule
-    ],
-  templateUrl: './add-to-cart-component.component.html',
-  styleUrl: './add-to-cart-component.component.css'
+        FormsModule,
+        RatingComponent
+    ]
 })
 export class AddToCartComponentComponent implements OnInit{
     @Input() link!:string;
@@ -25,6 +27,11 @@ export class AddToCartComponentComponent implements OnInit{
     quantity=0;
     constructor(private cartService:AddToCartService) {
     }
+    
+    ngOnInit() {
+        console.log("id food"+this.idFood)
+        this.id = Number(this.idFood);
+    }
     increaseQuantity(){
         this.quantity+=1;
     }
@@ -35,11 +42,6 @@ export class AddToCartComponentComponent implements OnInit{
             this.quantity-=1;
         }
     }
-    ngOnInit() {
-        console.log("id food"+this.idFood)
-        this.id = Number(this.idFood);
-    }
-
     onSubmit(form:any){
         console.log(form.value)
         this.cartService.addToCart(form).subscribe({

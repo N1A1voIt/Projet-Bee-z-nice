@@ -1,37 +1,45 @@
 package itu.project.beezniceback.cartItems.cart.model;
 
+import itu.project.beezniceback.cartItems.cart.activeCart.ActiveCartLabeled;
 import itu.project.beezniceback.cartItems.cart.activeCart.ActiveCartService;
 import itu.project.beezniceback.cartItems.cart.addtocart.model.Addtocart;
 import itu.project.beezniceback.cartItems.cart.addtocart.model.AddtocartService;
 import itu.project.beezniceback.cartItems.cart.activeCart.ViewActiveCart;
 import itu.project.beezniceback.authentification.model.LoggedCustomer;
+import itu.project.beezniceback.customersmoney.model.Customersmoney;
+import itu.project.beezniceback.customersmoney.model.CustomersmoneyService;
 import itu.project.beezniceback.dishes.model.Dishes;
 import itu.project.beezniceback.dishes.model.DishesService;
+import itu.project.beezniceback.foodorder.model.Foodorder;
+import itu.project.beezniceback.foodorder.model.FoodorderService;
 import itu.project.beezniceback.stockbyestablishment.model.Stockbyestablishment;
 import itu.project.beezniceback.stockbyestablishment.model.StockbyestablishmentService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 @Service
 public class CartService {
     @Autowired
-    private JdbcTemplate jdbcTemplate;
-    @Autowired
     private EntityManager entityManager;
     @Autowired
     private StockbyestablishmentService stockService;
-    //    private List<Stockbyestablishment> listStock;
     @Autowired
     private DishesService dishesService;
     @Autowired
     private ActiveCartService activeCartService;
     @Autowired
     private AddtocartService addtocartService;
+    @Autowired
+    private CustomersmoneyService customersmoneyService;
+    @Autowired
+    private FoodorderService foodorderService;
     public CartService(){
 //        listStock = getLastLines();
     }
@@ -39,18 +47,56 @@ public class CartService {
         Query query = entityManager.createNativeQuery("SELECT * FROM v_stock_last_lines",Stockbyestablishment.class);
         return query.getResultList();
     }
+    @Transactional
+    public void saveMyCart(LoggedCustomer loggedCustomer) throws Exception{
+        Customersmoney customersmoney = customersmoneyService.findByIdCustomer(loggedCustomer.getUniqId()).get();
+        System.out.println("Customers money:"+customersmoney.getVirtualamount());
+        List<ActiveCartLabeled> activeCarts = activeCartService.getLabeledListByIdUser(loggedCustomer.getId());
+        double cartNetVal = cartValue(activeCarts);
+        if (cartNetVal > customersmoneyService.getPayDoubleValue(loggedCustomer)) {
+            throw new Exception("You don't have enough money to purchase those items");
+        }
+        List<Stockbyestablishment> stockbyestablishments = getLastLines();
+        for (int i = 0; i < activeCarts.size(); i++) {
+            System.out.println("Dishe ID:"+activeCarts.get(i).getIdDishe());
+            decreaseStock(stockbyestablishments,activeCarts.get(i).getIdDishe(),activeCarts.get(i).getQuantity(),loggedCustomer);
+        }
+        for (int i = 0; i < activeCarts.size(); i++) {
+            for (int j = 0; j < activeCarts.get(i).getQuantity(); j++) {
+                Foodorder foodorder = new Foodorder();
+                foodorder.setPaymenttypeid(1);
+                foodorder.setIddishes(activeCarts.get(i).getIdDishe());
+                foodorder.setCustomerid(loggedCustomer.getId());
+                foodorder.setOrdertime(new Timestamp(System.currentTimeMillis()));
+                foodorder.setDisheprice(activeCarts.get(i).getSellingPrice());
+                foodorder.setDishepurchaseprice(activeCarts.get(i).getPurchasePrice());
+                foodorder.setIdaddtocart(activeCarts.get(i).getId());
+                foodorderService.save(foodorder);
+            }
+        }
+    }
+    private double cartValue(List<ActiveCartLabeled> activeCartLabeleds){
+        double sum = 0;
+        for (ActiveCartLabeled activeCartLabeled : activeCartLabeleds) {
+            sum += activeCartLabeled.getQuantity() * activeCartLabeled.getSellingPrice().doubleValue();
+        }
+        System.out.println("SUM:"+sum);
+        return sum;
+    }
     public void decreaseStock(List<Stockbyestablishment> stocks,int idDishes,int quantity,LoggedCustomer loggedCustomer){
+        System.out.println("Id dishe: "+idDishes);
         Stockbyestablishment stockbyestablishment = getByIdDishesAndEstablishement(stocks,idDishes, loggedCustomer.getIdEstablishement());
         Stockbyestablishment stockbyestablishmentToSave = new Stockbyestablishment();
-        stockbyestablishment.setIddishes(idDishes);
-        stockbyestablishment.setIdestablishment(loggedCustomer.getIdEstablishement());
-        stockbyestablishment.setRemainingstock(stockbyestablishment.getRemainingstock()-quantity);
-        stockbyestablishment.setIdestablishment(loggedCustomer.getIdEstablishement());
+        stockbyestablishmentToSave.setIddishes(idDishes);
+        stockbyestablishmentToSave.setIdestablishment(loggedCustomer.getIdEstablishement());
+        stockbyestablishmentToSave.setRemainingstock(stockbyestablishment.getRemainingstock()-quantity);
+        stockbyestablishmentToSave.setIdmovementtype(2);
         stockService.save(stockbyestablishmentToSave);
     }
     public Stockbyestablishment getByIdDishesAndEstablishement(List<Stockbyestablishment> stocks,int idDishes,int idEstablishment){
         for (int i = 0; i < stocks.size(); i++) {
             if (stocks.get(i).getIddishes() == idDishes && stocks.get(i).getIdestablishment()==idEstablishment){
+                System.out.println("GET STOCK BY :"+stocks.get(i).getIddishes());
                 return stocks.get(i);
             }
         }

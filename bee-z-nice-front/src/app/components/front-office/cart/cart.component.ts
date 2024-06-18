@@ -7,18 +7,21 @@ import {FormsModule} from "@angular/forms";
 import { AppComponent } from '../../../app.component';
 import { AddToCartService } from '../../../reusable/add-to-cart-component/add-to-cart.service';
 import { AddtocartService } from '../../addtocart/addtocart.service';
+import { CartElementsComponent } from '../cart-elements/cart-elements.component';
+import { RatingComponent } from "../../../reusable/rating/rating.component";
 
 @Component({
-  selector: 'app-cart',
-  standalone: true,
+    selector: 'app-cart',
+    standalone: true,
+    templateUrl: './cart.component.html',
+    styleUrl: './cart.component.css',
     imports: [
         NgForOf,
         MatIcon,
         FormsModule,
-        NgIf,CommonModule
-    ],
-  templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css'
+        NgIf, CommonModule, CartElementsComponent,
+        RatingComponent
+    ]
 })
 export class CartComponent implements OnInit{
     cartContent!:any;
@@ -44,7 +47,21 @@ export class CartComponent implements OnInit{
     ngOnInit(): void {
         this.refreshCart();
     }
-    private refreshCart() {
+
+    saveCart(){
+        this.cartService.saveCart().subscribe(
+            {
+                next:(response)=>{
+                    console.log(response);
+                    this.refreshCart();
+                },error:(error)=>{
+                    alert(error);
+                }
+            }
+        )
+    }
+
+    refreshCart() {
         this.cartService.retrieveCart().subscribe({
             next: (response) => {
                 this.cartContent = response;

@@ -19,6 +19,10 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jdbc</artifactId>
 		</dependency>
 		<dependency>
@@ -83,7 +87,11 @@
 			<version>0.11.2</version>
 			<scope>runtime</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>com.github.jsqlparser</groupId>
+			<artifactId>jsqlparser</artifactId>
+			<version>4.9</version> <!-- Replace with the latest version -->
+		</dependency>
 	</dependencies>
 
 	<build>

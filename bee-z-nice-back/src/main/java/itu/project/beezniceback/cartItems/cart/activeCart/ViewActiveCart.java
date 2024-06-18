@@ -19,7 +19,6 @@ public class ViewActiveCart {
     private Long iduser;
     @Column(name = "quantity")
     private int quantity;
-
     public Long getId() {
         return id;
     }

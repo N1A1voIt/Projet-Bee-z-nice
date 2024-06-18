@@ -10,18 +10,20 @@
                         <p class="second-font">Ariary {{Number(price)*Number(quantity)}}</p>
                     </div>
                     <div class="h-[40%] tracking-wider p-3">
+                        <app-rating [rating]="3.5"></app-rating>
                         <p class="space-x-1">
-                            Le café kenyan est sans contredit unique, ses saveurs puissantes ne se retrouvent nulle part ailleurs dans le monde.
+                            
+                            <!-- Le café kenyan est sans contredit unique, ses saveurs puissantes ne se retrouvent nulle part ailleurs dans le monde.
                             C'est un produit emblématique pour nous et chaque récolte est un moment que l'on attend avec impatience ; c'est le temps de sélectionner le lot qui sera notre André le Géant de l'année.
                             Les saveurs de ce profil couvrent toute la gamme d'arômes : des fruits noirs et agrumes rafraîchissants au miel brut et sucre muscovado, combiné avec une superbe rondeur en bouche.
-                            Ajoutez un sac à votre panier et accompagnez-nous vers notre origine de prédilection...
+                            Ajoutez un sac à votre panier et accompagnez-nous vers notre origine de prédilection... -->
                         </p>
                     </div>
                     <div class="w-full h-[10%] flex flex-row gap-2 p-2">
                         <div class="h-full w-full border-t-2 border-black border-b-2 flex flex-row justify-around align-middle items-center ">
                             <input type="hidden" name="id"  [(ngModel)]="id">
                             <mat-icon (click)="decreaseQuantity()">remove</mat-icon>
-                            <input type="number" class="outline-0 w-[40px]" value="{{quantity}}" min="0" max="" id="" name="quantity" [(ngModel)]="quantity">
+                            <input type="number" class="outline-0 w-[40px]" value="{{quantity}}" min="0" max="" id="" name="quantity" [(ngModel)]="quantity" disabled>
                             <mat-icon (click)="increaseQuantity();console.log(quantity)">add</mat-icon>
                         </div>
                     </div>

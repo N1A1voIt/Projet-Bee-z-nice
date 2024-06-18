@@ -61,4 +61,15 @@ private int idmovementtype;
   public void setIdmovementtype(int idmovementtype){
       this.idmovementtype=idmovementtype;
 }
+
+    @Override
+    public String toString() {
+        return "Stockbyestablishment{" +
+                "id=" + id +
+                ", iddishes=" + iddishes +
+                ", idestablishment=" + idestablishment +
+                ", remainingstock=" + remainingstock +
+                ", idmovementtype=" + idmovementtype +
+                '}';
+    }
 }
