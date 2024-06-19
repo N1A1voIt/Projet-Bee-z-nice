@@ -13,7 +13,6 @@ import { RatingViewService } from './rating-view.service';
     ],
     templateUrl: './rating-view.component.html',
     styleUrl: './rating-view.component.css',
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RatingViewComponent implements OnInit {
     dishes:any;

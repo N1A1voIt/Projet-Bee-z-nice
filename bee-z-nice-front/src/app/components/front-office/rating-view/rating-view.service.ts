@@ -19,5 +19,28 @@ export class RatingViewService {
       }
       return this.httpClient.get<any>(`${this.apiUrl}/rating/findall`,{'headers':headers});
     }
+    save(form:any):Observable<any>{
+      let token = localStorage.getItem("userToken");
+      let headers;
+      if (token != null){
+          headers = new HttpHeaders({
+              'Authorization' : token,
+              'Content-Type': 'application/json'
+          });
+      }
+      console.log(form)
+      return this.httpClient.post<any>(`${this.apiUrl}/rating/save`,form,{'headers':headers})
+    }
+    update(form:any):Observable<any>{
+      let token = localStorage.getItem("userToken");
+      let headers;
+      if (token != null){
+          headers = new HttpHeaders({
+              'Authorization' : token,
+              'Content-Type': 'application/json'
+          });
+      }
+      return this.httpClient.post<any>(`${this.apiUrl}/rating/update`,form,{'headers':headers})
+    }
     // saveUpdate() {}
 }

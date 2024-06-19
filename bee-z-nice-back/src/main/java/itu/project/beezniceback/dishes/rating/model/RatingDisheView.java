@@ -8,7 +8,17 @@ import java.math.BigDecimal;
 
 public class RatingDisheView {
     @JsonProperty("id")
-    private int id;
+    private Long id;
+    @JsonProperty("iddishe")
+    private int iddishe;
+
+    public int getIddishe() {
+        return iddishe;
+    }
+
+    public void setIddishe(int iddishe) {
+        this.iddishe = iddishe;
+    }
 
     @JsonProperty("dishesname")
     private String dishesname;
@@ -39,8 +49,9 @@ public class RatingDisheView {
         this.rate = rate;
     }
 
-    public RatingDisheView(int id, String dishesname, int idsupplier, BigDecimal sellingprice, BigDecimal purchaseprice, int idtype, String image, int rate) {
+    public RatingDisheView(Long id, int iddishe,String dishesname, int idsupplier, BigDecimal sellingprice, BigDecimal purchaseprice, int idtype, String image, int rate) {
         this.id = id;
+        this.iddishe = iddishe;
         this.dishesname = dishesname;
         this.idsupplier = idsupplier;
         this.sellingprice = sellingprice;
@@ -50,7 +61,7 @@ public class RatingDisheView {
         this.rate = rate;
     }
     public RatingDisheView(Dishes dishes,int rate){
-        this.setId(dishes.getId());
+        this.setIddishe(dishes.getId());
         this.setDishesname(dishes.getDishesname());
         this.setIdsupplier(dishes.getIdsupplier());
         this.setIdtype(dishes.getIdtype());
@@ -62,11 +73,11 @@ public class RatingDisheView {
     public RatingDisheView(){
 
     }
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
