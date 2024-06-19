@@ -1,5 +1,6 @@
-package itu.project.beezniceback.dishes.rating;
+package itu.project.beezniceback.dishes.rating.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,11 +9,15 @@ public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @JsonProperty("id")
     Long id;
+
     @Column(name = "iddishe")
     int idDishe;
+
     @Column(name = "idcustomer")
     Long idCustomer;
+
     @Column(name = "mark")
     int rating;
 
