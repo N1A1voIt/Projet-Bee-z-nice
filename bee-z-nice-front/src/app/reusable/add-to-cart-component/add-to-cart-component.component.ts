@@ -25,6 +25,7 @@ export class AddToCartComponentComponent implements OnInit{
     @Input() idFood!:any;
     id!:number;
     quantity=0;
+    
     constructor(private cartService:AddToCartService) {
     }
     

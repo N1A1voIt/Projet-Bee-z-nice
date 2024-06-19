@@ -24,7 +24,7 @@
                             <input type="hidden" name="id"  [(ngModel)]="id">
                             <mat-icon (click)="decreaseQuantity()">remove</mat-icon>
                             <input type="number" class="outline-0 w-[40px]" value="{{quantity}}" min="0" max="" id="" name="quantity" [(ngModel)]="quantity" disabled>
-                            <mat-icon (click)="increaseQuantity();console.log(quantity)">add</mat-icon>
+                            <mat-icon (click)="increaseQuantity();">add</mat-icon>
                         </div>
                     </div>
                     <div class="h-[20%] flex justify-center items-center p-2">

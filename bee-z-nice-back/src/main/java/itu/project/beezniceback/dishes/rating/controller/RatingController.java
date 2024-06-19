@@ -32,6 +32,7 @@ public class RatingController {
             List<RatingDisheView> ratingDisheViews = ratingService.retrieveRatingDisheById(loggedCustomer);
             return ResponseEntity.ok(ratingDisheViews);
         }catch (Exception e){
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

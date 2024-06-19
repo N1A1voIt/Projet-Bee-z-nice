@@ -8,9 +8,9 @@ import {apiUrl} from "../../../environnements/env";
 })
 export class AddToCartService {
 
-  constructor(private http:HttpClient) {}
+    constructor(private http:HttpClient) {}
     addToCart(form:any){
-      console.log(localStorage.getItem("userToken"))
+        console.log(localStorage.getItem("userToken"))
         let token:string|null = localStorage.getItem("userToken");
         if (token==null){
             console.log("Error");
@@ -19,8 +19,8 @@ export class AddToCartService {
         const headers = new HttpHeaders({
             'Authorization':token
         });
-        console.log(form.value.id);
+        console.log(form.value);
         console.log(headers)
-      return this.http.post<any>( apiUrl()+"/cart/addToCart",form.value,{'headers':headers});
+        return this.http.post<any>( apiUrl()+"/cart/addToCart",form.value,{'headers':headers});
     }
 }

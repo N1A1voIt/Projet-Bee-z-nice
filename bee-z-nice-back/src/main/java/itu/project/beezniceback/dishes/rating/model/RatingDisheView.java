@@ -9,24 +9,25 @@ import java.math.BigDecimal;
 public class RatingDisheView {
     @JsonProperty("id")
     private int id;
-    //dishesname
+
     @JsonProperty("dishesname")
     private String dishesname;
-    //idsupplier
+
     @JsonProperty("idsupplier")
     private int idsupplier;
-    //sellingprice
+
     @JsonProperty("sellingprice")
     private BigDecimal sellingprice;
-    //purchaseprice
+
     @JsonProperty("purchaseprice")
     private BigDecimal purchaseprice;
-    //idtype
+
     @JsonProperty("idtype")
     private int idtype;
-    //image
+
     @JsonProperty("image")
     private String image;
+
     @JsonProperty("rate")
     private int rate;
 

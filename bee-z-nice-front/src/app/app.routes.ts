@@ -33,5 +33,4 @@ export const routes: Routes = [
     {path:'foodDisplay/:id',component:FoodDisplayerComponent},
     {path:'errorPageNotAuthorized',component:ErrorPageNotAuthorizedComponent},
     {path:'ratingView',component:RatingViewComponent}
-    // {path:'markByDishe',component:MarkByDisheComponent}
 ];

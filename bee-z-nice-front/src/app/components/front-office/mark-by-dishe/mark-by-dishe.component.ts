@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
@@ -9,5 +9,6 @@ import { MatIcon } from '@angular/material/icon';
   styleUrl: './mark-by-dishe.component.css'
 })
 export class MarkByDisheComponent {
-
+  @Input() dishe:any;
+  
 }
