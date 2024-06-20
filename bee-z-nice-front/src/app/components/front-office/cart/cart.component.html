@@ -7,38 +7,9 @@
             </div>
         </div>
         <div class="w-full h-[80vh] sticky">
-            <app-rating [rating]="3.5"></app-rating>
+            <!-- <app-rating [rating]="3.5"></app-rating> -->
             <app-cart-elements *ngFor="let item of cartContent" [item]="item">
-                
             </app-cart-elements>
-            <!-- <div *ngFor="let item of cartContent" class="border-t-2 border-b-2 py-4 px-2 flex flex-row justify-between border-amber-400 h-[250px]">
-                <div class="h-full bg-white flex justify-center items-center w-[40%]">
-                    <div class="bg-black bg-opacity-25 rounded-xl h-full flex justify-center items-center w-[50%]">
-                        <img class="h-full w-[100%] object-cover" src="{{foodsRoute}}/{{item.image}}" alt="">
-                    </div>
-                    <div class="h-full px-3 w-[60%] relative">
-                        <div >
-                            <h1 class="text-xl logo font-bold">{{item.dishesName}}</h1>
-                            <h1 class="text-gray-400 text-xl"> {{item.libelle}}</h1>
-                            <span >Fournisseur : {{item.nameSupplier}}</span>
-                        </div>
-                        <form #updateQty="ngForm" class="h-1/5 bottom-0 absolute w-[200px] border-2 rounded-xl border-black flex flex-row justify-around align-middle items-center ">
-                            <input type="hidden" name="id">
-                            <mat-icon (click)="decreaseQuantity(item.id)" class="">remove</mat-icon>
-                            <input type="number" class="outline-0 w-[30px]" value="{{item.quantity}}" min="0" max="" id="" name="quantity" ngModel>
-                            <mat-icon (click)="increaseQuantity(item.id)">add</mat-icon>
-                        </form>
-                    </div>
-                </div>
-                <div class="relative text-right">
-                    <div class="">
-                        PU : {{item.sellingPrice}} Ariary
-                    </div>
-                    <div (click)="deleteById(item.id)" class="absolute bottom-0 w-full hover:underline cursor-pointer">
-                        Remove
-                    </div>
-                </div>
-            </div> -->
         </div>
         <div class="h-[100px]  w-full">
             <button (click)="saveCart()">Purchase Items</button>

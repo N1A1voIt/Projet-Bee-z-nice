@@ -14,6 +14,8 @@ import { ErrorPageNotAuthorizedComponent } from './components/error-page-not-aut
 import { CustomersmoneyComponent } from './components/customersmoney/customersmoney.component';
 import { StockbyestablishmentComponent } from './components/stockbyestablishment/stockbyestablishment.component';
 import { MovementtypeComponent } from './components/movementtype/movementtype.component';
+import { MarkByDisheComponent } from './components/front-office/mark-by-dishe/mark-by-dishe.component';
+import { RatingViewComponent } from './components/front-office/rating-view/rating-view.component';
 
 export const routes: Routes = [
     {path:'register',component:SignupComponent,canActivate:[loginGuard]},
@@ -29,5 +31,6 @@ export const routes: Routes = [
     {path:'customersMoney',component:CustomersmoneyComponent,canActivate:[adminGuardGuard]},
     {path:'supplier',component:SupplierComponent,canActivate:[adminGuardGuard]},
     {path:'foodDisplay/:id',component:FoodDisplayerComponent},
-    {path:'errorPageNotAuthorized',component:ErrorPageNotAuthorizedComponent}
+    {path:'errorPageNotAuthorized',component:ErrorPageNotAuthorizedComponent},
+    {path:'ratingView',component:RatingViewComponent}
 ];
