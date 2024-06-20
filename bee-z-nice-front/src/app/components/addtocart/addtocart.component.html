@@ -47,10 +47,10 @@
         class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
     >
         <tr>
-            <th scope="col" class="px-6 py-4">id</th>
-            <th scope="col" class="px-6 py-4">dishesname</th>
-            <th scope="col" class="px-6 py-4">name</th>
-            <th scope="col" class="px-6 py-4">quantity</th>
+            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">id</th>
+            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">dishesname</th>
+            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">name</th>
+            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">quantity</th>
         </tr>
     </thead>
     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -61,14 +61,14 @@
                     | paginate : { itemsPerPage: 10, currentPage: pages }
             "
         >
-            <td class="px-6 py-4">{{ line.id }}</td>
-            <td class="px-6 py-4">{{ line.dishesname }}</td>
-            <td class="px-6 py-4">{{ line.name }}</td>
-            <td class="px-6 py-4">{{ line.quantity }}</td>
-            <td class="px-6 py-4">
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{ line.id }}</td>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{ line.dishesname }}</td>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{ line.name }}</td>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{ line.quantity }}</td>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
                 <button (click)="delete(line.id)">Supprimer</button>
             </td>
-            <td class="px-6 py-4">
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
                 <button (click)="update(line.id); showForm = !showForm">
                     Update
                 </button>

@@ -97,23 +97,23 @@
 	<tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
 		<tr *ngFor="let line of all | paginate:{ itemsPerPage: 10, currentPage: pages }"
 			class="text-gray-700 dark:text-gray-400">
-			<td class="px-6 py-4">{{line.id}}</td>
-			<td class="px-6 py-4">{{line.dishesname}}</td>
-			<td class="px-6 py-4">
+			<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.id}}</td>
+			<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.dishesname}}</td>
+			<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
 				{{line.namesupplier}}
 			</td>
-			<td class="px-6 py-4">
+			<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
 				{{line.sellingprice}}
 			</td>
-			<td class="px-6 py-4">
+			<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
 				{{line.purchaseprice}}
 			</td>
-			<td class="px-6 py-4">{{line.libelle}}</td>
-			<td class="px-6 py-4">{{line.image}}</td>
-			<td class="px-6 py-4">
+			<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.libelle}}</td>
+			<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.image}}</td>
+			<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
 				<button (click)="delete(line.id)">Supprimer</button>
 			</td>
-			<td class="px-6 py-4">
+			<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
 				<button (click)="update(line.id);showForm=!showForm">Update</button>
 			</td>
 		</tr>
