@@ -7,3 +7,5 @@ FROM foodorder f
     JOIN dishes d ON f.iddishes = d.id
     JOIN supplier s ON d.idsupplier = s.id
 GROUP BY d.idsupplier, s.namesupplier;
+
+

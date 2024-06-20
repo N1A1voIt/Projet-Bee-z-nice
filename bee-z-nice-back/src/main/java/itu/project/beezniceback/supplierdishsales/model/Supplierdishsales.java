@@ -1,13 +1,16 @@
 package itu.project.beezniceback.supplierdishsales.model;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Immutable;
+
+import java.math.BigDecimal;
 
 
 @Entity
+@Immutable
 @Table(name = "v_supplier_dish_sales")
 public class Supplierdishsales{
-    @Id
     @Column(name = "idsupplier")
-    private Long idSupplier;
+    private int idSupplier;
 
     @Column(name = "namesupplier")
     private String nameSupplier;
@@ -16,13 +19,13 @@ public class Supplierdishsales{
     private Long dishesSold;
 
     @Column(name = "total_revenue")
-    private Double totalRevenue;
+    private BigDecimal totalRevenue;
 
-    public Long getIdSupplier() {
+    public int getIdSupplier() {
         return idSupplier;
     }
 
-    public void setIdSupplier(Long idSupplier) {
+    public void setIdSupplier(int idSupplier) {
         this.idSupplier = idSupplier;
     }
 
@@ -42,11 +45,11 @@ public class Supplierdishsales{
         this.dishesSold = dishesSold;
     }
 
-    public Double getTotalRevenue() {
+    public BigDecimal getTotalRevenue() {
         return totalRevenue;
     }
 
-    public void setTotalRevenue(Double totalRevenue) {
+    public void setTotalRevenue(BigDecimal totalRevenue) {
         this.totalRevenue = totalRevenue;
     }
 }

@@ -9,7 +9,7 @@ public class SupplierdishsalesController{
        @Autowired
       private SupplierdishsalesService supplierdishsalesService;
        @GetMapping("/api/supplierdishsales/findAll")
-public ResponseEntity<?> findAll(){
-return ResponseEntity.ok(supplierdishsalesService.getAll());
-}
+        public ResponseEntity<?> findAll(){
+            return ResponseEntity.ok(supplierdishsalesService.getAll());
+        }
 }
