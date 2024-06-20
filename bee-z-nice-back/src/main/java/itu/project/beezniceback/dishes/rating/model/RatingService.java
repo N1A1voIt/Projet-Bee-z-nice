@@ -53,24 +53,34 @@ public class RatingService {
         List<RatingDisheView> ratingDisheViews = findDisheRating(idCustomer);
         List<Dishes> dishes = dishesRepository.findAll();
         List<RatingDisheView> rate2 = new ArrayList<>();
-//        for (int i = 0; i < ratingDisheViews.size(); i++) {
         int i = 0;
+        //If ratingDishesView is inside dishes I'll have to skip this dishe
+
         for (int j = 0; j < dishes.size() ; j++) {
             if (ratingDisheViews.isEmpty()){
                 RatingDisheView ratingDisheView = new RatingDisheView(dishes.get(j),0);
                 rate2.add(ratingDisheView);
                 continue;
             }
-            if (dishes.get(j).getId() != ratingDisheViews.get(i).getId()){
+            if (!contains(dishes,ratingDisheViews.get(i))){
                 RatingDisheView ratingDisheView = new RatingDisheView(dishes.get(j),0);
                 rate2.add(ratingDisheView);
+                dishes.remove(j);
                 if (i!=ratingDisheViews.size()-1){
                     i++;
                 }
             }
         }
-        System.out.println("Rate size:"+rate2.size());
         ratingDisheViews.addAll(rate2);
         return ratingDisheViews;
+    }
+    public boolean contains(List<Dishes> dishes,RatingDisheView ratingDisheViews){
+        boolean val = false;
+        for (int j = 0; j < dishes.size(); j++) {
+            if (ratingDisheViews.getId() == dishes.get(j).getId()){
+                val = true;
+            }
+        }
+        return val;
     }
 }
