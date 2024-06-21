@@ -287,7 +287,19 @@ WHERE (stockbyestablishment.id IN (SELECT max(stockbyestablishment_1.id) AS max
 
 alter table v_stock_last_lines
     owner to restau;
-
+create view v_indebtcustomers (id, idcustomers, debtamount, amountrefunded) as 
+SELECT
+    ic.id,
+    c.firstname,
+    c.lastname,
+    c.email,
+    ic.debtamount,
+    ic.amountrefunded,
+    ROW_NUMBER() OVER (ORDER BY ic.debtamount DESC) AS debt_rank
+FROM
+    indebtcustomers ic
+JOIN
+    customers c ON ic.idcustomer = c.id; 
 CREATE TABLE customersMoney(
     id BIGSERIAL PRIMARY KEY,
     idCustomer VARCHAR(250) NOT NULL,
