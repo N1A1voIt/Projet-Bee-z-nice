@@ -10,5 +10,4 @@ private SupplierdishsalesRepository supplierdishsalesRepository;
    public List<Supplierdishsales> getAll() {
       return supplierdishsalesRepository.findAll();
    }
-
 }

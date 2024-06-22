@@ -9,6 +9,8 @@ import java.math.BigDecimal;
 @Immutable
 @Table(name = "v_supplier_dish_sales")
 public class Supplierdishsales{
+    @Id
+    
     @Column(name = "idsupplier")
     private int idSupplier;
 
