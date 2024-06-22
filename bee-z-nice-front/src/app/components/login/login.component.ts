@@ -25,7 +25,7 @@ import { AuthServiceService } from '../../authService/auth-service.service';
 })
 export class LoginComponent {
   exception:any = null;
-  constructor(private loginService:LoginService,private appComponent:AppComponent,private router:Router) {
+  constructor(private loginService:LoginService,private appComponent:AppComponent,private authService: AuthServiceService,private router:Router) {
   }
   onSubmit(form:any){
     this.loginService.login(form.value).subscribe({
@@ -39,8 +39,7 @@ export class LoginComponent {
   }
   async redirect(){
     this.appComponent.checkToken();
-    const authService = inject(AuthServiceService);
-    let isAdmin = await authService.isAdmin()
+    let isAdmin = await this.authService.isAdmin()
     if (isAdmin){
         this.router.navigateByUrl('/home');
     }if (!isAdmin){

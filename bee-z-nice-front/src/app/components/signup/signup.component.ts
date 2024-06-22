@@ -5,7 +5,7 @@ import {NSelectComponent} from "../../reusable/n-select/n-select.component";
 import {SubmitButtonComponent} from "../../reusable/submit-button/submit-button.component";
 import {AuthentificationComponent} from "../../reusable/authentification/authentification.component";
 import {SignupService} from "./signup.service";
-import {EstablishmentService} from "../establishment/establishment.service";
+import {EstablishmentService} from "../back-office/establishment/establishment.service";
 import {Router} from "@angular/router";
 import {AppComponent} from "../../app.component";
 import {NgFor, NgForOf, NgIf} from "@angular/common";
