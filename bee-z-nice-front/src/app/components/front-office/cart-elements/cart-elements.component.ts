@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { foodsRoute } from '../../../../environnements/env';
 import { AddToCartService } from '../../../reusable/add-to-cart-component/add-to-cart.service';
-import { AddtocartService } from '../../addtocart/addtocart.service';
+import { AddtocartService } from '../addtocart/addtocart.service';
 import { CartComponent } from '../cart/cart.component';
 import { CartService } from '../cart/cart.service';
 import { MatIcon } from '@angular/material/icon';

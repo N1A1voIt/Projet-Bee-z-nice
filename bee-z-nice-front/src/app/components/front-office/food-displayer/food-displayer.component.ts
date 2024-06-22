@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {DishesService} from "../../dishes/dishes.service";
+import {DishesService} from "../../back-office/dishes/dishes.service";
 import {ActivatedRoute} from "@angular/router";
 import {DecimalPipe, NgFor} from "@angular/common";
 import {FoodCardComponent} from "../../../reusable/food-card/food-card.component";

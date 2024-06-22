@@ -6,7 +6,7 @@ import {MatIcon} from "@angular/material/icon";
 import {FormsModule} from "@angular/forms";
 import { AppComponent } from '../../../app.component';
 import { AddToCartService } from '../../../reusable/add-to-cart-component/add-to-cart.service';
-import { AddtocartService } from '../../addtocart/addtocart.service';
+import { AddtocartService } from '../addtocart/addtocart.service';
 import { CartElementsComponent } from '../cart-elements/cart-elements.component';
 import { RatingComponent } from "../../../reusable/rating/rating.component";
 

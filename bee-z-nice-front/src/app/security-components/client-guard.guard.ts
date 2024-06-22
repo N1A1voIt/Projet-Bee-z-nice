@@ -17,6 +17,7 @@ export const adminGuardGuard: CanActivateFn = async (route, state) => {
     if (isAdmin) {
         return true;
     }
+    localStorage.removeItem("userToken")
     return router.parseUrl('/register');
 };
 export const loginGuard:CanActivateFn = async (route,state) => {
