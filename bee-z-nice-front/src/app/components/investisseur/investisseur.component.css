@@ -1,0 +1,201 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; 
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* Changed to column to stack form and results vertically */
+  align-items: center;
+  height: 100%;
+  width: 100%; /* Added to take full width */
+  max-width: 600px; /* Optional: Limit the max-width of the container */
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: linear-gradient(45deg, #ffca28, #a97006);
+  padding: 30px;
+  width: 100%; /* Full width of the container */
+  border-radius: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  transition: background 0.3s ease;
+}
+
+.form:hover {
+  background: linear-gradient(45deg,#a97006,#ffca28);
+}
+
+::placeholder {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.form button {
+  align-self: flex-end;
+}
+
+.flex-column > label {
+  color: white;
+  font-weight: 600;
+}
+
+.inputForm {
+  border: 1.5px solid #ecedec;
+  border-radius: 5em;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  transition: 0.2s ease-in-out;
+  background-color: white;
+}
+
+.input {
+  margin-left: 10px;
+  border-radius: 10rem;
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.inputForm:focus-within {
+  border: 1.5px solid orange;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.flex-row > div > label {
+  font-size: 14px;
+  color: black;
+  font-weight: 400;
+}
+
+.span {
+  font-size: 14px;
+  margin-left: 5px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.button-submit {
+  position: relative;
+  display: inline-block;
+  padding: 15px 30px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-decoration: none;
+  background: transparent;
+  transition: ease-out 0.5s;
+  border: 2px solid;
+  border-radius: 10em;
+  box-shadow: inset 0 0 0 0 #a97006;
+  margin: 20px 0 10px 0;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  height: 50px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.button-submit:hover {
+  color: white;
+  box-shadow: inset 0 -100px 0 0 #a97006;
+}
+
+.button-submit:active {
+  transform: scale(0.9);
+  
+}
+
+.p {
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.btn {
+  margin-top: 10px;
+  width: 100%;
+  height: 50px;
+  border-radius: 10em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  gap: 10px;
+  border: 1px solid #ededef;
+  background-color: white;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.btn:hover {
+  border: 1px solid orange;
+}
+
+.results {
+  margin-top: 20px; /* Espacement au-dessus du tableau */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrer horizontalement */
+  text-align: center; /* Centrer le texte */
+}
+
+.table-container {
+  width: 100%; /* Ajuster la largeur du conteneur du tableau selon vos besoins */
+  overflow-x: auto; /* Permettre le défilement horizontal si nécessaire */
+  margin-top: 20px; /* Espacement supplémentaire au-dessus du tableau */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; 
+}
+
+th, td {
+  padding: 10px;
+  text-align: left; 
+  font-size: 15px;
+  font-weight: 600; 
+  color: var(--font-color); 
+}
+
+th {
+  background-color: #a97006; 
+}
+
+td {
+  background-color: #ffca28;
+}
+
+thead {
+  box-shadow: 4px 4px var(--main-color); /* Ombre portée sur l'en-tête */
+}
+
+tbody tr {
+  transition: background-color 0.3s ease; /* Animation de survol */
+}
+
+tbody tr:hover {
+  background-color: #f2f2f2; /* Couleur de fond au survol */
+}

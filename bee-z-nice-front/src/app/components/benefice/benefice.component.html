@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <style>
+    /* Votre CSS existant ici */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <form class="form" (ngSubmit)="onSubmit(searchForm)" #searchForm="ngForm">
+        <div class="title">Welcome,<br><span>here you can see your benefit history</span></div>
+        <input class="input" name="startDate" [(ngModel)]="startDate" type="date" required>
+        <small *ngIf="searchForm.submitted && !startDate" class="text-danger">Veuillez sélectionner une date de début.</small>
+        <input class="input" name="endDate" [(ngModel)]="endDate" type="date" required>
+        <small *ngIf="searchForm.submitted && !endDate" class="text-danger">Veuillez sélectionner une date de fin.</small>
+        <button type="submit" class="button-confirm">Let's go →</button>
+        <div class="results" *ngIf="benefits.length > 0">
+          <h3>Résultats de la recherche :</h3>
+          <div class="flex-container">
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Bénéfice</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let benefit of benefits">
+                    <td>{{ benefit.date }}</td>
+                    <td>{{ benefit.benefit }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="svg-container">
+              <svg class='container' width="529px" height="286px" viewBox="30 27 529 286" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="graph-copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(30.000000, 27.000000)">
+                  <g id="y_axis" font-size="11.0833333" font-family=".HelveticaNeueDeskInterface-Regular, .Helvetica Neue DeskInterface" fill="#000000" opacity="0.7" font-weight="normal">
+                    <text class="chart-text" id="0">
+                      <tspan x="25.3008249" y="280">0</tspan>
+                    </text>
+                    <text class="chart-text" id="100">
+                      <tspan x="12.7757572" y="245">100</tspan>
+                    </text>
+                    <text class="chart-text" id="200">
+                      <tspan x="12.7757572" y="210">200</tspan>
+                    </text>
+                    <text class="chart-text" id="300">
+                      <tspan x="12.7757572" y="175">300</tspan>
+                    </text>
+                    <text class="chart-text" id="400">
+                      <tspan x="12.7757572" y="140">400</tspan>
+                    </text>
+                    <text class="chart-text" id="500">
+                      <tspan x="12.7757572" y="105">500</tspan>
+                    </text>
+                    <text class="chart-text" id="600">
+                      <tspan x="12.7757572" y="70">600</tspan>
+                    </text>
+                    <text class="chart-text" id="700">
+                      <tspan x="12.7757572" y="35">700</tspan>
+                    </text>
+                    <text class="chart-text" id="800">
+                      <tspan x="12.7757572" y="0">800</tspan>
+                    </text>
+                  </g>
+                  <g id="GRAPHS" transform="translate(64.000000,0)" stroke-linecap="round" stroke-width="6" stroke-linejoin="round">
+                    <polyline id="PayPal" stroke="#F6F5A6" [attr.points]="generatePoints(benefits)" />
+                  </g>
+                  <g id="x_axis" transform="translate(64.000000, 236.00000)" font-size="11.0833333" font-family=".HelveticaNeueDeskInterface-Regular, .Helvetica Neue DeskInterface" fill="#000000" opacity="0.7" font-weight="normal">
+                    <text class="chart-text" id="1">
+                      <tspan x="0.396183206" y="44">1</tspan>
+                    </text>
+                    <text class="chart-text" id="2">
+                      <tspan x="39.2603361" y="44">2</tspan>
+                    </text>
+                    <text class="chart-text" id="3">
+                      <tspan x="78.8786567" y="44">3</tspan>
+                    </text>
+                    <text class="chart-text" id="4">
+                      <tspan x="118.496977" y="44">4</tspan>
+                    </text>
+                    <text class="chart-text" id="5">
+                      <tspan x="158.115298" y="44">5</tspan>
+                    </text>
+                    <text class="chart-text" id="6">
+                      <tspan x="197.733619" y="44">6</tspan>
+                    </text>
+                    <text class="chart-text" id="7">
+                      <tspan x="237.351939" y="44">7</tspan>
+                    </text>
+                    <text class="chart-text" id="8">
+                      <tspan x="276.97026" y="44">8</tspan>
+                    </text>
+                    <text class="chart-text" id="9">
+                      <tspan x="316.58858" y="44">9</tspan>
+                    </text>
+                    <text class="chart-text" id="10">
+                      <tspan x="359.229833" y="44">10</tspan>
+                    </text>
+                    <text class="chart-text" id="11">
+                      <tspan x="400.036703" y="44">11</tspan>
+                    </text>
+                    <text class="chart-text" id="12">
+                      <tspan x="438.466474" y="44">12</tspan>
+                    </text>
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date par défaut</title>
+</head>
+<body>
+    <div class="container">
+        <form class="form" (ngSubmit)="onSubmit(searchForm)" #searchForm="ngForm">
+            <div class="flex-column">
+                <label>Name</label>
+            </div>
+            <div class="inputForm">
+                <input placeholder="name" class="input" [(ngModel)]="name" name="name" type="text" required/>
+            </div>
+            <div class="flex-column">
+                <label>Date</label>
+            </div>
+            <div class="inputForm">
+                <input class="input" type="date" id="dateInput" [(ngModel)]="date" name="date" required/>
+            </div>
+            <div class="flex-column">
+                <label>Amount</label>
+            </div>
+            <div class="inputForm">
+                <input placeholder="amount" class="input" type="number" min="0" [(ngModel)]="amount" name="amount" required />
+            </div>
+            <button class="button-submit">Valider</button>
+        </form>
+        <div class="results" *ngIf="acount.length > 0">
+            <h3>Résultats de la recherche :</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Bénéfice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of acount">
+                            <td>{{ item.date }}</td>
+                            <td>{{ item.paid }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

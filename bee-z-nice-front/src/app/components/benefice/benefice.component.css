@@ -1,0 +1,178 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; 
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* Changed to column to stack form and results vertically */
+  align-items: center;
+  height: 100%;
+  width: 100%; /* Added to take full width */
+  max-width: 600px; /* Optional: Limit the max-width of the container */
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: linear-gradient(45deg, #ffca28, #a97006);
+  padding: 30px;
+  width: 100%; /* Full width of the container */
+  border-radius: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  transition: background 0.3s ease;
+}
+.form:hover {
+  background: linear-gradient(45deg,#a97006,#ffca28);
+}
+
+
+.title {
+  color: var(--font-color);
+  font-weight: 900;
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+.title span {
+  color: var(--font-color-sub);
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.input {
+  /* margin-top: 50px; */
+  margin: 30px auto 10 auto; 
+  border-radius: 10px;
+  outline: 2px solid #a97006;
+  border: 0;
+  font-family: "Montserrat", sans-serif;
+  background-color: #fff;
+  outline-offset: 3px;
+  padding: 10px 12.5px;
+  transition: all 0.2s ease;
+  width: 300px;
+  margin: 5px auto 0 auto;
+}
+
+.input:hover {
+  background-color: #fff;
+}
+
+.input:focus {
+  outline-offset: -6px;
+  background-color: #fff;
+}
+button {
+  border: none;
+  color: #fff;
+  background-image: linear-gradient(30deg, #a97006, #ffca28);
+  border-radius: 20px;
+  background-size: 100% auto;
+  font-family: inherit;
+  font-size: 17px;
+  padding: 0.6em 1.5em;
+  outline: 2px solid #a97006;
+ }
+ 
+ button:hover {
+  background-position: right center;
+  background-size: 100% auto;
+  -webkit-animation: pulse 2s infinite;
+  animation: pulse512 1.5s infinite;
+ }
+ 
+ @keyframes pulse512 {
+  0% {
+   box-shadow: 0 0 0 0 #ffca28;
+  }
+ 
+  70% {
+   box-shadow: 0 0 0 10px rgb(218 103 68 / 0%);
+  }
+ 
+  100% {
+   box-shadow: 0 0 0 0 rgb(218 103 68 / 0%);
+  }
+ }
+
+.results {
+  margin-top: 20px; /* Espacement au-dessus du tableau */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrer horizontalement */
+  text-align: center; /* Centrer le texte */
+}
+
+.table-container {
+  width: 100%; /* Ajuster la largeur du conteneur du tableau selon vos besoins */
+  overflow-x: auto; /* Permettre le défilement horizontal si nécessaire */
+  margin-top: 20px; /* Espacement supplémentaire au-dessus du tableau */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; 
+}
+
+th, td {
+  padding: 10px;
+  text-align: left; 
+  font-size: 15px;
+  font-weight: 600; 
+  color: var(--font-color); 
+}
+
+th {
+  background-color: #a97006; 
+}
+
+td {
+  background-color: #ffffff; 
+}
+
+thead {
+  box-shadow: 4px 4px var(--main-color); /* Ombre portée sur l'en-tête */
+}
+
+tbody tr {
+  transition: background-color 0.3s ease; /* Animation de survol */
+}
+
+tbody tr:hover {
+  background-color: #f2f2f2; /* Couleur de fond au survol */
+}
+
+.small {
+  color: red;
+  margin: 30px auto 10 auto;
+}
+
+.text-danger {
+  color: red;
+  text-align: center; /* Centre le message d'erreur */
+  display: block; /* Assure que l'élément prend toute la largeur disponible */
+}
+tspan {
+  fill: #000000; /* Noir */
+}
+
+polyline {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 5s ease-in forwards;
+  /* animation-iteration-count: 10; */
+  animation-direction: alternate;
+}
+
+
+@keyframes dash{
+  to {
+    stroke-dashoffset: 0;
+  }
+}
