@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
+  
   "private": true,
   "dependencies": {
     "@angular/animations": "^18.0.0",
@@ -22,8 +23,9 @@
     "@fortawesome/angular-fontawesome": "^0.15.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "angular-highcharts": "^17.0.1",
     "angular-star-rating": "^7.0.0",
-    "chart.js": "^4.4.3",
+    "highcharts": "^11.4.3",
     "marked": "^13.0.0",
     "material-icons": "^1.13.12",
     "ngx-pagination": "^6.0.3",

@@ -10,12 +10,14 @@ import {AppService} from "./app.service";
 import {CartComponent} from "./components/front-office/cart/cart.component";
 import { DashboardLiComponent } from "./reusable/dashboard-li/dashboard-li.component";
 import { WfullDirective } from './directives/wfull.directive';
+import { DashboardCardComponent } from "./reusable/dashboard-card/dashboard-card.component";
+import { ChartModule } from 'angular-highcharts';
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet, NgIf, MatIconModule, CardMenuComponent, NgClass, NgForOf, DishetypeComponent, DashboardLiComponent, CartComponent,WfullDirective]
+    imports: [RouterOutlet, NgIf, MatIconModule, CardMenuComponent, NgClass, NgForOf, DishetypeComponent, DashboardLiComponent, CartComponent, WfullDirective, DashboardCardComponent,ChartModule]
 })
 export class AppComponent implements OnInit{
   title = 'bee-z-nice-front';

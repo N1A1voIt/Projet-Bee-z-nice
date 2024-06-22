@@ -23,6 +23,17 @@ public interface ProfitsRepository extends JpaRepository<Foodorder, Long> {
     List<DailyProfit> calculateBenefits(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 //
     @Query(value = "SELECT null as daty,CAST(SUM(f.disheprice - f.dishepurchaseprice) AS DECIMAL) as daily_profit " +
-           "FROM FoodOrder f WHERE f.orderTime BETWEEN :startDate AND :endDate",nativeQuery = true)
+           "FROM Foodorder f WHERE f.ordertime BETWEEN :startDate AND :endDate",nativeQuery = true)
     DailyProfit calculateTotalBenefits(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+
+    @Query(value = "SELECT null as daty, " +
+            "COALESCE(CAST(SUM(f.disheprice - f.dishepurchaseprice) AS DECIMAL), 0) as daily_profit " +
+            "FROM FoodOrder f JOIN customers c ON f.customerid = c.id " +
+            "WHERE idestablishment = :idEstablishment " +
+            "AND f.ordertime BETWEEN :startDate AND :endDate",
+            nativeQuery = true)
+    DailyProfit calculateTotalBenefitsByEstablishment(@Param("idEstablishment") int idEstablishment,
+                                                      @Param("startDate") LocalDate startDate,
+                                                      @Param("endDate") LocalDate endDate);
+
 }
