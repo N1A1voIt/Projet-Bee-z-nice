@@ -30,7 +30,8 @@ export class AppComponent implements OnInit{
   showCart:boolean = false;
   imageRoute:any = imagesRoute();
   isCrudPage:boolean = false;
-  constructor(private disheTypeService:DishetypeService,private appService:AppService,private router:Router) {
+  selectedPage!:string;
+  constructor(private disheTypeService:DishetypeService,private appService:AppService,public router:Router) {
   }
   ngOnInit(): void {
     this.checkToken();

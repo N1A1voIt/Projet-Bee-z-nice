@@ -7,40 +7,40 @@
         </svg>
       </div>
       <div class="flex mx-auto flex-grow mt-4 flex-col text-gray-400 space-y-4">
-        <button  (click)="resetPageNavigation()" class="h-10 w-12 dark:text-gray-500 rounded-md flex items-center justify-center">
-          <mat-icon>home</mat-icon>
-        </button>
-        <button (click)="resetPageNavigation();isCrudPage=!isCrudPage" class="h-10 w-12 dark:bg-gray-700 dark:text-white rounded-md flex items-center justify-center bg-blue-100 text-blue-500">
-          <mat-icon>storage</mat-icon>
-        </button>
-        <button (click)="resetPageNavigation()" class="h-10 w-12 dark:text-gray-500 rounded-md flex items-center justify-center">
-          <svg viewBox="0 0 24 24" class="h-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-            <line x1="12" y1="11" x2="12" y2="17"></line>
-            <line x1="9" y1="14" x2="15" y2="14"></line>
-          </svg>
-        </button>
-        <button (click)="resetPageNavigation()" class="h-10 w-12 dark:text-gray-500 rounded-md flex items-center justify-center">
-          <svg viewBox="0 0 24 24" class="h-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7"></rect>
-            <rect x="14" y="3" width="7" height="7"></rect>
-            <rect x="14" y="14" width="7" height="7"></rect>
-            <rect x="3" y="14" width="7" height="7"></rect>
-          </svg>
-        </button>
+          <button (click)="resetPageNavigation();selectedPage='home';router.navigateByUrl('/home')"  class="h-10 w-12 dark:text-gray-500 rounded-md flex items-center justify-center" [ngClass]="{ ' bg-blue-100 text-blue-500': selectedPage === 'home' }">
+            <mat-icon>home</mat-icon>
+          </button>
+          <button (click)="resetPageNavigation();isCrudPage=!isCrudPage;selectedPage='crud'" class="h-10 w-12 dark:bg-gray-700 dark:text-white rounded-md flex items-center justify-center"  [ngClass]="{ ' bg-blue-100 text-blue-500': selectedPage === 'crud' }">
+            <mat-icon>storage</mat-icon>
+          </button>
+          <button (click)="resetPageNavigation()" class="h-10 w-12 dark:text-gray-500 rounded-md flex items-center justify-center">
+            <svg viewBox="0 0 24 24" class="h-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              <line x1="12" y1="11" x2="12" y2="17"></line>
+              <line x1="9" y1="14" x2="15" y2="14"></line>
+            </svg>
+          </button>
+          <button (click)="resetPageNavigation()" class="h-10 w-12 dark:text-gray-500 rounded-md flex items-center justify-center">
+            <svg viewBox="0 0 24 24" class="h-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </button>
       </div>
     </div>
     <div class="flex-grow overflow-hidden h-full flex flex-col">
       <div class="h-16 lg:flex w-full border-b border-gray-200 dark:border-gray-800 hidden px-10">
         <div *ngIf="isCrudPage" class="flex h-full text-gray-600 dark:text-gray-400">
-          <a href="/dishes" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">Plats</a>
-          <a href="/establishment" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white inline-flex mr-8 items-center">Etablissement</a>
-          <a href="/establishmentemp" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">Etablissement-employé</a>
-          <a href="/move" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">Type de mouvement</a>
-          <a href="/disheType" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">Type de plats</a>
-          <a href="/customersMoney" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">Monnaie de l'utilisateur</a>
-          <a href="/supplier" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">Fournisseur</a>
-          <a href="/stock" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">Stock</a>
+          <button (click)="router.navigateByUrl('/dishes')" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">Plats</button>
+          <button (click)="router.navigateByUrl('/establishment')" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white inline-flex mr-8 items-center">Etablissement</button>
+          <button (click)="router.navigateByUrl('/establishmentemp')" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">Etablissement-employé</button>
+          <button (click)="router.navigateByUrl('/move')" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">Type de mouvement</button>
+          <button (click)="router.navigateByUrl('/disheType')" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">Type de plats</button>
+          <button (click)="router.navigateByUrl('/customersMoney')" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">Monnaie de l'utilisateur</button>
+          <button (click)="router.navigateByUrl('/supplier')" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">Fournisseur</button>
+          <button (click)="router.navigateByUrl('/stock')" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">Stock</button>
         </div>
         <div class="ml-auto flex items-center space-x-7">
           <button (click)="logout()" class="h-8 px-3 rounded-md shadow text-white bg-red-500">Logout</button>
