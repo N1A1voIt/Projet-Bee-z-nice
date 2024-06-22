@@ -9,16 +9,16 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class FoodOrderService {
+public class ProfitsService {
 
     @Autowired
-    private FoodOrderRepository foodOrderRepository;
+    private ProfitsRepository foodOrderRepository;
 
     public List<DailyProfit> getBenefitsBetweenDates(LocalDate startDate, LocalDate endDate) {
         return foodOrderRepository.calculateBenefits(startDate, endDate);
     }
 
     public BigDecimal getTotalBenefitsBetweenDates(LocalDate startDate, LocalDate endDate) {
-        return foodOrderRepository.calculateTotalBenefits(startDate, endDate);
+        return foodOrderRepository.calculateTotalBenefits(startDate, endDate).getDailyProfit();
     }
 }

@@ -3,29 +3,13 @@ package itu.project.beezniceback.benefice.models;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class DailyProfit {
-    private LocalDate date;
-    private BigDecimal dailyProfit;
-
-    public DailyProfit(LocalDate date, BigDecimal dailyProfit) {
-        this.date = date;
-        this.dailyProfit = dailyProfit;
-    }
-
+public interface DailyProfit {
     // Getters and setters
-    public LocalDate getDate() {
-        return date;
-    }
+    public LocalDate getDaty();
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
+    public void setDaty(LocalDate daty);
 
-    public BigDecimal getDailyProfit() {
-        return dailyProfit;
-    }
+    public BigDecimal getDailyProfit();
 
-    public void setDailyProfit(BigDecimal dailyProfit) {
-        this.dailyProfit = dailyProfit;
-    }
+    public void setDailyProfit(BigDecimal dailyProfit);
 }

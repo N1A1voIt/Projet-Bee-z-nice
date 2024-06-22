@@ -11,24 +11,24 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/food-orders")
-public class FoodOrderController {
+@RequestMapping("/api/profits")
+public class ProfitsController {
 
     @Autowired
-    private FoodOrderService foodOrderService;
+    private ProfitsService foodOrderService;
 
-    @GetMapping("/benefits")
-    public ResponseEntity<List<DailyProfit>> getBenefitsBetweenDates(
-            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+    @PostMapping("/benefits")
+    public ResponseEntity<List<DailyProfit>> getBenefitsBetweenDates(@RequestBody DateRangeDTO dateRangeDTO) {
+        LocalDate startDate = dateRangeDTO.getStartDate();
+        LocalDate endDate = dateRangeDTO.getEndDate();
         List<DailyProfit> benefits = foodOrderService.getBenefitsBetweenDates(startDate, endDate);
         return ResponseEntity.ok(benefits);
     }
 
-    @GetMapping("/total-benefits")
-    public ResponseEntity<BigDecimal> getTotalBenefitsBetweenDates(
-            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+    @PostMapping("/total-benefits")
+    public ResponseEntity<BigDecimal> getTotalBenefitsBetweenDates(@RequestBody DateRangeDTO dateRangeDTO) {
+        LocalDate startDate = dateRangeDTO.getStartDate();
+        LocalDate endDate = dateRangeDTO.getEndDate();
         BigDecimal totalBenefits = foodOrderService.getTotalBenefitsBetweenDates(startDate, endDate);
         return ResponseEntity.ok(totalBenefits);
     }
