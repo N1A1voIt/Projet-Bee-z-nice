@@ -7,4 +7,5 @@ import java.math.BigDecimal;
 public interface FoodorderRepository extends JpaRepository<Foodorder,Long>{
     @Query(value = "SELECT SUM(dishePrice) as expenses FROM foodorder WHERE customerid = :idCustomer", nativeQuery = true)
     Object getExpensesByUserId(@Param("idCustomer") int idCustomer);
+
 }
