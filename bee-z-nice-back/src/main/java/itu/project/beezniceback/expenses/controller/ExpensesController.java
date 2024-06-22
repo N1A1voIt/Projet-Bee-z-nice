@@ -22,7 +22,8 @@ public class ExpensesController {
         try {
             LocalDate startDate = dateRangeRequest.getStartDate();
             LocalDate endDate = dateRangeRequest.getEndDate();
-            double totalPrixRevient = expensesService.calculPrixRevient(startDate, endDate);
+//            int idEstablishment = dateRangeRequest.get
+            double totalPrixRevient = expensesService.calculPrixRevient(startDate, endDate,0);
             return ResponseEntity.ok(totalPrixRevient);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body("Invalid date parameters: " + e.getMessage());

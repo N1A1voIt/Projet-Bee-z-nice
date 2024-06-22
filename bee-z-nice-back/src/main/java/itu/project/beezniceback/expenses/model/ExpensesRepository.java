@@ -14,5 +14,12 @@ public interface ExpensesRepository  extends JpaRepository<Foodorder, Long>
             "FROM foodorder " +
             "WHERE ordertime BETWEEN :startDate AND :endDate" , nativeQuery = true)
     OganizationExpensesDTO findExpensesBetweenDates(@Param("startDate") Timestamp startDate, @Param("endDate") Timestamp endDate);
+    @Query(value = "SELECT SUM(f.dishepurchaseprice) AS total_prix_reviens " +
+            "FROM foodorder f JOIN customers c ON c.id = f.customerid " +
+            "WHERE c.idestablishment = :idEstablishment AND f.orderTime BETWEEN :startDate AND :endDate", nativeQuery = true)
+    OganizationExpensesDTO findExpensesBetweenDatesByIdEstablishment(
+            @Param("idEstablishment") int idEstablishment,
+            @Param("startDate") Timestamp startDate,
+            @Param("endDate") Timestamp endDate);
 
 }

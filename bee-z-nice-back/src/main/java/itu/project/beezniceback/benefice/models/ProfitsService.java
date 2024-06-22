@@ -18,7 +18,14 @@ public class ProfitsService {
         return foodOrderRepository.calculateBenefits(startDate, endDate);
     }
 
-    public BigDecimal getTotalBenefitsBetweenDates(LocalDate startDate, LocalDate endDate) {
-        return foodOrderRepository.calculateTotalBenefits(startDate, endDate).getDailyProfit();
+    public BigDecimal getTotalBenefitsBetweenDates(LocalDate startDate, LocalDate endDate,int idEstablishment) {
+        DailyProfit dailyProfit = foodOrderRepository.calculateTotalBenefits(startDate, endDate);
+        if (idEstablishment != 0){
+            dailyProfit = foodOrderRepository.calculateTotalBenefitsByEstablishment(idEstablishment,startDate, endDate);
+        }
+        if (dailyProfit == null){
+            System.out.println("Daily profit is null");
+        }
+        return dailyProfit != null ? dailyProfit.getDailyProfit() : new BigDecimal(0);
     }
 }

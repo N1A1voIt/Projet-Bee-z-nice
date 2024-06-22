@@ -29,7 +29,7 @@ public class ProfitsController {
     public ResponseEntity<BigDecimal> getTotalBenefitsBetweenDates(@RequestBody DateRangeDTO dateRangeDTO) {
         LocalDate startDate = dateRangeDTO.getStartDate();
         LocalDate endDate = dateRangeDTO.getEndDate();
-        BigDecimal totalBenefits = foodOrderService.getTotalBenefitsBetweenDates(startDate, endDate);
+        BigDecimal totalBenefits = foodOrderService.getTotalBenefitsBetweenDates(startDate, endDate,0);
         return ResponseEntity.ok(totalBenefits);
     }
 }
