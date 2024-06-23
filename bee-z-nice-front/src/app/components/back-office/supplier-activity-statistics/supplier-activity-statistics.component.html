@@ -1,0 +1,56 @@
+<section
+    class="grid md:grid-cols-2 xl:grid-cols-4 w-full xl:grid-rows-4 xl:grid-flow-col gap-6"
+>
+<div class="row-span-3 col-span-1 bg-white shadow rounded-lg">
+    <div class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
+      <span>Recherche par intervalles de dates</span>
+    </div>
+    <div class="overflow-y-auto" style="max-height: 24rem;">
+        <form (submit)="getGraph(form)" #form="ngForm" action="" class="p-6 space-y-6">
+            <n-input name="Date de début">
+                <input
+                    class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden"
+                    name="startDate"
+                    type="date"
+                    ngModel
+                />
+            </n-input>
+            <br />
+            <n-input name="Date de fin">
+                <input
+                    class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden"
+                    name="endDate"
+                    type="date"
+                    ngModel
+                />
+            </n-input>
+            <br />
+            <!-- <n-input name="Type">
+                <select name="type" ngModel>
+                    <option *ngFor="let item of dropdown" value="{{ item.id }}">
+                        {{ item.label }}
+                    </option>
+                </select>
+            </n-input> -->
+            <app-submit-button></app-submit-button>
+        </form>
+    </div>
+</div>
+    <div
+        class="flex flex-col md:col-span-3 md:row-span-3 bg-white shadow rounded-lg"
+    >
+        <div class="px-6 py-5 font-semibold border-b border-gray-100">
+            Visuel des activités par fournisseurs
+        </div>
+        <div class="p-4 flex-grow">
+            <div
+                class="flex items-center h-full px-4 py-16 text-gray-400 text-3xl font-semibold bg-gray-100 border-2 border-gray-200 border-dashed rounded-md"
+            >
+                <div class="line w-full max-h-[50vh]" [chart]="pieChart">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- (submit)="getDashboard(form)" #form="ngForm" -->
