@@ -17,6 +17,8 @@ import { MovementtypeComponent } from './components/back-office/movementtype/mov
 import { MarkByDisheComponent } from './components/front-office/mark-by-dishe/mark-by-dishe.component';
 import { RatingViewComponent } from './components/front-office/rating-view/rating-view.component';
 import { ProfitsStatisticsComponent } from './components/back-office/profits-statistics/profits-statistics.component';
+import { SupplierActivityStatisticsService } from './components/back-office/supplier-activity-statistics/supplier-activity-statistics.service';
+import { SupplierActivityStatisticsComponent } from './components/back-office/supplier-activity-statistics/supplier-activity-statistics.component';
 
 export const routes: Routes = [
     {path:'register',component:SignupComponent,canActivate:[loginGuard]},
@@ -32,6 +34,7 @@ export const routes: Routes = [
     {path:'customersMoney',component:CustomersmoneyComponent,canActivate:[adminGuardGuard]},
     {path:'supplier',component:SupplierComponent,canActivate:[adminGuardGuard]},
     {path:'profits-statistics',component:ProfitsStatisticsComponent,canActivate:[adminGuardGuard]},
+    {path:'supplier-activity',component:SupplierActivityStatisticsComponent,canActivate:[adminGuardGuard]},
     {path:'foodDisplay/:id',component:FoodDisplayerComponent},
     {path:'errorPageNotAuthorized',component:ErrorPageNotAuthorizedComponent},
     {path:'ratingView',component:RatingViewComponent}

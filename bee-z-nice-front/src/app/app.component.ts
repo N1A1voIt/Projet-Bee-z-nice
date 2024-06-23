@@ -30,7 +30,9 @@ export class AppComponent implements OnInit{
   showCart:boolean = false;
   imageRoute:any = imagesRoute();
   isCrudPage:boolean = false;
+  isStatisticsPage:boolean = false;
   selectedPage!:string;
+  selectedLink!:string;
   constructor(private disheTypeService:DishetypeService,private appService:AppService,public router:Router) {
   }
   ngOnInit(): void {
@@ -71,6 +73,7 @@ export class AppComponent implements OnInit{
   }
   resetPageNavigation(){
     this.isCrudPage = false;
+    this.isStatisticsPage=false;
   }
   logout(){
     localStorage.removeItem("userToken");
