@@ -13,15 +13,33 @@ import java.util.List;
 @Repository
 public interface ProfitsRepository extends JpaRepository<Foodorder, Long> {
 
-    @Query(value = "SELECT CAST(f.ordertime AS DATE) AS daty, " +
-            "CAST(SUM(f.disheprice - f.dishepurchaseprice) AS DECIMAL) AS daily_profit " +
+    @Query(value = "SELECT CAST(f.ordertime AS DATE) AS starter, " +
+            "CAST(SUM(f.disheprice - f.dishepurchaseprice) AS DECIMAL) AS profit " +
             "FROM Foodorder f " +
             "WHERE f.ordertime BETWEEN :startDate AND :endDate " +
             "GROUP BY CAST(f.ordertime AS DATE) " +
             "ORDER BY CAST(f.ordertime AS DATE)",
             nativeQuery = true)
-    List<DailyProfit> calculateBenefits(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
-//
+    List<Profit> calculateBenefits(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+
+    @Query(value = "SELECT CAST(DATE_TRUNC('week', f.ordertime) AS DATE) AS starter, " +
+            "CAST(SUM(f.disheprice - f.dishepurchaseprice) AS DECIMAL) AS profit " +
+            "FROM Foodorder f " +
+            "WHERE f.ordertime BETWEEN :startDate AND :endDate " +
+            "GROUP BY DATE_TRUNC('week', f.ordertime) " +
+            "ORDER BY DATE_TRUNC('week', f.ordertime)",
+            nativeQuery = true)
+    List<Profit> calculateWeeklyBenefits(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+
+    @Query(value = "SELECT CAST(DATE_TRUNC('month', f.ordertime) AS DATE) AS starter, " +
+            "CAST(SUM(f.disheprice - f.dishepurchaseprice) AS DECIMAL) AS profit " +
+            "FROM Foodorder f " +
+            "WHERE f.ordertime BETWEEN :startDate AND :endDate " +
+            "GROUP BY DATE_TRUNC('month', f.ordertime) " +
+            "ORDER BY DATE_TRUNC('month', f.ordertime)",
+            nativeQuery = true)
+    List<Profit> calculateMonthlyBenefits(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+
     @Query(value = "SELECT null as daty,CAST(SUM(f.disheprice - f.dishepurchaseprice) AS DECIMAL) as daily_profit " +
            "FROM Foodorder f WHERE f.ordertime BETWEEN :startDate AND :endDate",nativeQuery = true)
     DailyProfit calculateTotalBenefits(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);

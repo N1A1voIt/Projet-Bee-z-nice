@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/profits")
@@ -18,11 +19,15 @@ public class ProfitsController {
     private ProfitsService foodOrderService;
 
     @PostMapping("/benefits")
-    public ResponseEntity<List<DailyProfit>> getBenefitsBetweenDates(@RequestBody DateRangeDTO dateRangeDTO) {
+    public ResponseEntity<?> getBenefitsBetweenDates(@RequestBody DateRangeWithTypeDTO dateRangeDTO) {
         LocalDate startDate = dateRangeDTO.getStartDate();
         LocalDate endDate = dateRangeDTO.getEndDate();
-        List<DailyProfit> benefits = foodOrderService.getBenefitsBetweenDates(startDate, endDate);
-        return ResponseEntity.ok(benefits);
+        if (startDate == null){
+            startDate = LocalDate.of(2000,01,12);
+        }if (endDate == null){
+            endDate = LocalDate.of(3000,01,12);
+        }
+        return ResponseEntity.ok(foodOrderService.getBenefitsBetweenDates(startDate, endDate,dateRangeDTO.getType()));
     }
 
     @PostMapping("/total-benefits")

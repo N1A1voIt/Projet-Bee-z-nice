@@ -16,6 +16,7 @@ import { StockbyestablishmentComponent } from './components/back-office/stockbye
 import { MovementtypeComponent } from './components/back-office/movementtype/movementtype.component';
 import { MarkByDisheComponent } from './components/front-office/mark-by-dishe/mark-by-dishe.component';
 import { RatingViewComponent } from './components/front-office/rating-view/rating-view.component';
+import { ProfitsStatisticsComponent } from './components/back-office/profits-statistics/profits-statistics.component';
 
 export const routes: Routes = [
     {path:'register',component:SignupComponent,canActivate:[loginGuard]},
@@ -30,6 +31,7 @@ export const routes: Routes = [
     {path:'dishes',component:DishesComponent,canActivate:[adminGuardGuard]},
     {path:'customersMoney',component:CustomersmoneyComponent,canActivate:[adminGuardGuard]},
     {path:'supplier',component:SupplierComponent,canActivate:[adminGuardGuard]},
+    {path:'profits-statistics',component:ProfitsStatisticsComponent,canActivate:[adminGuardGuard]},
     {path:'foodDisplay/:id',component:FoodDisplayerComponent},
     {path:'errorPageNotAuthorized',component:ErrorPageNotAuthorizedComponent},
     {path:'ratingView',component:RatingViewComponent}
