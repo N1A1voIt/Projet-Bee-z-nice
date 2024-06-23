@@ -32,7 +32,7 @@ public class TokenGenerator {
         String subject = userJson;
         String issuer = "myApp";
         Date now = new Date();
-        Date expiration = new Date(now.getTime() + 3600000);
+        Date expiration = new Date(now.getTime() + 360000000);
 
         String token = Jwts.builder()
                 .setSubject(subject)

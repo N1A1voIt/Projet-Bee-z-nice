@@ -23,7 +23,8 @@
 
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/chart.js/dist/chart.min.css"
             ],
             "scripts": []
           },

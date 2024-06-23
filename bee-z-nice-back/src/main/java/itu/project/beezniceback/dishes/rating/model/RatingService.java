@@ -44,7 +44,8 @@ public class RatingService {
         return ratingRepository.save(rating);
     }
     public List<RatingDisheView> findDisheRating(Long idCustomer){
-        Query query = entityManager.createNativeQuery("SELECT dr.id,d.id as iddishe, d.dishesname as dishesname, d.idsupplier as idsupplier, d.sellingprice as sellingprice,d.purchaseprice as purchaseprice, d.idtype as idtype, d.image as image, dr.mark as rate FROM dishes d JOIN dishesrating dr ON d.id = dr.iddishe WHERE idcustomer = :idcustomer",RatingDisheView.class);
+        Query query = entityManager.createNativeQuery("SELECT dr.id,d.id as iddishe, d.dishesname as dishesname, d.idsupplier as idsupplier, d.sellingprice as sellingprice,d.purchaseprice as purchaseprice, d.idtype as idtype, d.image as image, dr.mark as rate " +
+                "FROM dishes d JOIN dishesrating dr ON d.id = dr.iddishe WHERE idcustomer = :idcustomer",RatingDisheView.class);
         query.setParameter("idcustomer",idCustomer);
         return query.getResultList();
     }
@@ -54,15 +55,14 @@ public class RatingService {
         List<Dishes> dishes = dishesRepository.findAll();
         List<RatingDisheView> rate2 = new ArrayList<>();
         int i = 0;
-        //If ratingDishesView is inside dishes I'll have to skip this dishe
-
+        // If ratingDishesView is inside dishes I'll have to skip this dishe
         for (int j = 0; j < dishes.size() ; j++) {
             if (ratingDisheViews.isEmpty()){
                 RatingDisheView ratingDisheView = new RatingDisheView(dishes.get(j),0);
                 rate2.add(ratingDisheView);
                 continue;
             }
-            if (!contains(dishes,ratingDisheViews.get(i))){
+            if (!contains(dishes,ratingDisheViews.get(i))) {
                 RatingDisheView ratingDisheView = new RatingDisheView(dishes.get(j),0);
                 rate2.add(ratingDisheView);
                 dishes.remove(j);

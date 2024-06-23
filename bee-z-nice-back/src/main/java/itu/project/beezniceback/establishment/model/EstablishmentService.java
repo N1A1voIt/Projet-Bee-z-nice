@@ -1,6 +1,8 @@
 package itu.project.beezniceback.establishment.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.List;
 @Service
@@ -24,4 +26,5 @@ public Optional<Establishment> getById(int id){
 public void update(Establishment existingEstablishment){
    save(existingEstablishment);
 }
+public List<EstablishmentsProfits> getProfits(LocalDate startDate,LocalDate endDate){return establishmentRepository.retrieveProfits(startDate,endDate);}
 }
