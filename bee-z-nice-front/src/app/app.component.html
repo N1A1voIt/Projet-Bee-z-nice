@@ -13,7 +13,7 @@
           <button (click)="resetPageNavigation();isCrudPage=!isCrudPage;selectedPage='crud'" class="h-10 w-12 dark:bg-gray-700 dark:text-white rounded-md flex items-center justify-center"  [ngClass]="{ ' bg-blue-100 text-blue-500': selectedPage === 'crud' }">
             <mat-icon>storage</mat-icon>
           </button>
-          <button (click)="resetPageNavigation()" class="h-10 w-12 dark:text-gray-500 rounded-md flex items-center justify-center">
+          <button (click)="resetPageNavigation();router.navigateByUrl('/profits-statistics')" class="h-10 w-12 dark:text-gray-500 rounded-md flex items-center justify-center">
             <svg viewBox="0 0 24 24" class="h-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
               <line x1="12" y1="11" x2="12" y2="17"></line>
@@ -43,7 +43,7 @@
           <button (click)="router.navigateByUrl('/stock')" class="cursor-pointer h-full border-b-2 border-transparent inline-flex items-center mr-8">Stock</button>
         </div>
         <div class="ml-auto flex items-center space-x-7">
-          <button (click)="logout()" class="h-8 px-3 rounded-md shadow text-white bg-red-500">Logout</button>
+          <button (click)="logout()" class="h-8 px-3 rounded-md shadow text-white bg-red-500">Se déconnecter</button>
   
           <button class="flex items-center">
             <span class="relative flex-shrink-0">
