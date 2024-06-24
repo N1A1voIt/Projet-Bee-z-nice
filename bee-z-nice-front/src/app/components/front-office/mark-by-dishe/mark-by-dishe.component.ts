@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import Chart from 'chart.js/auto';
 import { foodsRoute } from '../../../../environnements/env';
 import { StarRatingModule } from 'angular-star-rating';
 import { CommonModule, NgForOf } from '@angular/common';

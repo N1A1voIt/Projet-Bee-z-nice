@@ -49,6 +49,14 @@
                 </option>
             </select>
         </n-input>
+        <n-input name="RemainingStock">
+            <input
+                name="movedate"
+                placeholder="Date de mouvement"
+                type="datetime-local"
+                [(ngModel)]="movedateValue"
+            />
+        </n-input>
         <app-submit-button></app-submit-button>
     </form>
     <br /></app-modal-component
@@ -62,6 +70,7 @@
 <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">name</th>
 <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">remainingstock</th>
 <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">type</th>
+<th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">DATE</th>
 
         </tr>
     </thead>
@@ -72,6 +81,7 @@
 <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.name}}</td>
 <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.remainingstock}}</td>
 <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.type}}</td>
+<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.movedate.replace('T',' ')}}</td>
 <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 "><button (click)="delete(line.id)">Supprimer</button></td>
 <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 "><button (click)="update(line.id);showForm=!showForm">Update</button></td>
     </tbody>

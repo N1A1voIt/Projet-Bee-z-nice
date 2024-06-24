@@ -7,6 +7,7 @@ import org.hibernate.annotations.Immutable;
 
 import java.sql.Timestamp;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "foodorder")
@@ -27,7 +28,7 @@ private int iddishes;
 private long customerid;
 //ordertime
 @Column(name = "ordertime")
-private Timestamp ordertime;
+private LocalDateTime ordertime;
 //disheprice
 @Column(name = "disheprice")
 private BigDecimal disheprice;
@@ -54,7 +55,7 @@ private long idaddtocart;
       return this.customerid;
 }
 
-  public Timestamp getOrdertime(){
+  public LocalDateTime getOrdertime(){
       return this.ordertime;
 }
 
@@ -86,7 +87,7 @@ private long idaddtocart;
       this.customerid=customerid;
 }
 
-  public void setOrdertime(Timestamp ordertime){
+  public void setOrdertime(LocalDateTime ordertime){
       this.ordertime=ordertime;
 }
 
