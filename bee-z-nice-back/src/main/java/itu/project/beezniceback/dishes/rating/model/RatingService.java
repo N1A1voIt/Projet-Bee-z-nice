@@ -10,8 +10,8 @@ import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class RatingService {
@@ -51,33 +51,87 @@ public class RatingService {
     }
     public List<RatingDisheView> retrieveRatingDisheById(LoggedCustomer loggedCustomer) {
         Long idCustomer = loggedCustomer.getId();
-        List<RatingDisheView> ratingDisheViews = findDisheRating(idCustomer);
-        List<Dishes> dishes = dishesRepository.findAll();
-        List<RatingDisheView> rate2 = new ArrayList<>();
-        int i = 0;
-        // If ratingDishesView is inside dishes I'll have to skip this dishe
-        for (int j = 0; j < dishes.size() ; j++) {
-            if (ratingDisheViews.isEmpty()){
-                RatingDisheView ratingDisheView = new RatingDisheView(dishes.get(j),0);
-                rate2.add(ratingDisheView);
-                continue;
-            }
-            if (!contains(dishes,ratingDisheViews.get(i))) {
-                RatingDisheView ratingDisheView = new RatingDisheView(dishes.get(j),0);
-                rate2.add(ratingDisheView);
-                dishes.remove(j);
-                if (i!=ratingDisheViews.size()-1){
-                    i++;
-                }
+        List<RatingDisheView> ratingDisheViews = findDisheRating(idCustomer); // Get ratings for the logged-in customer
+        List<Dishes> dishes = dishesRepository.findAll(); // Get all dishes
+
+        // Create a map to store dish ID to RatingDisheView mappings
+        Map<Integer, RatingDisheView> dishRatingMap = new HashMap<>();
+
+        // Populate the map with rated dishes
+        for (RatingDisheView ratingDisheView : ratingDisheViews) {
+            System.out.println("Brada beerfghjkdsvsdddddddddddddddddddd");
+            dishRatingMap.put(ratingDisheView.getIddishe(), ratingDisheView);
+        }
+
+        // Iterate through all dishes and construct the result list
+        List<RatingDisheView> result = new ArrayList<>();
+        for (Dishes dish : dishes) {
+            if (dishRatingMap.containsKey(dish.getId())) {
+                // Dish is rated, add with its existing rating
+                result.add(dishRatingMap.get(dish.getId()));
+            } else {
+                // Dish is not rated, add with default rating of 0
+                result.add(new RatingDisheView(dish, 0));
             }
         }
-        ratingDisheViews.addAll(rate2);
-        return ratingDisheViews;
+
+        return result;
     }
-    public boolean contains(List<Dishes> dishes,RatingDisheView ratingDisheViews){
+
+//    public List<RatingDisheView> retrieveRatingDisheById(LoggedCustomer loggedCustomer) {
+//        Long idCustomer = loggedCustomer.getId();
+//        List<RatingDisheView> ratingDisheViews = findDisheRating(idCustomer);
+//        List<Dishes> dishes = dishesRepository.findAll();
+//        List<RatingDisheView> rate2 = new ArrayList<>();
+//        int i = 0;
+//        // If ratingDishesView is inside dishes I'll have to skip this dishe
+//        for (int j = 0; j < dishes.size() ; j++) {
+//            if (ratingDisheViews.isEmpty()){
+//                RatingDisheView ratingDisheView = new RatingDisheView(dishes.get(j),0);
+//                rate2.add(ratingDisheView);
+//                continue;
+//            }
+//            if (!contains(dishes.get(j),ratingDisheViews)) {
+//                RatingDisheView ratingDisheView = new RatingDisheView(dishes.get(j),0);
+//                rate2.add(ratingDisheView);
+////                dishes.remove(j);
+//                if (i!=ratingDisheViews.size()-1){
+//                    i++;
+//                }
+//            }
+//        }
+//        ratingDisheViews.addAll(rate2);
+//        return ratingDisheViews;
+//    }
+//public List<RatingDisheView> retrieveRatingDisheById(LoggedCustomer loggedCustomer) {
+//    Long idCustomer = loggedCustomer.getId();
+//    List<RatingDisheView> ratingDisheViews = findDisheRating(idCustomer);
+//    List<Dishes> dishes = dishesRepository.findAll();
+//
+//    // Create a map of dishes that have ratings
+//    Set<Long> ratedDishIds = ratingDisheViews.stream()
+//            .map(view -> view.getId())
+//            .collect(Collectors.toSet());
+//
+//    // Prepare the result list
+//    List<RatingDisheView> result = new ArrayList<>();
+//
+//    // Add existing ratings to the result
+//    result.addAll(ratingDisheViews);
+//
+//    // Add dishes with no ratings (rating = 0)
+//    dishes.stream()
+//            .filter(dish -> !ratedDishIds.contains(dish.getId()))
+//            .map(dish -> new RatingDisheView(dish, 0))
+//            .forEach(result::add);
+//
+//    return result;
+//}
+
+    public boolean contains(Dishes dishes,List<RatingDisheView> ratingDisheViews){
         boolean val = false;
-        for (int j = 0; j < dishes.size(); j++) {
-            if (ratingDisheViews.getId() == dishes.get(j).getId()){
+        for (int j = 0; j < ratingDisheViews.size(); j++) {
+            if (ratingDisheViews.get(j).getId() == dishes.getId()){
                 val = true;
             }
         }
