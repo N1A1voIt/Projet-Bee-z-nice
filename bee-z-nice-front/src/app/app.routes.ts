@@ -20,6 +20,7 @@ import { ProfitsStatisticsComponent } from './components/back-office/profits-sta
 import { SupplierActivityStatisticsService } from './components/back-office/supplier-activity-statistics/supplier-activity-statistics.service';
 import { SupplierActivityStatisticsComponent } from './components/back-office/supplier-activity-statistics/supplier-activity-statistics.component';
 
+
 export const routes: Routes = [
     {path:'register',component:SignupComponent,canActivate:[loginGuard]},
     {path:'login',component:LoginComponent,canActivate:[loginGuard]},
