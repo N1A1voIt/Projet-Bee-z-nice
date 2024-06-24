@@ -8,8 +8,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import {CommonModule, NgFor} from "@angular/common";
 import {ModalComponentComponent} from "../../../reusable/modal-component/modal-component.component";
 import {SubmitButtonComponent} from "../../../reusable/submit-button/submit-button.component";
+import { MatIcon } from '@angular/material/icon';
 @Component({
-selector: 'app-dishes',standalone:true,imports: [FormsModule, NgFor, CommonModule, NInputComponent, NSelectComponent, NgxPaginationModule, ModalComponentComponent, NTableComponent, SubmitButtonComponent],
+selector: 'app-dishes',standalone:true,imports: [FormsModule, NgFor, CommonModule, NInputComponent, NSelectComponent, NgxPaginationModule, ModalComponentComponent, NTableComponent, SubmitButtonComponent,MatIcon],
 templateUrl: './dishes.component.html',
 styleUrl: './dishes.component.css'})
 export class DishesComponent implements OnInit{
@@ -19,24 +20,50 @@ showForm: boolean = false;
 pages: number = 1;
 all:any;
 isUpdate:boolean = false;
-idValue:number|null = null;
-dishesnameValue:string|null = null;
-idsupplierValue:number|null = null;
-sellingpriceValue:number|null = null;
-purchasepriceValue:number|null = null;
-idtypeValue:number|null = null;
-imageValue:string|null = null;
+idValue!:number
+dishesnameValue!:string
+idsupplierValue!:number
+sellingpriceValue!:number
+purchasepriceValue!:number
+idtypeValue!:number
+imageValue!:string
+imageFile!:File
 constructor(private dishesService:DishesService){}
-    onSubmit(form:any){
-        this.dishesService.saveData(form.value).subscribe({
-                next:(data)=>{
-                    this.retrieveAll();
-                },
-                error:(error)=>{
-                    alert(error)
-                }
+    // onSubmit(form:any){
+    //     this.dishesService.saveData(form.value).subscribe({
+    //             next:(data)=>{
+    //                 this.retrieveAll();
+    //             },
+    //             error:(error)=>{
+    //                 alert(error)
+    //             }
+    //         }
+    //     )
+    // }
+    onSubmit(form: any) {
+        // Append the file to the form data
+        const formData = new FormData();
+        formData.append('dishesname', this.dishesnameValue);
+        formData.append('idsupplier', this.idsupplierValue.toString());
+        formData.append('sellingprice', this.sellingpriceValue.toString());
+        formData.append('purchaseprice', this.purchasepriceValue.toString());
+        formData.append('idtype', this.idtypeValue.toString());
+        formData.append('image', this.imageFile); // Append the file here
+
+        // Submit the form data to the service
+        this.dishesService.saveData(formData).subscribe({
+            next: (data) => {
+                this.retrieveAll();
+            },
+            error: (error) => {
+                alert(error);
             }
-        )
+        });
+    }
+    onFileChange(event: any) {
+        if (event.target.files.length > 0) {
+            this.imageFile = event.target.files[0]; // Capture the selected file
+        }
     }
 retrieveDropDown(){
         return [

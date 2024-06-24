@@ -12,6 +12,9 @@
             </app-cart-elements>
         </div>
         <div class="h-[100px]  w-full">
+            <div class="">
+                <h1>You don't have enough money {{solde | number:'1.0-2' }} Ariary {{price |number:'1.0-2' }}</h1>
+            </div>
             <button (click)="saveCart()">Purchase Items</button>
         </div>
     </div>

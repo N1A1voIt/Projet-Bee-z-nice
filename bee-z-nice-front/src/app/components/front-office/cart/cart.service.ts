@@ -28,4 +28,14 @@ export class CartService {
       }
       return this.http.get<any>(`${apiUrl()}/saveCart`,{'headers':headers});
     }
+    getSolde(){
+      let token = localStorage.getItem("userToken");
+      let headers;
+      if (token != null){
+          headers = new HttpHeaders({
+              'Authorization' : token
+          });
+      }
+      return this.http.get<any>(`${apiUrl()}/customersmoney/getpay`,{'headers':headers});
+    }
 }

@@ -2,62 +2,42 @@
 <div class="w-full h-[75px] flex items-center relative">
 	<button (click)="showForm = !showForm;isUpdate=false"
 		class="bg-black w-auto h-[50px] p-2 rounded absolute right-2 text-white">
-		Add a new element
+		Ajouter un élément 
 	</button>
 </div>
 <app-modal-component [showForm]="showForm">
 	<form #form="ngForm"
-		(ngSubmit)="onSubmit(form)"
-		class="flex flex-col w-5/6 justify-center align-middle"
-		action="javascript:void(0)">
-		<input *ngIf="isUpdate"
-			[(ngModel)]="idValue"
-			type="hidden"
-			name="id">
-		<n-input name="Name">
-			<input [(ngModel)]="dishesnameValue"
-				name="dishesname"
-				placeholder="Name"
-				type="text">
-		</n-input>
-		<n-input name="Supplier">
-			<select [(ngModel)]="idsupplierValue"
-				name="idsupplier">
-				<option *ngFor="let item of listSupplier"
-					value="{{item.id}}">
-					{{item.namesupplier}}
-				</option>
-			</select>
-		</n-input>
-		<n-input name="Price">
-			<input [(ngModel)]="sellingpriceValue"
-				name="sellingprice"
-				placeholder="Price"
-				type="number">
-		</n-input>
-		<n-input name="Purchaseprice">
-			<input [(ngModel)]="purchasepriceValue"
-				name="purchaseprice"
-				placeholder="Purchaseprice"
-				type="number">
-		</n-input>
-		<n-input name="Type">
-			<select [(ngModel)]="idtypeValue"
-				name="idtype">
-				<option *ngFor="let item of listDishetype"
-					value="{{item.id}}">
-					{{item.libelle}}
-				</option>
-			</select>
-		</n-input>
-		<n-input name="Imagelink">
-			<input [(ngModel)]="imageValue"
-				name="image"
-				placeholder="Imagelink"
-				type="text">
-		</n-input>
-		<app-submit-button></app-submit-button>
-	</form>
+    (ngSubmit)="onSubmit(form)"
+    class="flex flex-col w-5/6 justify-center align-middle"
+    action="javascript:void(0)"
+    enctype="multipart/form-data">
+    <input *ngIf="isUpdate" [(ngModel)]="idValue" type="hidden" name="id">
+    <n-input name="Name">
+        <input [(ngModel)]="dishesnameValue" name="dishesname" placeholder="Name" type="text">
+    </n-input>
+    <n-input name="Supplier">
+        <select [(ngModel)]="idsupplierValue" name="idsupplier">
+            <option *ngFor="let item of listSupplier" [value]="item.id">{{ item.namesupplier }}</option>
+        </select>
+    </n-input>
+    <n-input name="Price">
+        <input [(ngModel)]="sellingpriceValue" name="sellingprice" placeholder="Price" type="number">
+    </n-input>
+    <n-input name="Purchaseprice">
+        <input [(ngModel)]="purchasepriceValue" name="purchaseprice" placeholder="Purchaseprice" type="number">
+    </n-input>
+    <n-input name="Type">
+        <select [(ngModel)]="idtypeValue" name="idtype">
+            <option *ngFor="let item of listDishetype" [value]="item.id">{{ item.libelle }}</option>
+        </select>
+    </n-input>
+    <n-input name="Imagelink">
+        <input name="image" placeholder="Imagelink" type="file" (change)="onFileChange($event)" accept="image/*">
+    </n-input>
+    
+    <app-submit-button></app-submit-button>
+</form>
+
 	<br>
 </app-modal-component>
 <n-table class="w-full">
@@ -69,19 +49,19 @@
 			</th>
 			<th scope="col"
 				class="px-6 py-4">
-				dishesname
+				NOM DE PLAT
 			</th>
 			<th scope="col"
 				class="px-6 py-4">
-				namesupplier
+				FOURNISSEUR
 			</th>
 			<th scope="col"
 				class="px-6 py-4">
-				sellingprice
+				PRIX DE VENTE
 			</th>
 			<th scope="col"
 				class="px-6 py-4">
-				purchaseprice
+				PRIX D'ACHAT
 			</th>
 			<th scope="col"
 				class="px-6 py-4">
@@ -89,9 +69,12 @@
 			</th>
 			<th scope="col"
 				class="px-6 py-4">
-				image
+				Nom de l'image
 			</th>
-
+			<th scope="col"
+			class="px-6 py-4 text-center">
+			Actions
+			</th>
 
 		</tr>
 	</thead>
@@ -111,11 +94,9 @@
 			</td>
 			<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.libelle}}</td>
 			<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.image}}</td>
-			<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
-				<button (click)="delete(line.id)">Supprimer</button>
-			</td>
-			<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
-				<button (click)="update(line.id);showForm=!showForm">Update</button>
+			<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 flex justify-around">
+				<button (click)="delete(line.id)" class="text-red-500"><mat-icon>delete</mat-icon></button>
+				<button (click)="update(line.id);showForm=!showForm" class="text-purple-500"><mat-icon>edit</mat-icon></button>
 			</td>
 		</tr>
 
