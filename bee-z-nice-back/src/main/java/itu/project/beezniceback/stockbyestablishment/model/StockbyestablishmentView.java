@@ -2,8 +2,8 @@ package itu.project.beezniceback.stockbyestablishment.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Immutable;
 
-
-
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -26,8 +26,18 @@ private long remainingstock;
 //type
 @Column(name = "type")
 private String type;
+@Column(name = "movedate")
+private LocalDateTime movedate;
 
-  public long getId(){
+    public LocalDateTime getMovedate() {
+        return movedate;
+    }
+
+    public void setMovedate(LocalDateTime movedate) {
+        this.movedate = movedate;
+    }
+
+    public long getId(){
       return this.id;
 }
 

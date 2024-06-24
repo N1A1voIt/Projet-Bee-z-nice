@@ -22,6 +22,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -43,10 +45,23 @@ public class CartService {
     public CartService(){
 //        listStock = getLastLines();
     }
-    public List<Stockbyestablishment> getLastLines(){
-        Query query = entityManager.createNativeQuery("SELECT * FROM v_stock_last_lines",Stockbyestablishment.class);
-        return query.getResultList();
+    public List<Stockbyestablishment> getLastLines(LocalDateTime timestamp) {
+        Query query = entityManager.createNativeQuery(
+                "SELECT t.* " +
+                        "FROM stockbyEstablishment t " +
+                        "JOIN ( " +
+                        "    SELECT idestablishment, iddishes, MAX(movedate) AS max_movedate " +
+                        "    FROM stockbyEstablishment " +
+                        "    GROUP BY idestablishment, iddishes " +
+                        ") sub ON t.idestablishment = sub.idestablishment AND t.iddishes = sub.iddishes AND t.movedate = sub.max_movedate " +
+                        "WHERE t.movedate <= :moveDate", Stockbyestablishment.class);
+        query.setParameter("moveDate", timestamp);
+        List<Stockbyestablishment> stockbyestablishments = query.getResultList();
+        System.out.println("Stock length:"+stockbyestablishments.size());
+        System.out.println("Stock date limit:"+timestamp.toString());
+        return stockbyestablishments;
     }
+
     @Transactional
     public void saveMyCart(LoggedCustomer loggedCustomer) throws Exception{
         Customersmoney customersmoney = customersmoneyService.findByIdCustomer(loggedCustomer.getUniqId()).get();
@@ -56,10 +71,12 @@ public class CartService {
         if (cartNetVal > customersmoneyService.getPayDoubleValue(loggedCustomer)) {
             throw new Exception("You don't have enough money to purchase those items");
         }
-        List<Stockbyestablishment> stockbyestablishments = getLastLines();
+//        Timestamp commandTime = new Timestamp(System.currentTimeMillis());
+        LocalDateTime commandTime = LocalDateTime.now();
+        List<Stockbyestablishment> stockbyestablishments = getLastLines(commandTime);
         for (int i = 0; i < activeCarts.size(); i++) {
             System.out.println("Dishe ID:"+activeCarts.get(i).getIdDishe());
-            decreaseStock(stockbyestablishments,activeCarts.get(i).getIdDishe(),activeCarts.get(i).getQuantity(),loggedCustomer);
+            decreaseStock(stockbyestablishments,activeCarts.get(i).getIdDishe(),activeCarts.get(i).getQuantity(),commandTime,loggedCustomer);
         }
         for (int i = 0; i < activeCarts.size(); i++) {
             for (int j = 0; j < activeCarts.get(i).getQuantity(); j++) {
@@ -67,7 +84,7 @@ public class CartService {
                 foodorder.setPaymenttypeid(1);
                 foodorder.setIddishes(activeCarts.get(i).getIdDishe());
                 foodorder.setCustomerid(loggedCustomer.getId());
-                foodorder.setOrdertime(new Timestamp(System.currentTimeMillis()));
+                foodorder.setOrdertime(commandTime);
                 foodorder.setDisheprice(activeCarts.get(i).getSellingPrice());
                 foodorder.setDishepurchaseprice(activeCarts.get(i).getPurchasePrice());
                 foodorder.setIdaddtocart(activeCarts.get(i).getId());
@@ -83,7 +100,7 @@ public class CartService {
         System.out.println("SUM:"+sum);
         return sum;
     }
-    public void decreaseStock(List<Stockbyestablishment> stocks,int idDishes,int quantity,LoggedCustomer loggedCustomer){
+    public void decreaseStock(List<Stockbyestablishment> stocks, int idDishes, int quantity, LocalDateTime decreaseTime, LoggedCustomer loggedCustomer){
         System.out.println("Id dishe: "+idDishes);
         Stockbyestablishment stockbyestablishment = getByIdDishesAndEstablishement(stocks,idDishes, loggedCustomer.getIdEstablishement());
         Stockbyestablishment stockbyestablishmentToSave = new Stockbyestablishment();
@@ -91,6 +108,7 @@ public class CartService {
         stockbyestablishmentToSave.setIdestablishment(loggedCustomer.getIdEstablishement());
         stockbyestablishmentToSave.setRemainingstock(stockbyestablishment.getRemainingstock()-quantity);
         stockbyestablishmentToSave.setIdmovementtype(2);
+        stockbyestablishmentToSave.setMovedate(decreaseTime);
         stockService.save(stockbyestablishmentToSave);
     }
     public Stockbyestablishment getByIdDishesAndEstablishement(List<Stockbyestablishment> stocks,int idDishes,int idEstablishment){
