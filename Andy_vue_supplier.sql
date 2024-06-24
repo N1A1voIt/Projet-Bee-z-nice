@@ -1,3 +1,4 @@
+
 create table supplierPaymentHistory (
     id bigserial primary key ,
     time timestamp,
@@ -7,7 +8,11 @@ create table supplierPaymentHistory (
 
 ALTER table stockbyestablishment add column time timestamp;
 
-create view out_per_years as
+
+ALTER table stockbyestablishment add column time timestamp;
+
+
+
 select
     dishesYear.idsupplier,
     dishesYear.month,
