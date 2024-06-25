@@ -43,6 +43,8 @@ export class LoginComponent {
     if (isAdmin){
         this.router.navigateByUrl('/home');
     }if (!isAdmin){
+      // this.appComponent.isLoggedIn = true;
+      // this.appComponent.isAdmin = false;
         this.router.navigateByUrl('/client');
     }
   }

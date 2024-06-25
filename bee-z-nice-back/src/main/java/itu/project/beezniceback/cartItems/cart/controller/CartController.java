@@ -5,6 +5,7 @@ import itu.project.beezniceback.authentification.model.LoggedCustomer;
 import itu.project.beezniceback.authentification.tokenHandler.TokenGenerator;
 import itu.project.beezniceback.cartItems.cart.dto.DisheQuantityDTO;
 import itu.project.beezniceback.cartItems.cart.model.CartService;
+import itu.project.beezniceback.customersmoney.model.CustomersmoneyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,8 @@ public class CartController {
     private CartService cartService;
     @Autowired
     private ActiveCartService activeCartService;
+    @Autowired
+    private CustomersmoneyService customersmoneyService;
     @PostMapping("/api/cart/addToCart")
     public ResponseEntity<?> addToCart(@RequestBody DisheQuantityDTO disheQuantityDTO, @RequestHeader(name = "Authorization") String authorizationHeader){
         try{
@@ -48,6 +51,7 @@ public class CartController {
             return ResponseEntity.badRequest().body(e);
         }
     }
+
     @GetMapping("/api/saveCart")
     public ResponseEntity<?> saveCart(@RequestHeader(name = "Authorization") String authorizationHeader){
         try{

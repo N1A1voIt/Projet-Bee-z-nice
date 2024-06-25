@@ -1,18 +1,34 @@
 <div *ngIf="showCart" class="w-full h-full bg-black bg-opacity-50 backdrop-blur-sm z-50 absolute">
-    <div class="w-1/2 bg-white overflow-y-scroll h-full absolute -right-0 ">
+    <div class="w-1/2 bg-white overflow-y-hidden h-full absolute -right-0 ">
         <div class="sticky w-full h-[100px] bg-white px-10 flex flex-row justify-between items-center border-b-2 border-b-amber-400">
             <h1 class="second-font-non-sized text-3xl uppercase ">Votre panier</h1>
             <div (click)="showCart=false ; toggleShowCart()" class="uppercase cursor-pointer hover:underline">
                 <span>Close </span><span> [ x ]</span>
             </div>
         </div>
-        <div class="w-full h-[80vh] sticky">
+        <div class="w-1/2 h-[calc(100vh-270px)] fixed overflow-y-scroll">
             <!-- <app-rating [rating]="3.5"></app-rating> -->
-            <app-cart-elements *ngFor="let item of cartContent" [item]="item">
-            </app-cart-elements>
+            <ng-container *ngFor="let item of cartContent">
+                <app-cart-elements [item]="item"></app-cart-elements>
+            </ng-container> 
+            
         </div>
-        <div class="h-[100px]  w-full">
-            <button (click)="saveCart()">Purchase Items</button>
+        <div class="h-[170px] border-t-2   w-1/2 fixed bottom-0 flex flex-col justify-center items-center">
+            <div class=" w-[90%] h-[90%] ">
+                <div class="w-full h-full relative" >
+                    <div class="text-xl">
+                        <h1>Votre solde est de: {{solde |number:'1.0-2'}}</h1>
+                    </div>
+                    <div class="text-xl" *[hidden]="achatValide">
+                        <h1>Votre solde est insuffisant pour effectuer cet achat de {{price | number:'1-0-2'}} Ariary</h1>
+                    </div>
+                    <div *ngIf="achatValide" class="absolute bottom-0 flex flex-row justify-between w-full items-center">
+                        <h1 class="text-xl">Montant de l'achat: {{price |number:'1.0-2' }} Ariary</h1>
+                        <button (click)="saveCart()" class="bg-amber-400 p-3 rounded-full text-white ">Valider l'achat</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     
