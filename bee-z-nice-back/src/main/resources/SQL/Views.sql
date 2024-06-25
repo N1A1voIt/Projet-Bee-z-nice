@@ -2,6 +2,20 @@ CREATE VIEW v_stock_last_lines AS SELECT * FROM stockByEstablishment WHERE id in
 
 CREATE VIEW v_top3_dishesrating as SELECT dishes.*, COALESCE(CAST(AVG(dishesrating.mark) as DECIMAL(3,2)),0) AS avg_mark FROM dishes LEFT JOIN dishesrating ON dishes.id = dishesrating.iddishe GROUP BY dishes.id ORDER BY avg_mark DESC LIMIT 3;
 
+CREATE VIEW public.v_customersmoney AS
+ SELECT t0.id,
+    t0.nameemployee,
+    t0.virtualamount,
+    t0.datedeposit
+   FROM ( SELECT customersmoney.id,
+            establismentemployee.nameemployee,
+            customersmoney.virtualamount,customersmoney.datedeposit
+           FROM (public.customersmoney
+             JOIN public.establismentemployee ON (((customersmoney.idcustomer)::text = (establismentemployee.id)::text)))) t0;
+
+
+
+
 CREATE VIEW public.v_stockbyestablishment AS
  SELECT t2.id,
         t2.dishesname,

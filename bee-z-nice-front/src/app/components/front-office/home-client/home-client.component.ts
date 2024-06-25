@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
     standalone: true,
     templateUrl: './home-client.component.html',
     styleUrl: './home-client.component.css',
-    imports: [MarkByDisheComponent,CommonModule]
+    imports: [MarkByDisheComponent,CommonModule ]
 })
 export class HomeClientComponent implements OnInit {
   top3:any;

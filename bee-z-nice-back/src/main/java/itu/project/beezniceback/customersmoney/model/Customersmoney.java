@@ -4,6 +4,8 @@ import org.hibernate.annotations.Immutable;
 
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "customersmoney")
 public class Customersmoney{
@@ -19,7 +21,18 @@ private String idcustomer;
 @Column(name = "virtualamount")
 private BigDecimal virtualamount;
 
-  public long getId(){
+@Column(name = "datedeposit")
+private LocalDateTime dateDeposit;
+
+    public LocalDateTime getDateDeposit() {
+        return dateDeposit;
+    }
+
+    public void setDateDeposit(LocalDateTime dateDeposit) {
+        this.dateDeposit = dateDeposit;
+    }
+
+    public long getId(){
       return this.id;
 }
 

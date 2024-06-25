@@ -5,10 +5,14 @@ import itu.project.beezniceback.authentification.model.LoggedCustomer;
 import itu.project.beezniceback.authentification.tokenHandler.TokenGenerator;
 import itu.project.beezniceback.cartItems.cart.dto.DisheQuantityDTO;
 import itu.project.beezniceback.cartItems.cart.model.CartService;
+import itu.project.beezniceback.customersmoney.PayDto;
 import itu.project.beezniceback.customersmoney.model.CustomersmoneyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 
 @RestController
 public class CartController {
@@ -52,11 +56,11 @@ public class CartController {
         }
     }
 
-    @GetMapping("/api/saveCart")
-    public ResponseEntity<?> saveCart(@RequestHeader(name = "Authorization") String authorizationHeader){
+    @PostMapping("/api/saveCart")
+    public ResponseEntity<?> saveCart(@RequestBody PayDto payDto, @RequestHeader(name = "Authorization") String authorizationHeader){
         try{
             LoggedCustomer loggedCustomer = tokenGenerator.decodeCustomer(authorizationHeader);
-            cartService.saveMyCart(loggedCustomer);
+            cartService.saveMyCart(loggedCustomer,payDto.getOrderDate());
             return ResponseEntity.ok(true);
         }catch (Exception e){
             e.printStackTrace();
