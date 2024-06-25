@@ -32,6 +32,7 @@ export class CartComponent implements OnInit {
     @Input() showCart: boolean = false;
     solde!: number;
     price:number = 0;
+    achatValide:boolean = false;
     constructor(
         private cartService: CartService,
         private appComponent: AppComponent,
@@ -44,8 +45,10 @@ export class CartComponent implements OnInit {
         this.cartService.getSolde().subscribe({
             next:(resp) => {
                 console.log(resp)
-        // console.log(this.cartContent)
                 this.solde = resp.virtualamount
+                if(this.solde - this.price >=0 ){
+                    this.achatValide = true;
+                }
             },error:(err) => {
                 console.log(err.value)
                 alert(err)
@@ -58,6 +61,7 @@ export class CartComponent implements OnInit {
             let element = this.cartContent[index];
             this.price+=element.quantity*element.sellingPrice;
         }
+        
         // this.cartContent
     }
     deleteById(id: number) {
@@ -93,7 +97,7 @@ export class CartComponent implements OnInit {
         this.cartService.retrieveCart().subscribe({
             next: (response) => {
                 this.cartContent = response;
-                console.log(this.cartContent)
+                // console.log(this.cartContent)
                 this.getPrice()
             },
             error: (error) => {
