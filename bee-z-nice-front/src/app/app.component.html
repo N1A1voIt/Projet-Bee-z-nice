@@ -1,53 +1,68 @@
-<!-- <div class="h-[100vh] w-[20vw] bg-amber-400 p-4" *ngIf="isLoggedIn && isAdmin">
-    <aside class="h-full w-full bg-white">
-        Admin menu
-    </aside>
-</div> -->
-<div class="flex flex-row" *ngIf="isAdmin">
-  <div *ngIf="isLoggedIn && isAdmin" class="w-[20vw] z-10 flex flex-col  h-[100vh] left-0">
-    <div class="w-2/3 bg-white h-full shadow flex flex-col align-middle items-center">
-      <div class="logo w-full h-1/10 flex flex-row gap-2 p-4 items-center ">
-        <!-- <div class="bg-amber-400 w-2/3 flex flex-row"> -->
-          <span class="border border-amber-500 w-[50px] h-[50px] flex flex-col items-center justify-center rounded-full">
-            <h1 class="font-bold text-2xl text-amber-500">B</h1>
-          </span>
-          <h1>Bee-z Nice</h1>
-        <!-- </div> -->
-        
+<div *ngIf="isAdmin">
+  <div *ngIf="isLoggedIn && isAdmin" class="bg-gray-100 dark:bg-gray-900 dark:text-white text-gray-600 h-screen flex overflow-hidden text-sm">
+    <div class="bg-white dark:bg-gray-900 dark:border-gray-800 w-20 flex-shrink-0 border-r border-gray-200 flex-col hidden sm:flex">
+      <div class="h-16 text-blue-500 flex items-center justify-center">
+        <svg class="w-9" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 54 33">
+          <path fill="currentColor" fill-rule="evenodd" d="M27 0c-7.2 0-11.7 3.6-13.5 10.8 2.7-3.6 5.85-4.95 9.45-4.05 2.054.513 3.522 2.004 5.147 3.653C30.744 13.09 33.808 16.2 40.5 16.2c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C36.756 3.11 33.692 0 27 0zM13.5 16.2C6.3 16.2 1.8 19.8 0 27c2.7-3.6 5.85-4.95 9.45-4.05 2.054.514 3.522 2.004 5.147 3.653C17.244 29.29 20.308 32.4 27 32.4c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C23.256 19.31 20.192 16.2 13.5 16.2z" clip-rule="evenodd" />
+        </svg>
       </div>
-        <div class="menu-component second-font text-xl w-full relative flex flex-col">
-          <div class="relative p-2 w-full justify-around shadow">
-            <div class="flex gap-2 align-middle cursor-pointer font-bold" (click)="showcrud=!showcrud">
-              Crud <span class="text-xs transition-all transform duration-200"><mat-icon [ngClass]="showcrud?'rotate-180':'rotate-0'">keyboard_arrow_down</mat-icon></span>
-            </div>
-            <div *ngIf="showcrud" class="w-full flex-col py-2">
-              <app-dashboard-li href="dishes" linkLabel="Dishes"></app-dashboard-li>
-              <app-dashboard-li  href="establishment" linkLabel="Etablissement"></app-dashboard-li>
-              <app-dashboard-li href="" linkLabel="Etablissement" ></app-dashboard-li>
-              <app-dashboard-li  href="" linkLabel="Etablissement emp"></app-dashboard-li>
-              <app-dashboard-li  href="" linkLabel="Mode de payement"></app-dashboard-li>
-              <app-dashboard-li  href="" linkLabel="Fournisseur"></app-dashboard-li>
-            </div>
-        </div>
-      </div>
-
-      <div class="menu-component second-font text-xl w-full relative flex flex-col">
-        <div class="relative p-2 w-full justify-around shadow">
-          <div class="flex gap-2 align-middle cursor-pointer font-bold" (click)="showstate=!showstate">
-            Statistique <span class="text-xs transition-all transform duration-200"><mat-icon [ngClass]="showstate?'rotate-180':'rotate-0'">keyboard_arrow_down</mat-icon></span>
-          </div>
-          <div *ngIf="showstate" class=" w-full flex-col">
-              <app-dashboard-li href="" linkLabel="Plats"></app-dashboard-li>
-              <app-dashboard-li  href="" linkLabel="CA"></app-dashboard-li>
-              <app-dashboard-li href="" linkLabel="Fournisseur" ></app-dashboard-li>
-          </div>
-        </div>
+      <div class="flex mx-auto flex-grow mt-4 flex-col text-gray-400 space-y-4">
+          <button (click)="resetPageNavigation();selectedPage='home';router.navigateByUrl('/home')"  class="h-10 w-12 dark:text-gray-500 rounded-md flex items-center justify-center" [ngClass]="{ ' bg-blue-100 text-blue-500': selectedPage === 'home' }">
+            <mat-icon>home</mat-icon>
+          </button>
+          <button (click)="resetPageNavigation();isCrudPage=!isCrudPage;selectedPage='crud'" class="h-10 w-12 dark:bg-gray-700 dark:text-white rounded-md flex items-center justify-center"  [ngClass]="{ ' bg-blue-100 text-blue-500': selectedPage === 'crud' }">
+            <mat-icon>storage</mat-icon>
+          </button>
+          <button (click)="resetPageNavigation();isStatisticsPage = !isStatisticsPage;selectedPage='benef-stat'" class="h-10 w-12 dark:text-gray-500 rounded-md flex items-center justify-center"  [ngClass]="{ ' bg-blue-100 text-blue-500': selectedPage === 'benef-stat' }">
+            <mat-icon>bar_chart</mat-icon>
+          </button>
+          <button (click)="resetPageNavigation()" class="h-10 w-12 dark:text-gray-500 rounded-md flex items-center justify-center">
+            <svg viewBox="0 0 24 24" class="h-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </button>
       </div>
     </div>
+    <div class="flex-grow overflow-hidden h-full flex flex-col">
+      <div class="h-16 lg:flex w-full border-b border-gray-200 dark:border-gray-800 hidden px-10">
+        <div *ngIf="isCrudPage" class="flex h-full text-gray-600 dark:text-gray-400">
+          <button (click)="router.navigateByUrl('/dishes');selectedLink='dishes'" class="cursor-pointer h-full border-b-2  inline-flex items-center mr-8" [ngClass]="{ '  border-blue-500 text-blue-500': selectedLink === 'dishes' }">Plats</button>
+          <button (click)="router.navigateByUrl('/establishment');selectedLink='establishment'" class="cursor-pointer h-full border-b-2 dark:text-white dark:border-white inline-flex mr-8 items-center" [ngClass]="{ '  border-blue-500 text-blue-500': selectedLink === 'establishment' }">Etablissement</button>
+          <button (click)="router.navigateByUrl('/establishmentemp');selectedLink='establishmentemp'" class="cursor-pointer h-full border-b-2  inline-flex items-center mr-8" [ngClass]="{ '  border-blue-500 text-blue-500': selectedLink === 'establishmentemp' }">Etablissement-employé</button>
+          <button (click)="router.navigateByUrl('/move');selectedLink='move'" class="cursor-pointer h-full border-b-2  inline-flex items-center mr-8" [ngClass]="{ '  border-blue-500 text-blue-500': selectedLink === 'move' }">Type de mouvement</button>
+          <button (click)="router.navigateByUrl('/disheType');selectedLink='dishetype'" class="cursor-pointer h-full border-b-2  inline-flex items-center mr-8" [ngClass]="{ '  border-blue-500 text-blue-500': selectedLink === 'dishetype' }">Type de plats</button>
+          <button (click)="router.navigateByUrl('/customersMoney');selectedLink='customersMoney'" class="cursor-pointer h-full border-b-2  inline-flex items-center mr-8" [ngClass]="{ '  border-blue-500 text-blue-500': selectedLink === 'customersMoney' }">Monnaie de l'utilisateur</button>
+          <button (click)="router.navigateByUrl('/supplier');selectedLink='supplier'" class="cursor-pointer h-full border-b-2  inline-flex items-center mr-8" [ngClass]="{ '  border-blue-500 text-blue-500': selectedLink === 'supplier' }">Fournisseur</button>
+          <button (click)="router.navigateByUrl('/stock');selectedLink='stock'" class="cursor-pointer h-full border-b-2  inline-flex items-center mr-8"[ngClass]="{ '  border-blue-500 text-blue-500': selectedLink === 'stock' }">Stock</button>
+        </div>
+        <div *ngIf="isStatisticsPage" class="flex h-full text-gray-600 dark:text-gray-400">
+          <button (click)="router.navigateByUrl('/profits-statistics');selectedLink='profits'" class="cursor-pointer h-full border-b-2 inline-flex items-center mr-8" [ngClass]="{ '  border-blue-500 text-blue-500': selectedLink === 'profits' }">Profits</button>
+          <button (click)="router.navigateByUrl('/supplier-activity');selectedLink='activity'" class="cursor-pointer h-full border-b-2 dark:text-white dark:border-white inline-flex mr-8 items-center" [ngClass]="{ '  border-blue-500 text-blue-500': selectedLink === 'activity' }" >Activités par fournisseurs</button>
+        </div>
+        <div class="ml-auto flex items-center space-x-7">
+          <button (click)="logout()" class="h-8 px-3 rounded-md shadow text-white bg-red-500">Se déconnecter</button>
+  
+          <button class="flex items-center">
+            <span class="relative flex-shrink-0">
+              <img class="w-7 h-7 rounded-full" src="https://images.unsplash.com/photo-1521587765099-8835e7201186?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="profile" />
+              <span class="absolute right-0 -mb-0.5 bottom-0 w-2 h-2 rounded-full bg-green-500 border border-white dark:border-gray-900"></span>
+            </span>
+            <span class="ml-2">James Smith</span>
+            <svg viewBox="0 0 24 24" class="w-4 ml-1 flex-shrink-0" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+        </div>       
+      </div>
+      <main class="flex-grow flex overflow-x-hidden w-full p-6 sm:p-10 space-y-6">
+        <router-outlet />
+
+      </main>
+    </div>
   </div>
-  <main class="h-[100vh] overflow-y-scroll w-[100%] ">
-    <router-outlet />
-  </main>
 </div>
 <div class="h-[100vh]" *ngIf="!isAdmin">
   <div *ngIf="isLoggedIn && !isAdmin" class="fixed w-full z-10 flex flex-row justify-center items-center h-[100px]">
@@ -71,12 +86,12 @@
             <a class="cursor-pointer" (click)="showCart=!showCart">Mon panier</a>
           </div>
           <div>
-            <a href="">Noter nos plats</a>
+            <a href="ratingView">Noter nos plats</a>
           </div>
           <div>
             <a href="">Nous joindre</a>
           </div>
-          <div class="bg-amber-400 h-full w-[100px] p-2 flex items-center justify-center rounded-full text-white">
+          <div (click)="logout()" class="bg-amber-400 h-full w-[100px] p-2 flex items-center justify-center rounded-full text-white">
             <p>Log out</p>
           </div>  
       </div>
@@ -86,6 +101,7 @@
   <div *ngIf="showCart  && isLoggedIn && !isAdmin">
     <app-cart [showCart] = "true"></app-cart>
   </div>
+  
   <main class="w-[100vw]">
     <router-outlet />
   </main>

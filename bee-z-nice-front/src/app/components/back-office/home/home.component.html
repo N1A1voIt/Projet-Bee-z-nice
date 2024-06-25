@@ -1,0 +1,73 @@
+<div class="w-full space-y-6">
+<section class="grid md:grid-cols-2 xl:grid-cols-3 gap-6 ">
+    <app-dashboard-card [money]="dashboard.capital" label="Chiffres d'affaires" icone="attach_money" ></app-dashboard-card>
+    <app-dashboard-card [money]="dashboard.benefits" label="Bénéfices" icone="attach_money" ></app-dashboard-card>
+    <app-dashboard-card [money]="dashboard.cost" label="Coût de revient" icone="attach_money" ></app-dashboard-card>
+</section>
+  <section class="grid md:grid-cols-2 xl:grid-cols-4 xl:grid-rows-3 xl:grid-flow-col gap-6">
+    <div class="flex flex-col md:col-span-2 md:row-span-3 bg-white shadow rounded-lg">
+      <div class="px-6 py-5 font-semibold border-b border-gray-100">Visuel des bénéfices par établissement</div>
+      <div class="p-4 flex-grow">
+        <div class="flex items-center h-full px-4 py-16 text-gray-400 text-3xl font-semibold bg-gray-100 border-2 border-gray-200 border-dashed rounded-md">
+            <n-table class="w-full h-full">
+                <thead class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                    <tr>
+                        <th scope="col"
+                            class="px-6 py-4 text-center">
+                            établissement
+                        </th>
+                        <th scope="col"
+                            class="px-6 py-4 text-center">
+                            Bénéfices (Ariary)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                    <tr *ngFor="let line of dashboard.establishmentsProfits"
+                        class="text-gray-700 dark:text-gray-400">
+                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center">{{line.name}}</td>
+                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center">{{line.benefits |  number:'1.0-2' }} Ariary</td>
+                    </tr>
+                </tbody>
+            </n-table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-span-3 bg-white shadow rounded-lg">
+      <div class="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
+        <span>Recherche multi-critères</span>
+      </div>
+      <div class="overflow-y-auto" style="max-height: 24rem;">
+        <form (submit)="getDashboard(form)" #form="ngForm" action="" class="p-6 space-y-6">
+            <n-input name="Date de début">
+                <input class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden" name="startDate" type="date" ngModel>
+            </n-input>
+            <br>
+            <n-input name="Date de fin">
+                <input class="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden" name="endDate" type="date" ngModel>
+            </n-input>
+            <br>
+            <n-input name="Etablissement">
+                <select name="idEstablishment" ngModel>
+                    <option value="0">Par défaut</option>
+                    <option *ngFor="let item of establishments" value="{{item.id}}">{{item.name}}</option>
+                  </select>
+            </n-input>
+            <app-submit-button></app-submit-button>
+        </form>
+      </div>
+    </div>
+    <div class="flex flex-col row-span-3 bg-white shadow rounded-lg">
+      <div class="px-6 py-5 font-semibold border-b border-gray-100">Les types de plats les plus vendus</div>
+      <div class="p-4 flex-grow">
+        <div class="flex items-center justify-center h-full px-4 py-24 text-gray-400 text-3xl font-semibold bg-gray-100 border-2 border-gray-200 border-dashed rounded-md">
+            <div class="pie" [chart]="pieChart">
+
+            </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+</div>

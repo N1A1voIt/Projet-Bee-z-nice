@@ -1,6 +1,10 @@
 package itu.project.beezniceback.stockbyestablishment.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Immutable;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "stockbyestablishment")
 public class Stockbyestablishment{
@@ -21,8 +25,18 @@ private long remainingstock;
 //idmovementtype
 @Column(name = "idmovementtype")
 private int idmovementtype;
+@Column(name = "movedate")
+private LocalDateTime movedate;
 
-  public long getId(){
+    public LocalDateTime getMovedate() {
+        return movedate;
+    }
+
+    public void setMovedate(LocalDateTime movedate) {
+        this.movedate = movedate;
+    }
+
+    public long getId(){
       return this.id;
 }
 
@@ -70,6 +84,7 @@ private int idmovementtype;
                 ", idestablishment=" + idestablishment +
                 ", remainingstock=" + remainingstock +
                 ", idmovementtype=" + idmovementtype +
+                ", movedate=" + movedate +
                 '}';
     }
 }

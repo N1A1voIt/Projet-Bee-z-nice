@@ -18,9 +18,11 @@
     /*font-size: 20px;*/
 }
 .second-font{
-  font-family: "Sweet Sans Pro Light",Arial,Helvetica,sans-serif;
+  font-family: "PT Sans",Arial,Helvetica,sans-serif;
   font-size: 15px;
 }
 .second-font-non-sized{
     font-family: "Sweet Sans Pro Light",Arial,Helvetica,sans-serif;
 }
+/* movement-type.component.css */
+
