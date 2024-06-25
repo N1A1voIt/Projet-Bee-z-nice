@@ -48,7 +48,6 @@ public class CustomersmoneyService{
       return customersmoney;
    }
    public double getPayDoubleValue(LoggedCustomer loggedCustomer){
-
       double expenses = foodorderService.getExpensesByIdUser((int)loggedCustomer.getId());
       Customersmoney customersmoney = customersmoneyRepository.findMoney(loggedCustomer.getUniqId()).get(0);
       return customersmoney.getVirtualamount().doubleValue()-expenses;

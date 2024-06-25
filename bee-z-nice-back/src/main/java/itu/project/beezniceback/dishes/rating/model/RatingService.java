@@ -21,6 +21,8 @@ public class RatingService {
     private DishesRepository dishesRepository;
     @Autowired
     private EntityManager entityManager;
+    @Autowired
+    private Top3RatingRepository top3RatingRepository;
     public Rating save(RatingSaveDTO ratingSaveDTO, LoggedCustomer loggedCustomer){
         Rating rating = new Rating();
         rating.setIdCustomer(loggedCustomer.getId());
@@ -49,6 +51,10 @@ public class RatingService {
         query.setParameter("idcustomer",idCustomer);
         return query.getResultList();
     }
+    public List<Top3Rating> getTop3(){
+        return top3RatingRepository.findAll();
+    }
+
     public List<RatingDisheView> retrieveRatingDisheById(LoggedCustomer loggedCustomer) {
         Long idCustomer = loggedCustomer.getId();
         List<RatingDisheView> ratingDisheViews = findDisheRating(idCustomer); // Get ratings for the logged-in customer
@@ -59,7 +65,6 @@ public class RatingService {
 
         // Populate the map with rated dishes
         for (RatingDisheView ratingDisheView : ratingDisheViews) {
-            System.out.println("Brada beerfghjkdsvsdddddddddddddddddddd");
             dishRatingMap.put(ratingDisheView.getIddishe(), ratingDisheView);
         }
 

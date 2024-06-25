@@ -1,5 +1,7 @@
 CREATE VIEW v_stock_last_lines AS SELECT * FROM stockByEstablishment WHERE id in (SELECT max(id) FROM stockByEstablishment GROUP BY idEstablishment,idDishes);
 
+CREATE VIEW v_top3_dishesrating as SELECT dishes.*, COALESCE(CAST(AVG(dishesrating.mark) as DECIMAL(3,2)),0) AS avg_mark FROM dishes LEFT JOIN dishesrating ON dishes.id = dishesrating.iddishe GROUP BY dishes.id ORDER BY avg_mark DESC LIMIT 3;
+
 CREATE VIEW public.v_stockbyestablishment AS
  SELECT t2.id,
         t2.dishesname,
