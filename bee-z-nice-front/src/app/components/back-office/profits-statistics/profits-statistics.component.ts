@@ -119,15 +119,15 @@ export class ProfitsStatisticsComponent implements OnInit{
     dropdown:any = [
         {
             id:1,
-            label:'Daily'
+            label:'Journalier'
         },
         {
             id:2,
-            label:'Weekly'
+            label:'Hebdomadaire'
         },
         {
             id:3,
-            label:'Monthly'
+            label:'Mensuel'
         }
     ]
 
