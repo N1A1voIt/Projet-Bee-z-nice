@@ -1,6 +1,24 @@
 CREATE VIEW v_stock_last_lines AS SELECT * FROM stockByEstablishment WHERE id in (SELECT max(id) FROM stockByEstablishment GROUP BY idEstablishment,idDishes);
 
-CREATE VIEW v_top3_dishesrating as SELECT dishes.*, COALESCE(CAST(AVG(dishesrating.mark) as DECIMAL(3,2)),0) AS avg_mark FROM dishes LEFT JOIN dishesrating ON dishes.id = dishesrating.iddishe GROUP BY dishes.id ORDER BY avg_mark DESC LIMIT 3;
+CREATE VIEW v_top3_dishesrating as
+SELECT dishes.*,COALESCE(CAST(AVG(COALESCE(dishesrating.mark,0)) as DECIMAL(3,2)),0) as avg_mark
+from customers LEFT JOIN dishes ON 1=1 LEFT JOIN dishesrating ON dishesrating.idcustomer = customers.id AND dishesrating.iddishe = dishes.id GROUP BY dishes.id ORDER BY avg_mark DESC LIMIT 3;
+
+
+
+SELECT * FROM dishes LEFT JOIN dishesrating ON dishes.id = dishesrating.iddishe
+LEFT JOIN customers ON customers.id = idcustomer;
+
+SELECT * FROM customers LEFT JOIN dishesrating ON dishesrating.idcustomer = customers.id LEFT JOIN dishes ON
+
+SELECT dishes.*,COALESCE(CAST(AVG(COALESCE(dishesrating.mark,0)) as DECIMAL(3,2)),0) as avg_mark
+from customers LEFT JOIN dishes ON 1=1 LEFT JOIN dishesrating ON dishesrating.idcustomer = customers.id AND dishesrating.iddishe = dishes.id GROUP BY dishes.id ORDER BY avg_mark DESC LIMIT 3;
+
+SELECT dishes.*,AVG(dishesrating.mark) as avg_mark
+from customers LEFT JOIN dishes ON 1=1 LEFT JOIN dishesrating ON dishesrating.idcustomer = customers.id GROUP BY dishes.id ORDER BY avg_mark;
+
+SELECT dishes.*,customers.id,dishesrating.*
+from customers LEFT JOIN dishes ON 1=1 LEFT JOIN dishesrating ON dishesrating.idcustomer = customers.id AND dishesrating.iddishe = dishes.id;
 
 CREATE VIEW public.v_customersmoney AS
  SELECT t0.id,

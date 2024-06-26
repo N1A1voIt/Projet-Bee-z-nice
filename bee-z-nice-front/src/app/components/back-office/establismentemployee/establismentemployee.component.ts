@@ -8,8 +8,9 @@ import {CommonModule, NgFor} from "@angular/common";
 import {ModalComponentComponent} from "../../../reusable/modal-component/modal-component.component";
 import {SubmitButtonComponent} from "../../../reusable/submit-button/submit-button.component";
 import {EstablismentemployeeService} from "./establismentemployee.service";
+import { MatIcon } from '@angular/material/icon';
 @Component({
-selector: 'app-establismentemployee',standalone:true,imports: [FormsModule, NgFor, CommonModule, NInputComponent, NSelectComponent, NgxPaginationModule, ModalComponentComponent, NTableComponent, SubmitButtonComponent],
+selector: 'app-establismentemployee',standalone:true,imports: [FormsModule,MatIcon, NgFor, CommonModule, NInputComponent, NSelectComponent, NgxPaginationModule, ModalComponentComponent, NTableComponent, SubmitButtonComponent],
 templateUrl: './establismentemployee.component.html',
 styleUrl: './establismentemployee.component.css'})
 export class EstablismentemployeeComponent implements OnInit{

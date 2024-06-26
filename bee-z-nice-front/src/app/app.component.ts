@@ -46,6 +46,7 @@ export class AppComponent implements OnInit {
     isStatisticsPage: boolean = false;
     selectedPage!: string;
     selectedLink!: string;
+    isPaymentPage:boolean = false;
     name!:string;
     constructor(
         private disheTypeService: DishetypeService,
@@ -95,9 +96,13 @@ export class AppComponent implements OnInit {
     resetPageNavigation() {
         this.isCrudPage = false;
         this.isStatisticsPage = false;
+        this.isPaymentPage = false;
     }
     logout() {
         localStorage.removeItem('userToken');
+        this.isLoggedIn = false;
+        this.isAdmin = false;
         this.router.navigateByUrl('/login');
+
     }
 }

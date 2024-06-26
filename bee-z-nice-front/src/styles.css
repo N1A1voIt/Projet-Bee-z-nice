@@ -27,3 +27,8 @@
 }
 /* movement-type.component.css */
 
+::ng-deep pagination-controls {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}

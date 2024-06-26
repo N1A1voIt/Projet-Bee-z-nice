@@ -3,14 +3,13 @@
         class="bg-black w-auto h-[50px] p-2 rounded absolute right-2 text-white"
         (click)="showForm = !showForm; isUpdate = false"
     >
-        Add a new element
+        Ajouter un mouvement
     </button>
 </div>
 <div class="w-full h-[75px] flex items-center relative mb-2 gap-3">
     <n-input name="Etablissement">
         <input
             type="text"
-            placeholder=""
             [(ngModel)]="filterName"
             class="border border-gray-300 rounded p-2"
         />
@@ -24,7 +23,7 @@
         />
     </n-input>
 </div>
-<app-modal-component [showForm]="showForm">
+<app-modal-component [showForm]="showForm" nom="mouvements de stock">
     <form
         class="flex flex-col w-5/6 justify-center align-middle"
         action="javascript:void(0)"
@@ -32,14 +31,14 @@
         (ngSubmit)="onSubmit(form)"
     >
         <input *ngIf="isUpdate" type="hidden" name="id" [(ngModel)]="idValue" />
-        <n-input name="Dishes">
+        <n-input name="Plats">
             <select name="iddishes" [(ngModel)]="iddishesValue">
                 <option *ngFor="let item of listDishes" value="{{ item.id }}">
                     {{ item.dishesname }}
                 </option>
             </select>
         </n-input>
-        <n-input name="Establishment">
+        <n-input name="Etablissements">
             <select name="idestablishment" [(ngModel)]="idestablishmentValue">
                 <option
                     *ngFor="let item of listEstablishment"
@@ -49,15 +48,14 @@
                 </option>
             </select>
         </n-input>
-        <n-input name="RemainingStock">
+        <n-input name="Quantité">
             <input
                 name="remainingstock"
-                placeholder="RemainingStock"
                 type="number"
                 [(ngModel)]="remainingstockValue"
             />
         </n-input>
-        <n-input name="MovementType">
+        <n-input name="Type de mouvement">
             <select name="idmovementtype" [(ngModel)]="idmovementtypeValue">
                 <option
                     *ngFor="let item of listMovementtype"
@@ -67,7 +65,7 @@
                 </option>
             </select>
         </n-input>
-        <n-input name="RemainingStock">
+        <n-input name="Date de mouvement">
             <input
                 name="movedate"
                 placeholder="Date de mouvement"
@@ -84,34 +82,39 @@
     >
         <tr>
             <th
-                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center"
             >
                 id
             </th>
             <th
-                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center"
             >
-                dishesname
+                Plats
             </th>
             <th
-                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center"
             >
-                name
+                établissement
             </th>
             <th
-                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center"
             >
-                remainingstock
+                Quantité
             </th>
             <th
-                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center"
             >
-                type
+                type de mouvement
             </th>
             <th
-                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center"
             >
                 DATE
+            </th>
+            <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center"
+            >
+                Action
             </th>
         </tr>
     </thead>
@@ -129,46 +132,75 @@
                 {{ line.id }}
             </td>
             <td
-                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center"
             >
                 {{ line.dishesname }}
             </td>
             <td
-                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center"
             >
                 {{ line.name }}
             </td>
             <td
-                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center"
             >
                 {{ line.remainingstock }}
             </td>
             <td
-                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center"
             >
                 {{ line.type }}
             </td>
             <td
-                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center"
             >
                 {{ line.movedate.replace("T", " ") }}
             </td>
             <td
-                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 flex justify-around"
+        >
+            <button (click)="delete(line.id)" class="text-red-500">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <button
+                (click)="update(line.id); showForm = !showForm"
+                class="text-purple-500"
             >
-                <button (click)="delete(line.id)">Supprimer</button>
-            </td>
-            <td
-                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-                <button (click)="update(line.id); showForm = !showForm">
-                    Update
-                </button>
-            </td>
+                <mat-icon>edit</mat-icon>
+            </button>
+        </td>
         </tr>
     </tbody>
 </n-table>
 
 <div>
+    <!-- <pagination-template #p="paginationApi" (pageChange)="pages = $event">
+        <div class="custom-pagination">
+          <button class="prev-btn" [disabled]="p.isFirstPage()" (click)="p.previous()">Previous</button>
+          
+          <ng-container *ngFor="let page of p.pages; let i = index">
+            <button
+              class="page-btn"
+              [class.active]="p.getCurrent() === pages"
+              (click)="p.setCurrent(pages)"
+              
+            >
+              {{ page }}
+            </button>
+          </ng-container>
+      
+          <span *ngIf="p.getCurrent() < p.pages.length - 4">...</span>
+          <button
+            class="page-btn"
+            [class.active]="p.getCurrent() === p.pages.length"
+            (click)="p.setCurrent(p.pages.length)"
+          >
+            {{ p.pages.length }}
+          </button>
+      
+          <button class="next-btn" [disabled]="p.isLastPage()" (click)="p.next()">Next</button>
+        </div>
+      </pagination-template> -->
+      
     <pagination-controls (pageChange)="pages = $event"></pagination-controls>
 </div>

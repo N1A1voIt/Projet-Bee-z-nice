@@ -10,4 +10,5 @@ import { NgIf } from '@angular/common';
 })
 export class ModalComponentComponent {
     @Input() showForm!: boolean;
+    @Input() nom!:string;
 }

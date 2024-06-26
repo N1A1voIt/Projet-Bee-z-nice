@@ -24,7 +24,10 @@
         <app-submit-button></app-submit-button>
     </form>
     <br /></app-modal-component
-><n-table>
+>
+
+
+<n-table>
     <thead
         class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
     >
@@ -100,6 +103,7 @@
                 <input
                     type="submit"
                     (click)="onSubmit(line.id)"
+                    [disabled]="solde < line.amount"
                     class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     value="Payer"
                 />

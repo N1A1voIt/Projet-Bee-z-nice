@@ -9,6 +9,7 @@ import {EstablishmentService} from "../back-office/establishment/establishment.s
 import {Router} from "@angular/router";
 import {AppComponent} from "../../app.component";
 import {NgFor, NgForOf, NgIf} from "@angular/common";
+import { AuthServiceService } from '../../authService/auth-service.service';
 // import {MatIconModule} from '@angular/material/icon';
 // import {error} from "@angular/compiler-cli/src/transformers/util";
 
@@ -32,7 +33,7 @@ export class SignupComponent implements OnInit{
     establishments:any;
     private isLoggedIn:boolean = false;
     private isAdmin:boolean = false;
-    constructor(private signupService:SignupService,private establishmentService:EstablishmentService,private router:Router,private appComponent:AppComponent) {
+    constructor(private signupService:SignupService,private establishmentService:EstablishmentService,private router:Router,private appComponent:AppComponent,private authService:AuthServiceService) {
     }
     ngOnInit(): void {
         this.retrieveEstablishment();
@@ -41,7 +42,8 @@ export class SignupComponent implements OnInit{
         this.exception = null;
         this.signupService.register(form).subscribe({
             next:(response)=>{
-                localStorage.setItem("userToken",response.headers.get('Authorization'));
+                localStorage.setItem("userToken",response.headers.get("Authorization"));
+
                 this.redirect();
             },
             error:(error)=>{
@@ -49,12 +51,13 @@ export class SignupComponent implements OnInit{
             }
         })
     }
-    redirect(){
+    async redirect(){
         this.appComponent.checkToken();
-        if (this.isAdmin){
-            this.router.navigateByUrl('/home')
-        }else {
-            this.router.navigateByUrl('/client')
+        let isAdmin = await this.authService.isAdmin()
+        if (isAdmin){
+            this.router.navigateByUrl('/home');
+        }if (!isAdmin){
+            this.router.navigateByUrl('/client');
         }
     }
     retrieveEstablishment(){

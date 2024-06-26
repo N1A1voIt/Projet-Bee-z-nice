@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
-import {NgIf} from "@angular/common";
+import {CommonModule, NgIf} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
 import {FormsModule} from "@angular/forms";
 import {AddToCartService} from "./add-to-cart.service";
@@ -14,7 +14,8 @@ import { RatingComponent } from "../rating/rating.component";
         NgIf,
         MatIcon,
         FormsModule,
-        RatingComponent
+        RatingComponent,
+        CommonModule
     ]
 })
 export class AddToCartComponentComponent implements OnInit{

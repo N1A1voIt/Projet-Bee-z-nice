@@ -9,6 +9,7 @@ import {CommonModule, NgFor} from "@angular/common";
 import {ModalComponentComponent} from "../../../reusable/modal-component/modal-component.component";
 import {SubmitButtonComponent} from "../../../reusable/submit-button/submit-button.component";
 import { MatIcon } from '@angular/material/icon';
+import { foodsRoute } from '../../../../environnements/env';
 @Component({
 selector: 'app-dishes',standalone:true,imports: [FormsModule, NgFor, CommonModule, NInputComponent, NSelectComponent, NgxPaginationModule, ModalComponentComponent, NTableComponent, SubmitButtonComponent,MatIcon],
 templateUrl: './dishes.component.html',
@@ -28,6 +29,7 @@ purchasepriceValue!:number
 idtypeValue!:number
 imageValue!:string
 imageFile!:File
+imagePath:string = foodsRoute()
 constructor(private dishesService:DishesService){}
     // onSubmit(form:any){
     //     this.dishesService.saveData(form.value).subscribe({

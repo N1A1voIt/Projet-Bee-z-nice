@@ -4,10 +4,10 @@
     </div>
   <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="mx-auto mt-16 max-w-xl sm:mt-20">
     <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-      <n-input name="First name">
+      <n-input name="Prénom(s)">
         <input type="text" name="firstName" ngModel>
       </n-input>
-      <n-input name="Name">
+      <n-input name="Nom">
         <input type="text" name="name" ngModel>
       </n-input>
     </div>
@@ -17,24 +17,24 @@
       </n-input>
     </div>
     <div>
-      <n-input name="Password">
+      <n-input name="Mot de passe">
         <input type="password" name="password" ngModel>
       </n-input>
     </div>
     <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-      <n-input name="Choose your establishment">
+      <n-input name="Choisissez votre établissement">
         <select name="idEstablishement" ngModel>
           <option *ngFor="let item of establishments" value="{{item.id}}">{{item.name}}</option>
         </select>
         
       </n-input>
         <input type="hidden" name="isActive" value="true" ngModel>
-      <n-input name="Your immatriculation">
+      <n-input name="Votre immatriculation">
         <input type="text" name="uniqId" ngModel>
       </n-input>
     </div>
     <div class=" mt-3 h-10 flex flex-row items-center font-semibold text-sm">
-      Already have an account ?<a href="/login" class="text-indigo-600">Sign in </a>
+      Vous avez déjà un compte ?<a href="/login" class="text-indigo-600">Se connecter </a>
     </div>
     <app-submit-button></app-submit-button>
 

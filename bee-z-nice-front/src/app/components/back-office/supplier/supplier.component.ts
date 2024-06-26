@@ -8,8 +8,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import {CommonModule, NgFor} from "@angular/common";
 import {ModalComponentComponent} from "../../../reusable/modal-component/modal-component.component";
 import {SubmitButtonComponent} from "../../../reusable/submit-button/submit-button.component";
+import { MatIcon } from '@angular/material/icon';
 @Component({
-selector: 'app-supplier',standalone:true,imports: [FormsModule, NgFor, CommonModule, NInputComponent, NSelectComponent, NgxPaginationModule, ModalComponentComponent, NTableComponent, SubmitButtonComponent],
+selector: 'app-supplier',standalone:true,imports: [FormsModule, NgFor,MatIcon ,CommonModule, NInputComponent, NSelectComponent, NgxPaginationModule, ModalComponentComponent, NTableComponent, SubmitButtonComponent],
 templateUrl: './supplier.component.html',
 styleUrl: './supplier.component.css'})
 export class SupplierComponent implements OnInit{

@@ -8,9 +8,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import {CommonModule, NgFor} from "@angular/common";
 import {ModalComponentComponent} from "../../../reusable/modal-component/modal-component.component";
 import {SubmitButtonComponent} from "../../../reusable/submit-button/submit-button.component";
+import { MatIcon } from '@angular/material/icon';
+import { typeRoute } from '../../../../environnements/env';
 @Component({
 selector: 'app-dishetype',
-  standalone:true,imports: [FormsModule, NgFor, CommonModule, NInputComponent, NSelectComponent, NgxPaginationModule, ModalComponentComponent, NTableComponent, SubmitButtonComponent],
+  standalone:true,imports: [FormsModule, NgFor,MatIcon ,CommonModule, NInputComponent, NSelectComponent, NgxPaginationModule, ModalComponentComponent, NTableComponent, SubmitButtonComponent],
 templateUrl: './dishetype.component.html',
 styleUrl: './dishetype.component.css'})
 export class DishetypeComponent implements OnInit{
@@ -21,6 +23,7 @@ isUpdate:boolean = false;
 idValue:number|null = null;
 libelleValue:string|null = null;
 image_nameValue:string|null = null;
+imagePath:string = typeRoute()
 constructor(private dishetypeService:DishetypeService){}
     onSubmit(form:any){
         this.dishetypeService.saveData(form.value).subscribe({

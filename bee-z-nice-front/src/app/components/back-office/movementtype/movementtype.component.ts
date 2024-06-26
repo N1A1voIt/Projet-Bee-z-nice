@@ -8,8 +8,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import {CommonModule, NgFor} from "@angular/common";
 import {ModalComponentComponent} from "../../../reusable/modal-component/modal-component.component";
 import {SubmitButtonComponent} from "../../../reusable/submit-button/submit-button.component";
+import { MatIcon } from '@angular/material/icon';
 @Component({
-selector: 'app-movementtype',standalone:true,imports: [FormsModule, NgFor, CommonModule, NInputComponent, NSelectComponent, NgxPaginationModule, ModalComponentComponent, NTableComponent, SubmitButtonComponent],
+selector: 'app-movementtype',standalone:true,imports: [FormsModule,MatIcon, NgFor, CommonModule, NInputComponent, NSelectComponent, NgxPaginationModule, ModalComponentComponent, NTableComponent, SubmitButtonComponent],
 templateUrl: './movementtype.component.html',
 styleUrl: './movementtype.component.css'})
 export class MovementtypeComponent implements OnInit{

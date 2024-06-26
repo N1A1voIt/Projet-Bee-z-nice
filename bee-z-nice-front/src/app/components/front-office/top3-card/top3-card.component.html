@@ -1,0 +1,23 @@
+<div
+    class="shadow-xl w-[300px] h-[350px] rounded-xl overflow-hidden flex items-center flex-col"
+>
+    <div class="w-full h-1/2 flex justify-center items-center">
+        <div class="rounded-full w-[100px] overflow-hidden object-cover">
+            <img src="{{ foodsRoute }}/{{ dishe.image }}" class="" alt="" />
+        </div>
+    </div>
+    <div class="w-full p-1 h-1/2 flex flex-col justify-center items-center">
+        <div
+            class="flex flex-col justify-center gap-[16px] p-2 items-center w-full h-2/3"
+        >
+            <div class="logo w-1/2 text-center text-sm">
+                {{ dishe.dishesname }}
+            </div>
+            <div class="w-1/2 text-center second-font">Gôuter</div>
+        </div>
+        <div class="flex justify-center items-center gap-2">
+            <mat-icon>star</mat-icon> {{dishe.rate}}
+        </div>
+    </div>
+    
+</div>

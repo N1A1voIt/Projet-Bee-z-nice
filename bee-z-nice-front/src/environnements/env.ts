@@ -7,3 +7,7 @@ export const imagesRoute=()=>{
 export const foodsRoute=()=>{
   return "http://localhost:8080/assets/foods";
 }
+
+export const typeRoute=()=>{
+  return "http://localhost:8080/assets";
+}

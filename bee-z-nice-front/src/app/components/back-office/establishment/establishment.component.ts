@@ -8,6 +8,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CommonModule, NgFor } from '@angular/common';
 import { ModalComponentComponent } from '../../../reusable/modal-component/modal-component.component';
 import { SubmitButtonComponent } from '../../../reusable/submit-button/submit-button.component';
+import { MatIcon } from '@angular/material/icon';
 @Component({
     selector: 'app-establishment',
     standalone: true,
@@ -21,6 +22,7 @@ import { SubmitButtonComponent } from '../../../reusable/submit-button/submit-bu
         ModalComponentComponent,
         NTableComponent,
         SubmitButtonComponent,
+        MatIcon
     ],
     templateUrl: './establishment.component.html',
     styleUrl: './establishment.component.css',
