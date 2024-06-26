@@ -8,6 +8,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import {CommonModule, NgFor} from "@angular/common";
 import {ModalComponentComponent} from "../../../reusable/modal-component/modal-component.component";
 import {SubmitButtonComponent} from "../../../reusable/submit-button/submit-button.component";
+// @ts-ignore
+import { LocalDate } from '@js-joda/core';
 
 @Component({
     selector: 'app-supplier',standalone:true,imports: [FormsModule, NgFor, CommonModule, NInputComponent, NSelectComponent, NgxPaginationModule, ModalComponentComponent, NTableComponent, SubmitButtonComponent],
@@ -22,7 +24,9 @@ export class SupplierPaymentComponent implements OnInit{
 
     constructor(private supplierPaymentService:SupplierPaymentService){}
     onSubmit(form:any){
-        this.supplierPaymentService.saveData(this.idsupplierUnPayedValue).subscribe({
+        const formData = new FormData();
+        formData.append('idunpayedstock', this.idsupplierUnPayedValue.toString());
+        this.supplierPaymentService.saveData(formData).subscribe({
                 next:(data)=>{
                     this.retrieveDropDown();
                 },

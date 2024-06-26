@@ -5,10 +5,7 @@ import itu.project.beezniceback.supplierpayment.model.SupplierpaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -22,7 +19,9 @@ public class SupplierPaymentController {
     public ResponseEntity<?> findAll(){return ResponseEntity.ok(supplierpaymentService.getAll());}
 
     @PostMapping("/api/supplierPayment/save")
-    public void save(@RequestBody Supplierpayment supplierpayment){
+    public void save(@PathVariable("idunpayedstock") String id){
+        Supplierpayment supplierpayment=new Supplierpayment();
+        supplierpayment.setIdunpayedstock(Long.parseLong(id));
         supplierpayment.setTime(Instant.from(LocalDate.now()));
         supplierpaymentService.save(supplierpayment);
     }
