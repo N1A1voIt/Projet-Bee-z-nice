@@ -22,9 +22,12 @@
     </tr>
     </thead>
     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-    <tr class="text-gray-700 dark:text-gray-400" *ngFor="let line of all | paginate:{ itemsPerPage: 10, currentPage: pages }">
+    <tr class="text-gray-700 dark:text-gray-400" *ngFor="let line of allUnPayed | paginate:{ itemsPerPage: 10, currentPage: pages }">
         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.id}}</td>
         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.namesupplier}}</td>
+        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.month}}</td>
+        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.year}}</td>
+        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.amount}}</td>
     </tr>
 
     </tbody>
