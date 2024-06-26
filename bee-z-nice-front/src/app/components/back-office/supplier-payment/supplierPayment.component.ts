@@ -14,7 +14,8 @@ import { LocalDate } from '@js-joda/core';
 @Component({
     selector: 'app-supplier',standalone:true,imports: [FormsModule, NgFor, CommonModule, NInputComponent, NSelectComponent, NgxPaginationModule, ModalComponentComponent, NTableComponent, SubmitButtonComponent],
     templateUrl: './supplierPayment.component.html',
-    styleUrl: './supplierPayment.component.ts'})
+    styleUrl: './supplierPayment.component.css'
+})
 export class SupplierPaymentComponent implements OnInit{
     showForm: boolean = false;
     pages: number = 1;
@@ -23,9 +24,12 @@ export class SupplierPaymentComponent implements OnInit{
     idsupplierUnPayedValue!:number;
 
     constructor(private supplierPaymentService:SupplierPaymentService){}
-    onSubmit(form:any){
-        const formData = new FormData();
-        formData.append('idunpayedstock', this.idsupplierUnPayedValue.toString());
+    onSubmit(id:any){
+        const formData = {
+            idunpayedstock: id
+        }
+        console.log(formData)
+        // formData.append('idunpayedstock', this.idsupplierUnPayedValue.toString());
         this.supplierPaymentService.saveData(formData).subscribe({
                 next:(data)=>{
                     this.retrieveDropDown();

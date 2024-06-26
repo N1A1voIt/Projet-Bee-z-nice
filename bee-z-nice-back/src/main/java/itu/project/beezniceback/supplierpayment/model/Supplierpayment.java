@@ -3,6 +3,7 @@ package itu.project.beezniceback.supplierpayment.model;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "supplierpayment")
@@ -13,7 +14,7 @@ public class Supplierpayment {
     private Long id;
 
     @Column(name = "\"time\"")
-    private Instant time;
+    private LocalDateTime time;
 
     @Column(name = "idunpayedstock")
     private Long idunpayedstock;
@@ -26,11 +27,11 @@ public class Supplierpayment {
         this.id = id;
     }
 
-    public Instant getTime() {
+    public LocalDateTime getTime() {
         return time;
     }
 
-    public void setTime(Instant time) {
+    public void setTime(LocalDateTime time) {
         this.time = time;
     }
 

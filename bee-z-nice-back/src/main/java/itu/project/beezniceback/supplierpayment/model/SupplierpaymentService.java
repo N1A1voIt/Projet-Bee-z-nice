@@ -16,5 +16,4 @@ public class SupplierpaymentService {
     public List<VUnpayedStock> getAll(){return vUnpayedStockRepository.findAll();}
 
     public void save(Supplierpayment supplierpayment){supplierpaymentRepository.save(supplierpayment);}
-
 }

@@ -36,6 +36,7 @@ export const routes: Routes = [
     {path:'supplier',component:SupplierComponent,canActivate:[adminGuardGuard]},
     {path:'profits-statistics',component:ProfitsStatisticsComponent,canActivate:[adminGuardGuard]},
     {path:'supplier-activity',component:SupplierActivityStatisticsComponent,canActivate:[adminGuardGuard]},
+    {path:'supplier-payment',component:SupplierPaymentComponent,canActivate:[adminGuardGuard]},
     {path:'foodDisplay/:id',component:FoodDisplayerComponent,canActivate:[clientGuardGuard]},
     {path:'errorPageNotAuthorized',component:ErrorPageNotAuthorizedComponent},
     {path:'ratingView',component:RatingViewComponent,canActivate:[clientGuardGuard]},
