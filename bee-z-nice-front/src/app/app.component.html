@@ -34,7 +34,7 @@
           <button (click)="router.navigateByUrl('/establishmentemp');selectedLink='establishmentemp'" class="cursor-pointer h-full border-b-2  inline-flex items-center mr-8" [ngClass]="{ '  border-blue-500 text-blue-500': selectedLink === 'establishmentemp' }">Etablissement-employé</button>
           <button (click)="router.navigateByUrl('/move');selectedLink='move'" class="cursor-pointer h-full border-b-2  inline-flex items-center mr-8" [ngClass]="{ '  border-blue-500 text-blue-500': selectedLink === 'move' }">Type de mouvement</button>
           <button (click)="router.navigateByUrl('/disheType');selectedLink='dishetype'" class="cursor-pointer h-full border-b-2  inline-flex items-center mr-8" [ngClass]="{ '  border-blue-500 text-blue-500': selectedLink === 'dishetype' }">Type de plats</button>
-          <button (click)="router.navigateByUrl('/customersMoney');selectedLink='customersMoney'" class="cursor-pointer h-full border-b-2  inline-flex items-center mr-8" [ngClass]="{ '  border-blue-500 text-blue-500': selectedLink === 'customersMoney' }">Monnaie de l'utilisateur</button>
+          <button (click)="router.navigateByUrl('/customers-request');selectedLink='customersMoney'" class="cursor-pointer h-full border-b-2  inline-flex items-center mr-8" [ngClass]="{ '  border-blue-500 text-blue-500': selectedLink === 'customersMoney' }">Monnaie de l'utilisateur</button>
           <button (click)="router.navigateByUrl('/supplier');selectedLink='supplier'" class="cursor-pointer h-full border-b-2  inline-flex items-center mr-8" [ngClass]="{ '  border-blue-500 text-blue-500': selectedLink === 'supplier' }">Fournisseur</button>
           <button (click)="router.navigateByUrl('/stock');selectedLink='stock'" class="cursor-pointer h-full border-b-2  inline-flex items-center mr-8"[ngClass]="{ '  border-blue-500 text-blue-500': selectedLink === 'stock' }">Stock</button>
         </div>
@@ -113,7 +113,7 @@
           <a href="ratingView">Noter nos plats</a>
         </div>
         <div>
-          <a href="">Nous joindre</a>
+          <a href="fundRequest">Remplir ses fonds</a>
         </div>
       </div>
       <div class="h-full flex justify-center items-center">

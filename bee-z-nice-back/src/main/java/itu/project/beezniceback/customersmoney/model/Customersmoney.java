@@ -1,4 +1,5 @@
 package itu.project.beezniceback.customersmoney.model;
+import itu.project.beezniceback.customersquery.model.Customersquery;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Immutable;
 
@@ -41,7 +42,11 @@ private LocalDateTime dateDeposit;
     public void setDateDeposit(LocalDateTime dateDeposit) {
         this.dateDeposit = dateDeposit;
     }
-
+    public Customersmoney(Customersquery customersquery,LocalDateTime localDateTime){
+        this.setVirtualamount(customersquery.getVirtualamount());
+        this.setDateDeposit(localDateTime);
+        this.setIdcustomer(customersquery.getIdcustomer());
+    }
     public long getId(){
       return this.id;
 }
