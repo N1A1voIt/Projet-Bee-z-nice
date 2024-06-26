@@ -39,7 +39,7 @@ public class Top3Rating {
 
     @Column(name = "avg_mark")
     @JsonProperty("rate")
-    private int rate;
+    private Double rate;
 
     public int getId() {
         return id;
@@ -97,11 +97,11 @@ public class Top3Rating {
         this.image = image;
     }
 
-    public int getRate() {
+    public Double getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(double rate) {
         this.rate = rate;
     }
 }
