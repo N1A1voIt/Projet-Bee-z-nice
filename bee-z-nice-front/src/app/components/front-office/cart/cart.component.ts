@@ -107,9 +107,11 @@ export class CartComponent implements OnInit {
             next: (response) => {
                 console.log(response);
                 this.refreshCart();
+                this.getSolde()
             },
             error: (error) => {
-                alert(error);
+                console.log(error)
+                alert(error.error);
             },
         });
     }

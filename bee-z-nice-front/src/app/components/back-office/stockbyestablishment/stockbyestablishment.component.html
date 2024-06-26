@@ -6,6 +6,24 @@
         Add a new element
     </button>
 </div>
+<div class="w-full h-[75px] flex items-center relative mb-2 gap-3">
+    <n-input name="Etablissement">
+        <input
+            type="text"
+            placeholder=""
+            [(ngModel)]="filterName"
+            class="border border-gray-300 rounded p-2"
+        />
+    </n-input>
+    <n-input name="Date limite">
+        <input
+            type="date"
+            placeholder="Filter by date"
+            [(ngModel)]="filterDate"
+            class="border border-gray-300 rounded p-2"
+        />
+    </n-input>
+</div>
 <app-modal-component [showForm]="showForm">
     <form
         class="flex flex-col w-5/6 justify-center align-middle"
@@ -65,25 +83,89 @@
         class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
     >
         <tr>
-            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">id</th>
-<th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">dishesname</th>
-<th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">name</th>
-<th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">remainingstock</th>
-<th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">type</th>
-<th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">DATE</th>
-
+            <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+            >
+                id
+            </th>
+            <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+            >
+                dishesname
+            </th>
+            <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+            >
+                name
+            </th>
+            <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+            >
+                remainingstock
+            </th>
+            <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+            >
+                type
+            </th>
+            <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+            >
+                DATE
+            </th>
         </tr>
     </thead>
     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-        <tr class="text-gray-700 dark:text-gray-400" *ngFor="let line of all | paginate:{ itemsPerPage: 10, currentPage: pages }">
-<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.id}}</td>
-<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.dishesname}}</td>
-<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.name}}</td>
-<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.remainingstock}}</td>
-<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.type}}</td>
-<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">{{line.movedate.replace('T',' ')}}</td>
-<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 "><button (click)="delete(line.id)">Supprimer</button></td>
-<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 "><button (click)="update(line.id);showForm=!showForm">Update</button></td>
+        <tr
+            class="text-gray-700 dark:text-gray-400"
+            *ngFor="
+                let line of filteredList
+                    | paginate : { itemsPerPage: 10, currentPage: pages }
+            "
+        >
+            <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+                {{ line.id }}
+            </td>
+            <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+                {{ line.dishesname }}
+            </td>
+            <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+                {{ line.name }}
+            </td>
+            <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+                {{ line.remainingstock }}
+            </td>
+            <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+                {{ line.type }}
+            </td>
+            <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+                {{ line.movedate.replace("T", " ") }}
+            </td>
+            <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+                <button (click)="delete(line.id)">Supprimer</button>
+            </td>
+            <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+                <button (click)="update(line.id); showForm = !showForm">
+                    Update
+                </button>
+            </td>
+        </tr>
     </tbody>
 </n-table>
 

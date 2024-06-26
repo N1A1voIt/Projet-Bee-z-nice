@@ -14,7 +14,19 @@ CREATE VIEW public.v_customersmoney AS
              JOIN public.establismentemployee ON (((customersmoney.idcustomer)::text = (establismentemployee.id)::text)))) t0;
 
 
-
+CREATE VIEW v_stockbyestablishment as
+SELECT
+    stockbyestablishment.id,
+    dishes.dishesname,
+    establishment.name,
+    stockbyestablishment.remainingstock,
+    movementtype.type,
+    stockByEstablishment.movedate
+FROM
+    public.stockbyestablishment
+LEFT JOIN public.dishes ON stockbyestablishment.iddishes = dishes.id
+LEFT JOIN public.establishment ON stockbyestablishment.idestablishment = establishment.id
+LEFT JOIN public.movementtype ON stockbyestablishment.idmovementtype = movementtype.id;
 
 CREATE VIEW public.v_stockbyestablishment AS
  SELECT t2.id,

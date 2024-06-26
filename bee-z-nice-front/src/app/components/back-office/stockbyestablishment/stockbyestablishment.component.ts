@@ -39,6 +39,16 @@ export class StockbyestablishmentComponent implements OnInit {
     remainingstockValue: number | null = null;
     idmovementtypeValue: number | null = null;
     movedateValue: Date | null = null;
+    datePicker:Date = new Date();
+    filterName: string = '';
+    filterDate:string = '';
+    get filteredList() {
+        return this.all.filter((item: { name: string; movedate: string | number | Date; }) => {
+          const matchesName = item.name.toLowerCase().includes(this.filterName.toLowerCase());
+          const matchesDate = !this.filterDate || new Date(item.movedate) <= new Date(this.filterDate);
+          return matchesName && matchesDate;
+        });
+      }
     constructor(
         private stockbyestablishmentService: StockbyestablishmentService
     ) {}
