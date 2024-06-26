@@ -55,9 +55,7 @@ export class AppComponent implements OnInit {
     ) {}
     ngOnInit(): void {
         this.checkToken();
-        if (this.isLoggedIn && !this.isAdmin) {
-            this.retrieveMenuType();
-        }
+        this.retrieveMenuType();
     }
     checkToken() {
         if (localStorage.getItem('userToken') != null) {
