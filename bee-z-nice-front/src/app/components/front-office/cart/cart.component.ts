@@ -33,7 +33,7 @@ export class CartComponent implements OnInit {
     solde!: number;
     price: number = 0;
     achatValide: boolean = false;
-    dateSolde = new Date();
+    dateSolde:Date = new Date();
     constructor(
         private cartService: CartService,
         private appComponent: AppComponent,
@@ -43,7 +43,7 @@ export class CartComponent implements OnInit {
         this.appComponent.showCart = !this.appComponent.showCart;
     }
     getSolde() {
-        const localDate = new Date();
+        const localDate = new Date(this.dateSolde);
         const offsetInMinutes = localDate.getTimezoneOffset();
         const adjustedDate = new Date(
             localDate.getTime() - offsetInMinutes * 60 * 1000
@@ -94,7 +94,16 @@ export class CartComponent implements OnInit {
     }
 
     saveCart() {
-        this.cartService.saveCart().subscribe({
+        const localDate = new Date(this.dateSolde);
+        const offsetInMinutes = localDate.getTimezoneOffset();
+        const adjustedDate = new Date(
+            localDate.getTime() - offsetInMinutes * 60 * 1000
+        );
+
+        const form = {
+            orderDate: adjustedDate.toISOString(), // Convert date to ISO string in UTC
+        };
+        this.cartService.saveCart(form).subscribe({
             next: (response) => {
                 console.log(response);
                 this.refreshCart();

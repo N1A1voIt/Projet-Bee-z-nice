@@ -65,7 +65,7 @@
   </div>
 </div>
 <div class="h-[100vh]" *ngIf="!isAdmin">
-  <div *ngIf="isLoggedIn && !isAdmin" class="fixed w-full z-10 flex flex-row justify-center items-center h-[100px]">
+  <!-- <div *ngIf="isLoggedIn && !isAdmin" class="fixed w-full z-10 flex flex-row justify-center items-center h-[100px]">
       <div class="w-2/3 bg-white h-2/3 p-2 rounded-full shadow flex flex-row align-middle justify-between items-center">
         <div class="logo w-1/6 h-full flex justify-around p-4 items-center rounded-full">
           <span class="border border-amber-500 w-[50px] h-[50px] flex flex-row items-center justify-center rounded-full">
@@ -94,15 +94,69 @@
           <div (click)="logout()" class="bg-amber-400 h-full w-[100px] p-2 flex items-center justify-center rounded-full text-white">
             <p>Log out</p>
           </div>  
-      </div>
-  </div>
+      </div> -->
+  <!-- </div> -->
     
+  <!-- </div> -->
+
+
+  <div class="h-[100vh] flex justify-center " *ngIf="!isAdmin">
+    <div *ngIf="isLoggedIn && !isAdmin" class="fixed w-[100vw] z-10 grid grid-cols-3 items-center h-[80px] bg-white rounded-t-xl border-b-2 transition-all duration-300 ease-in-out" [ngClass]="showdiv ? 'w-[90vw] mt-10 shadow-xl' : 'w-full mt-0'">
+      <div class="col-span-1 h-full  flex justify-around items-center uppercase font-bold">
+        <div>
+          <a href="client">Notre top 3</a>
+        </div>
+        <div class="flex justify-center gap-2 align-middle cursor-pointer" (click)="showdiv=!showdiv">
+          Menu <span class="text-xs transition-all duration-600 ease-in-out"><mat-icon [ngClass]="showdiv?'rotate-180':'rotate-0'">keyboard_arrow_down</mat-icon></span>
+        </div>
+        <div>
+          <a href="ratingView">Noter nos plats</a>
+        </div>
+        <div>
+          <a href="">Nous joindre</a>
+        </div>
+      </div>
+      <div class="h-full flex justify-center items-center">
+        <div class="logo w-1/3 h-full flex justify-around p-4 items-center rounded-full">
+          <span class="border border-amber-500 w-[50px] h-[50px] flex flex-row items-center justify-center rounded-full">
+            <h1 class="font-bold text-2xl text-amber-500">B</h1>
+          </span>
+          <h1>Bee-z Nice</h1>
+        </div>
+      </div>
+      <div class="h-full flex justify-center items-center">
+        <div class="flex justify-around gap-6">
+          <div>
+            <a class="cursor-pointer" (click)="showCart=!showCart"><mat-icon>shopping_cart</mat-icon></a>
+          </div>
+          <div (click)="logout()" class=" flex justify-around cursor-pointer">
+            <mat-icon>logout</mat-icon>
+          </div> 
+          <div>
+            Ny Avo
+          </div>
+        </div>
+         
+      </div>
+      <div class="absolute top-[80px] w-full grid grid-cols-6 bg-white border-b-1 rounded-b-xl transition-all duration-300 ease-in-out" [ngClass]="showdiv ? 'opacity-100 translate-y-0 shadow-xl' : 'opacity-0 -translate-y-4 pointer-events-none'">
+        <div class="w-[100%] p-7 h-full py-10 grid grid-cols-4 gap-[3vw] col-span-10 bg-white rounded-b-xl">
+          <div class="grid grid-cols-3 gap-10 col-span-3">
+            <app-card-menu *ngFor="let menuT of menuType" link="/foodDisplay/{{menuT.id}}" imgPath="{{imageRoute}}/assets/{{menuT.image_name}}" imgTitle="{{menuT.libelle}}"></app-card-menu>
+          </div>
+          <div class="col-span-1 bg-black absolute right-0 top-0  overflow-hidden flex justify-center rounded-br-xl h-full w-[20vw] items-center">
+            <img src="assets/Beverages.jpg" class="w-full h-full object-cover" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <main class="w-[100vw] ">
+      <router-outlet />
+    </main>
   </div>
-  <div *ngIf="showCart  && isLoggedIn && !isAdmin">
+
+  <div *ngIf="showCart  && isLoggedIn && !isAdmin" class="absolute z-1000 top-0 h-full w-full transition-all duration-600 ease-in-out">
     <app-cart [showCart] = "true"></app-cart>
   </div>
   
-  <main class="w-[100vw]">
-    <router-outlet />
-  </main>
+  
 </div>

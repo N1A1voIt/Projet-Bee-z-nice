@@ -46,8 +46,14 @@ public class CustomersmoneyService{
       System.out.println(localDateTime.toString());
 
       double expenses = foodorderService.getExpensesByIdUser((int)loggedCustomer.getId(),localDateTime);
-      Customersmoney customersmoney = customersmoneyRepository.findMoney(loggedCustomer.getUniqId(),localDateTime).get(0);
-      customersmoney.setVirtualamount(BigDecimal.valueOf(customersmoney.getVirtualamount().doubleValue()-expenses));
+      Customersmoney customersmoney;
+
+      if(customersmoneyRepository.findMoney(loggedCustomer.getUniqId(),localDateTime).size() == 0){
+         customersmoney = new Customersmoney(0, loggedCustomer.getUniqId(), new BigDecimal(0),localDateTime);
+      }else{
+         customersmoney = customersmoneyRepository.findMoney(loggedCustomer.getUniqId(),localDateTime).get(0);
+         customersmoney.setVirtualamount(BigDecimal.valueOf(customersmoney.getVirtualamount().doubleValue()-expenses));
+      }
       return customersmoney;
    }
    public double getPayDoubleValue(LoggedCustomer loggedCustomer,LocalDateTime localDateTime){

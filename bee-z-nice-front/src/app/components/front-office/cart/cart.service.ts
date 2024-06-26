@@ -18,7 +18,7 @@ export class CartService {
       }
       return this.http.get<any>(`${apiUrl()}/cart/pendingRequest`,{'headers':headers});
     }
-    saveCart(){
+    saveCart(form:any){
       let token = localStorage.getItem("userToken");
       let headers;
       if (token != null){
@@ -26,7 +26,7 @@ export class CartService {
               'Authorization' : token
           });
       }
-      return this.http.get<any>(`${apiUrl()}/saveCart`,{'headers':headers});
+      return this.http.post<any>(`${apiUrl()}/saveCart`,form,{'headers':headers});
     }
     getSolde(form:any){
       let token = localStorage.getItem("userToken");

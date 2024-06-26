@@ -24,6 +24,16 @@ private BigDecimal virtualamount;
 @Column(name = "datedeposit")
 private LocalDateTime dateDeposit;
 
+    public Customersmoney() {
+    }
+
+    public Customersmoney(long id, String idcustomer, BigDecimal virtualamount, LocalDateTime dateDeposit) {
+        this.id = id;
+        this.idcustomer = idcustomer;
+        this.virtualamount = virtualamount;
+        this.dateDeposit = dateDeposit;
+    }
+
     public LocalDateTime getDateDeposit() {
         return dateDeposit;
     }
