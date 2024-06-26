@@ -1,9 +1,12 @@
 package itu.project.beezniceback.customersmoney.model;
+import itu.project.beezniceback.customersquery.model.Customersquery;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Immutable;
 
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "customersmoney")
 public class Customersmoney{
@@ -19,7 +22,32 @@ private String idcustomer;
 @Column(name = "virtualamount")
 private BigDecimal virtualamount;
 
-  public long getId(){
+@Column(name = "datedeposit")
+private LocalDateTime dateDeposit;
+
+    public Customersmoney() {
+    }
+
+    public Customersmoney(long id, String idcustomer, BigDecimal virtualamount, LocalDateTime dateDeposit) {
+        this.id = id;
+        this.idcustomer = idcustomer;
+        this.virtualamount = virtualamount;
+        this.dateDeposit = dateDeposit;
+    }
+
+    public LocalDateTime getDateDeposit() {
+        return dateDeposit;
+    }
+
+    public void setDateDeposit(LocalDateTime dateDeposit) {
+        this.dateDeposit = dateDeposit;
+    }
+    public Customersmoney(Customersquery customersquery,LocalDateTime localDateTime){
+        this.setVirtualamount(customersquery.getVirtualamount());
+        this.setDateDeposit(localDateTime);
+        this.setIdcustomer(customersquery.getIdcustomer());
+    }
+    public long getId(){
       return this.id;
 }
 

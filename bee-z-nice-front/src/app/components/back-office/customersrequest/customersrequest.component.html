@@ -1,0 +1,110 @@
+<section class="w-full h-full  grid grid-cols-6 gap-2">
+    <div
+        class="col-span-2 row-span-1 h-[100%] bg-white rounded-tl-xl rounded-xl flex items-center flex-col"
+    >
+        <div
+            class="text-2xl w-full flex justify-center items-center h-[50px] text-center border-b"
+        >
+            <h1>Requête en attente</h1>
+        </div>
+        <div
+            class="overflow-y-auto col-span-1 w-full"
+            style="max-height: 24rem"
+        >
+            <form
+                (submit)="sendValidation(form)"
+                #form="ngForm"
+                action=""
+                class="p-6 space-y-6"
+            >
+                <br />
+                <n-input name="Date limite">
+                    <input
+                        type="datetime-local"
+                        name="dateRequest"
+                        (change)="getPendingRequest()"
+                        [(ngModel)]="dateRequest"
+                    />
+                </n-input>
+            </form>
+        </div>
+    </div>
+
+    <!-- </div> -->
+    <div
+        class="flex flex-col md:col-span-4 row-span-1 md:row-span-3 bg-white shadow rounded-lg"
+    >
+        <div class="px-6 py-5 font-semibold border-b border-gray-100">
+            Visuel des bénéfices
+        </div>
+        <div class="p-4 flex-grow">
+            <div
+                class="flex flex-col gap-2 items-center h-full px-4 py-16 text-gray-400 bg-gray-100 border-2 border-gray-200 border-dashed rounded-md"
+            >
+            
+                <n-table class="w-full">
+                    <thead
+                        class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                    >
+                        <tr>
+                            <th scope="col" class="px-6 py-4">id</th>
+                            <th scope="col" class="px-6 py-4">Identifiant</th>
+                            <th scope="col" class="px-6 py-4">Montant</th>
+                            <th scope="col" class="px-6 py-4">
+                                Date de la requête
+                            </th>
+                            <th scope="col" class="px-6 py-4">Validation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="
+                                let line of listPendingRequest
+                                    | paginate
+                                        : {
+                                              itemsPerPage: 10,
+                                              currentPage: pages
+                                          }
+                            "
+                            class="text-gray-700 dark:text-gray-400"
+                        >
+                            <td
+                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                            >
+                                {{ line.id }}
+                            </td>
+                            <td
+                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                            >
+                                {{ line.idcustomer }}
+                            </td>
+                            <td
+                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                            >
+                                {{ line.virtualamount }}
+                            </td>
+                            <td
+                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                            >
+                                {{ line.daterequest }}
+                            </td>
+                            <td
+                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 flex justify-around"
+                            >
+                            <input type="submit" (click)="sendValidation(line.id)" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" value="Valider">
+                            
+                            </td>
+                        </tr>
+                    </tbody>
+                </n-table>
+                <div>
+                    <pagination-controls
+                        (pageChange)="pages = $event"
+                    ></pagination-controls>
+                </div>
+                <!-- <div class="line w-full max-h-[50vh]" [chart]="linecharts"></div> -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- (submit)="getDashboard(form)" #form="ngForm" -->

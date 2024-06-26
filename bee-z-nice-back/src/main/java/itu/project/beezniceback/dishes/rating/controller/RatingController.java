@@ -19,6 +19,7 @@ public class RatingController {
     private RatingService ratingService;
     @Autowired
     private TokenGenerator tokenGenerator;
+
     @PostMapping("/api/rating/save")
     public ResponseEntity<?> save(@RequestBody RatingSaveDTO rating,@RequestHeader(name = "Authorization") String authorizationHeader){
         try{
@@ -35,6 +36,15 @@ public class RatingController {
             LoggedCustomer loggedCustomer = tokenGenerator.decodeCustomer(authorizationHeader);
             return ResponseEntity.ok(ratingService.update(rating,loggedCustomer));
         }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    @GetMapping("/api/rating/top3")
+    public ResponseEntity<?> top3(){
+        try{
+            return ResponseEntity.ok(ratingService.getTop3());
+        }catch (Exception e){
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

@@ -63,16 +63,16 @@ public class CartService {
     }
 
     @Transactional
-    public void saveMyCart(LoggedCustomer loggedCustomer) throws Exception{
-        Customersmoney customersmoney = customersmoneyService.findByIdCustomer(loggedCustomer.getUniqId()).get();
-        System.out.println("Customers money:"+customersmoney.getVirtualamount());
+    public void saveMyCart(LoggedCustomer loggedCustomer,LocalDateTime commandTime) throws Exception{
+//        Customersmoney customersmoney = customersmoneyService.findByIdCustomer(loggedCustomer.getUniqId()).get();
+//        System.out.println("Customers money:"+customersmoney.getVirtualamount());
         List<ActiveCartLabeled> activeCarts = activeCartService.getLabeledListByIdUser(loggedCustomer.getId());
         double cartNetVal = cartValue(activeCarts);
-        if (cartNetVal > customersmoneyService.getPayDoubleValue(loggedCustomer)) {
+        if (cartNetVal > customersmoneyService.getPayDoubleValue(loggedCustomer,commandTime)) {
             throw new Exception("You don't have enough money to purchase those items");
         }
 //        Timestamp commandTime = new Timestamp(System.currentTimeMillis());
-        LocalDateTime commandTime = LocalDateTime.now();
+//        LocalDateTime commandTime = LocalDateTime.now();
         List<Stockbyestablishment> stockbyestablishments = getLastLines(commandTime);
         for (int i = 0; i < activeCarts.size(); i++) {
             System.out.println("Dishe ID:"+activeCarts.get(i).getIdDishe());

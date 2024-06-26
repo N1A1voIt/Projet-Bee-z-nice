@@ -1,10 +1,16 @@
 package itu.project.beezniceback.customersmoney.controller;
 import itu.project.beezniceback.authentification.model.LoggedCustomer;
 import itu.project.beezniceback.authentification.tokenHandler.TokenGenerator;
+import itu.project.beezniceback.customersmoney.PayDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import itu.project.beezniceback.customersmoney.model.*;
+
+import java.time.LocalDateTime;
+
 @RestController
 public class CustomersmoneyController{
     @Autowired
@@ -20,11 +26,12 @@ public class CustomersmoneyController{
     public ResponseEntity<?> findById(@PathVariable long id){
         return ResponseEntity.ok(customersmoneyService.getById(id));
     }
-    @GetMapping("/api/customersmoney/getpay")
-    public ResponseEntity<?> getPay(@RequestHeader(name = "Authorization") String authorizationHeader){
+    @PostMapping("/api/customersmoney/getpay")
+    public ResponseEntity<?> getPay(@RequestBody PayDto payDto, @RequestHeader(name = "Authorization") String authorizationHeader){
         try{
             LoggedCustomer loggedCustomer = tokenGenerator.decodeCustomer(authorizationHeader);
-            return ResponseEntity.ok(customersmoneyService.getPay(loggedCustomer));
+            LocalDateTime localDateTime = payDto.getOrderDate();
+            return ResponseEntity.ok(customersmoneyService.getPay(loggedCustomer,localDateTime));
         }catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e);

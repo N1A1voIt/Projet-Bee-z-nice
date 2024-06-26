@@ -1,0 +1,23 @@
+<div class="flex flex-row justify-center align-middle items-center max-h-[100vh] h-[90vh] top-[10vh] relative overflow-y-scroll p-2">
+    <div class="flex flex-col w-1/2 h-full">
+        
+        <app-dashboard-card label='Votre solde actuel' [money]="solde" class="w-full"></app-dashboard-card>
+        <div class=" gap-[10vh]">
+            <!-- <form action="" (ngSubmit)="onSubmit()" #form="ngForm">
+                <input type="number" name="money" [(ngModel)]="money">
+                Argent:{{money}}
+                <input type="submit">
+            </form> -->
+            <form #form="ngForm" (ngSubmit)="onSubmit()" class="mx-auto mt-16 max-w-xl sm:mt-20">
+                <n-input name="Montant à demander">
+                    <input type="number" name="money" [(ngModel)]="money">
+                </n-input>
+                <n-input name="Date de la requête">
+                    <input type="datetime-local" name="dateRequest" [(ngModel)]="dateRequest">
+                </n-input>
+                <app-submit-button></app-submit-button>
+            </form>
+        </div>
+    </div>
+    
+</div>
