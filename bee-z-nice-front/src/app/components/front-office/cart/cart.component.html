@@ -17,7 +17,7 @@
             <div class=" w-[90%] h-[90%] ">
                 <div class="w-full h-full relative" >
                     <div class="text-xl">
-                        <h1>Votre solde est de: {{solde |number:'1.0-2'}}</h1>
+                        <h1>Votre solde est de: {{solde |number:'1.0-2'}} Ariary</h1>
                     </div>
                     <div class="text-xl" *[hidden]="achatValide">
                         <h1>Votre solde est insuffisant pour effectuer cet achat de {{price | number:'1-0-2'}} Ariary</h1>
