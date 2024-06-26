@@ -5,6 +5,7 @@ import { AddtocartService } from '../addtocart/addtocart.service';
 import { CartComponent } from '../cart/cart.component';
 import { CartService } from '../cart/cart.service';
 import { MatIcon } from '@angular/material/icon';
+import { CartElementsService } from './cart-elements.service';
 
 @Component({
     selector: 'app-cart-elements',
@@ -20,7 +21,7 @@ export class CartElementsComponent {
     constructor(
         private addToCartService: AddtocartService,
         private cart: CartComponent,
-        private cartService: AddToCartService
+        private cartService: CartElementsService
     ) {}
 
     deleteById() {
@@ -36,7 +37,7 @@ export class CartElementsComponent {
     }
     increaseQuantity() {
         this.item.quantity += 1;
-        this.onSubmit();
+        this.onSubmitAdd();
     }
     decreaseQuantity() {
         if (this.item.quantity < 1) {
@@ -44,13 +45,30 @@ export class CartElementsComponent {
         } else {
             this.item.quantity -= 1;
         }
-        this.onSubmit();
+        this.onSubmitRemove();
     }
-    onSubmit() {
-        var formAny = new FormData();
-        formAny.append('id', this.item.id);
-        formAny.append('quantity', this.item.quantity);
+    onSubmitAdd() {
+        console.log(this.item)
+        const formAny = {
+            id:this.item.idDishe,
+            quantity:this.item.quantity
+        };
         this.cartService.addToCart(formAny).subscribe({
+            next: (response) => {
+                console.log(response);
+            },
+            error: (error) => {
+                alert(error);
+            },
+        });
+    }
+    onSubmitRemove() {
+        console.log(this.item)
+        const formAny = {
+            id:this.item.idDishe,
+            quantity:this.item.quantity
+        };
+        this.cartService.removeToCart(formAny).subscribe({
             next: (response) => {
                 console.log(response);
             },

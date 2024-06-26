@@ -16,15 +16,27 @@ public ResponseEntity<?> findById(@PathVariable long id){
 return ResponseEntity.ok(stockbyestablishmentService.getById(id));
 }
        @GetMapping("/api/stockbyestablishment/delete/{id}")
-public void delete(@PathVariable long id){
+        public void delete(@PathVariable long id){
 stockbyestablishmentService.delete(id);
 }
        @PostMapping("/api/stockbyestablishment/save")
-public void save(@RequestBody Stockbyestablishment stockbyestablishment){
-stockbyestablishmentService.save(stockbyestablishment);
-}
+        public ResponseEntity<?> save(@RequestBody Stockbyestablishment stockbyestablishment){
+                   try{
+                       stockbyestablishmentService.save(stockbyestablishment);
+                       return ResponseEntity.ok(stockbyestablishment);
+                   }catch (Exception e){
+                       e.printStackTrace();
+                       return ResponseEntity.badRequest().body(e.getMessage());
+                   }
+        }
        @PostMapping("/api/stockbyestablishment/update")
-public void update(@RequestBody Stockbyestablishment stockbyestablishment){
-stockbyestablishmentService.save(stockbyestablishment);
-}
+        public ResponseEntity<?> update(@RequestBody Stockbyestablishment stockbyestablishment){
+           try{
+               stockbyestablishmentService.save(stockbyestablishment);
+               return ResponseEntity.ok(stockbyestablishment);
+           }catch (Exception e){
+               e.printStackTrace();
+               return ResponseEntity.badRequest().body(e.getMessage());
+           }
+        }
 }

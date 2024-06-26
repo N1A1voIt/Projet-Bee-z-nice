@@ -45,22 +45,7 @@ public class CartService {
     public CartService(){
 //        listStock = getLastLines();
     }
-    public List<Stockbyestablishment> getLastLines(LocalDateTime timestamp) {
-        Query query = entityManager.createNativeQuery(
-                "SELECT t.* " +
-                        "FROM stockbyEstablishment t " +
-                        "JOIN ( " +
-                        "    SELECT idestablishment, iddishes, MAX(movedate) AS max_movedate " +
-                        "    FROM stockbyEstablishment " +
-                        "    GROUP BY idestablishment, iddishes " +
-                        ") sub ON t.idestablishment = sub.idestablishment AND t.iddishes = sub.iddishes AND t.movedate = sub.max_movedate " +
-                        "WHERE t.movedate <= :moveDate", Stockbyestablishment.class);
-        query.setParameter("moveDate", timestamp);
-        List<Stockbyestablishment> stockbyestablishments = query.getResultList();
-        System.out.println("Stock length:"+stockbyestablishments.size());
-        System.out.println("Stock date limit:"+timestamp.toString());
-        return stockbyestablishments;
-    }
+
 
     @Transactional
     public void saveMyCart(LoggedCustomer loggedCustomer,LocalDateTime commandTime) throws Exception{
@@ -73,7 +58,7 @@ public class CartService {
         }
 //        Timestamp commandTime = new Timestamp(System.currentTimeMillis());
 //        LocalDateTime commandTime = LocalDateTime.now();
-        List<Stockbyestablishment> stockbyestablishments = getLastLines(commandTime);
+        List<Stockbyestablishment> stockbyestablishments = stockService.getLastLines(commandTime);
         for (int i = 0; i < activeCarts.size(); i++) {
             System.out.println("Dishe ID:"+activeCarts.get(i).getIdDishe());
             decreaseStock(stockbyestablishments,activeCarts.get(i).getIdDishe(),activeCarts.get(i).getQuantity(),commandTime,loggedCustomer);
@@ -100,26 +85,17 @@ public class CartService {
         System.out.println("SUM:"+sum);
         return sum;
     }
-    public void decreaseStock(List<Stockbyestablishment> stocks, int idDishes, int quantity, LocalDateTime decreaseTime, LoggedCustomer loggedCustomer){
+    public void decreaseStock(List<Stockbyestablishment> stocks, int idDishes, int quantity, LocalDateTime decreaseTime, LoggedCustomer loggedCustomer) throws Exception {
         System.out.println("Id dishe: "+idDishes);
-        Stockbyestablishment stockbyestablishment = getByIdDishesAndEstablishement(stocks,idDishes, loggedCustomer.getIdEstablishement());
         Stockbyestablishment stockbyestablishmentToSave = new Stockbyestablishment();
         stockbyestablishmentToSave.setIddishes(idDishes);
         stockbyestablishmentToSave.setIdestablishment(loggedCustomer.getIdEstablishement());
-        stockbyestablishmentToSave.setRemainingstock(stockbyestablishment.getRemainingstock()-quantity);
+        stockbyestablishmentToSave.setRemainingstock(quantity);
         stockbyestablishmentToSave.setIdmovementtype(2);
         stockbyestablishmentToSave.setMovedate(decreaseTime);
         stockService.save(stockbyestablishmentToSave);
     }
-    public Stockbyestablishment getByIdDishesAndEstablishement(List<Stockbyestablishment> stocks,int idDishes,int idEstablishment){
-        for (int i = 0; i < stocks.size(); i++) {
-            if (stocks.get(i).getIddishes() == idDishes && stocks.get(i).getIdestablishment()==idEstablishment){
-                System.out.println("GET STOCK BY :"+stocks.get(i).getIddishes());
-                return stocks.get(i);
-            }
-        }
-        return null;
-    }
+
     public void addToCart(int idDishes,int quantity,LoggedCustomer loggedCustomer){
         Optional<Dishes> dishes = dishesService.getById(idDishes);
         addToCart(dishes.get(),quantity,loggedCustomer);
@@ -156,8 +132,9 @@ public class CartService {
         List<ViewActiveCart> activeCarts = activeCartService.getByIdUser(loggedCustomer.getId());
         int index = cartContains(dishes,activeCarts);
         if (index != -1){
-            activeCarts.get(index).setQuantity(activeCarts.get(index).getQuantity()-quantity);
-            Addtocart addtocart = new Addtocart(activeCarts.get(index));
+           Addtocart addtocart = new Addtocart(activeCarts.get(index));
+            addtocart.setQuantity(addtocart.getQuantity()-quantity);
+            System.out.println("Decreasinggggg");
             addtocartService.update(addtocart);
         }
     }
