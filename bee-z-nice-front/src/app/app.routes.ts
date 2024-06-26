@@ -19,6 +19,7 @@ import { RatingViewComponent } from './components/front-office/rating-view/ratin
 import { ProfitsStatisticsComponent } from './components/back-office/profits-statistics/profits-statistics.component';
 import { SupplierActivityStatisticsService } from './components/back-office/supplier-activity-statistics/supplier-activity-statistics.service';
 import { SupplierActivityStatisticsComponent } from './components/back-office/supplier-activity-statistics/supplier-activity-statistics.component';
+import { SupplierPaymentComponent } from './components/back-office/supplier-payment/supplierPayment.component';
 
 export const routes: Routes = [
     {path:'register',component:SignupComponent,canActivate:[loginGuard]},
@@ -37,5 +38,6 @@ export const routes: Routes = [
     {path:'supplier-activity',component:SupplierActivityStatisticsComponent,canActivate:[adminGuardGuard]},
     {path:'foodDisplay/:id',component:FoodDisplayerComponent,canActivate:[clientGuardGuard]},
     {path:'errorPageNotAuthorized',component:ErrorPageNotAuthorizedComponent},
-    {path:'ratingView',component:RatingViewComponent,canActivate:[clientGuardGuard]}
+    {path:'ratingView',component:RatingViewComponent,canActivate:[clientGuardGuard]},
+    {path:'supplierPayment',component:SupplierPaymentComponent,canActivate:[adminGuardGuard]}
 ];

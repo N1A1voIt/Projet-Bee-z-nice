@@ -22,6 +22,9 @@ public class VUnpayedStock {
     @Column(name = "idsupplier")
     private Integer idsupplier;
 
+    @Column(name = "namesupplier")
+    private String namesupplier;
+
     @Column(name = "month")
     private BigDecimal month;
 
@@ -37,6 +40,10 @@ public class VUnpayedStock {
 
     public Integer getIdsupplier() {
         return idsupplier;
+    }
+
+    public String getNamesupplier() {
+        return namesupplier;
     }
 
     public BigDecimal getMonth() {

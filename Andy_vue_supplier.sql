@@ -25,8 +25,14 @@ select
         group by month,idsupplier,year;
 
 create view v_unpayed_stock as
-select *
-from public.v_stock_per_establishment as spe where spe.id not in(select idunpayedstock from supplierPayment);
+select
+    spe.id as id,
+    spe.idsupplier as idsupplier,
+    sup.namesupplier as namesupplier,
+    spe.month,
+    spe.year,
+    spe.amount
+from public.v_stock_per_establishment as spe join public.supplier as sup on spe.idsupplier=sup.id where spe.id not in(select idunpayedstock from supplierPayment);
 
 -- UPDATE public.stockbyestablishment SET time = '2024-01-20 08:58:54.000000' WHERE id = 2;
 -- UPDATE public.stockbyestablishment SET time = '2024-01-20 08:58:54.000000' WHERE id = 3;
