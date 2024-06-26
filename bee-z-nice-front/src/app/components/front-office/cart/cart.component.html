@@ -24,6 +24,7 @@
                     </div>
                     <div *ngIf="achatValide" class="absolute bottom-0 flex flex-row justify-between w-full items-center">
                         <h1 class="text-xl">Montant de l'achat: {{price |number:'1.0-2' }} Ariary</h1>
+                        <input type="datetime-local" value="" (change)="getSolde()" [(ngModel)]="dateSolde">
                         <button (click)="saveCart()" class="bg-amber-400 p-3 rounded-full text-white ">Valider l'achat</button>
                     </div>
                 </div>

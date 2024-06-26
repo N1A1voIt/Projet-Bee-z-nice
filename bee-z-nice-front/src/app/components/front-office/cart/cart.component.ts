@@ -31,8 +31,9 @@ export class CartComponent implements OnInit {
     foodsRoute = foodsRoute();
     @Input() showCart: boolean = false;
     solde!: number;
-    price:number = 0;
-    achatValide:boolean = false;
+    price: number = 0;
+    achatValide: boolean = false;
+    dateSolde:Date = new Date();
     constructor(
         private cartService: CartService,
         private appComponent: AppComponent,
@@ -41,27 +42,38 @@ export class CartComponent implements OnInit {
     toggleShowCart() {
         this.appComponent.showCart = !this.appComponent.showCart;
     }
-    getSolde(){
-        this.cartService.getSolde().subscribe({
-            next:(resp) => {
-                console.log(resp)
-                this.solde = resp.virtualamount
-                if(this.solde - this.price >=0 ){
+    getSolde() {
+        const localDate = new Date(this.dateSolde);
+        const offsetInMinutes = localDate.getTimezoneOffset();
+        const adjustedDate = new Date(
+            localDate.getTime() - offsetInMinutes * 60 * 1000
+        );
+
+        const form = {
+            orderDate: adjustedDate.toISOString(), // Convert date to ISO string in UTC
+        };
+        console.log(form.orderDate);
+        this.cartService.getSolde(form).subscribe({
+            next: (resp) => {
+                console.log('Resp  ' + resp);
+                this.solde = resp.virtualamount;
+                if (this.solde - this.price >= 0) {
                     this.achatValide = true;
                 }
-            },error:(err) => {
-                console.log(err.value)
-                alert(err)
-            }
-        })
+            },
+            error: (err) => {
+                console.log(err.value);
+                alert(err);
+            },
+        });
     }
-    getPrice(){
+    getPrice() {
         //quantity - sellingPrice
         for (let index = 0; index < this.cartContent.length; index++) {
             let element = this.cartContent[index];
-            this.price+=element.quantity*element.sellingPrice;
+            this.price += element.quantity * element.sellingPrice;
         }
-        
+
         // this.cartContent
     }
     deleteById(id: number) {
@@ -82,7 +94,16 @@ export class CartComponent implements OnInit {
     }
 
     saveCart() {
-        this.cartService.saveCart().subscribe({
+        const localDate = new Date(this.dateSolde);
+        const offsetInMinutes = localDate.getTimezoneOffset();
+        const adjustedDate = new Date(
+            localDate.getTime() - offsetInMinutes * 60 * 1000
+        );
+
+        const form = {
+            orderDate: adjustedDate.toISOString(), // Convert date to ISO string in UTC
+        };
+        this.cartService.saveCart(form).subscribe({
             next: (response) => {
                 console.log(response);
                 this.refreshCart();
@@ -98,7 +119,7 @@ export class CartComponent implements OnInit {
             next: (response) => {
                 this.cartContent = response;
                 // console.log(this.cartContent)
-                this.getPrice()
+                this.getPrice();
             },
             error: (error) => {
                 this.error = error;

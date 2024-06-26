@@ -19,6 +19,9 @@ import { RatingViewComponent } from './components/front-office/rating-view/ratin
 import { ProfitsStatisticsComponent } from './components/back-office/profits-statistics/profits-statistics.component';
 import { SupplierActivityStatisticsService } from './components/back-office/supplier-activity-statistics/supplier-activity-statistics.service';
 import { SupplierActivityStatisticsComponent } from './components/back-office/supplier-activity-statistics/supplier-activity-statistics.component';
+import { FundrequestComponent } from './components/front-office/fundrequest/fundrequest.component';
+import { CustomersqueryComponent } from './components/customersquery/customersquery.component';
+import { CustomersrequestComponent } from './components/back-office/customersrequest/customersrequest.component';
 
 export const routes: Routes = [
     {path:'register',component:SignupComponent,canActivate:[loginGuard]},
@@ -35,7 +38,9 @@ export const routes: Routes = [
     {path:'supplier',component:SupplierComponent,canActivate:[adminGuardGuard]},
     {path:'profits-statistics',component:ProfitsStatisticsComponent,canActivate:[adminGuardGuard]},
     {path:'supplier-activity',component:SupplierActivityStatisticsComponent,canActivate:[adminGuardGuard]},
+    {path:'customers-request',component:CustomersrequestComponent,canActivate:[adminGuardGuard]},
     {path:'foodDisplay/:id',component:FoodDisplayerComponent,canActivate:[clientGuardGuard]},
     {path:'errorPageNotAuthorized',component:ErrorPageNotAuthorizedComponent},
-    {path:'ratingView',component:RatingViewComponent,canActivate:[clientGuardGuard]}
+    {path:'ratingView',component:RatingViewComponent,canActivate:[clientGuardGuard]},
+    {path:'fundRequest',component:FundrequestComponent,canActivate:[clientGuardGuard]}
 ];

@@ -294,3 +294,11 @@ CREATE TABLE customersMoney(
     virtualAmount DECIMAL(18,2) NOT NULL,
     FOREIGN KEY (idCustomer) references establismentemployee(id)
 );
+
+CREATE TABLE customersQuery(
+    id BIGSERIAL PRIMARY KEY,
+    idCustomer VARCHAR(250) NOT NULL,
+    virtualAmount DECIMAL(18,2) NOT NULL,
+    isPending BOOLEAN NOT NULL,
+    FOREIGN KEY (idCustomer) references establismentemployee(id)
+);
