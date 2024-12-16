@@ -248,3 +248,15 @@ SELECT establishment.id,
        establishment.name,
        establishment.location
 FROM establishment;
+
+-- view anle capitale
+CREATE VIEW public.current_capital AS
+SELECT 
+    COALESCE(SUM(fo.disheprice), 0) - COALESCE(SUM(fo.dishepurchaseprice), 0) - COALESCE(SUM(ic.debtamount - ic.amountrefunded), 0) AS capital
+FROM 
+    public.foodorder fo
+LEFT JOIN 
+    public.indebtcustomers ic ON fo.customerid = ic.idcustomer;
+
+
+ALTER VIEW public.current_capital OWNER TO restau;
